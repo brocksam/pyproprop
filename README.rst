@@ -84,7 +84,6 @@ Do you often find yourself writing classes with properties such as:
                 val = DefaultObject()
             self._instantiate_default_if_none_attr = val
 
-
 With pyproprop all of this boilerplate can be removed and instead the exact same class can be rewritten as:
 
 .. code-block:: python
@@ -136,8 +135,30 @@ With pyproprop all of this boilerplate can be removed and instead the exact same
             self.obj_with_method_applied_attr = obj_with_method_applied_value
             self.instantiate_default_if_none_attr = None
 
+Installation
+============
 
-LICENSE
+The easiest way to install pyproprop is using the [Anaconda Python distribution](https://www.anaconda.com/what-is-anaconda/) and its included *Conda* package management system. To install pyproprop and its required dependencies, enter the following command at a command prompt:
+
+.. code-block:: bash
+
+    conda install pyproprop
+
+To install using pip, enter the following command at a command prompt:
+
+.. code-block:: bash
+
+    pip install pyproprop
+
+For more information, refer to the [installation documentation](https://pyproprop.readthedocs.io/en/latest/installation.html).
+
+Contribute
+==========
+
+- Issue Tracker: github.com/brocksam/pyproprop/issues
+- Source Code: github.com/brocksam/pyproprop
+
+License
 =======
 
 This project is licensed under the terms of the MIT license.
