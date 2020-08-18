@@ -1,8 +1,9 @@
+*********
 pyproprop
-=========
+*********
 
 What is pyproprop?
-------------------
+==================
 
 Do you often find yourself writing classes with properties such as:
 
@@ -137,6 +138,6 @@ With pyproprop all of this boilerplate can be removed and instead the exact same
 
 
 LICENSE
--------
+=======
 
 This project is licensed under the terms of the MIT license.
