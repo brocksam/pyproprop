@@ -60,15 +60,16 @@ def TestProcessedProperties():
 			checked_type_str=None,
 			checked_type_iterable=None,
 			checked_type_bool=None,
-			checked_len=None,
+			checked_list_len=None,
 			checked_max_value=None,
 			checked_min_value=None,
 			checked_max_value_excl=None,
 			checked_min_value_excl=None,
+			checked_bounds=None,
 			checked_iterable_allowed=None,
-			optional=None,
-			optional_with_default=None,
-			string_cast_from_int=None
+			optional_prop=None,
+			optional_prop_with_default=None,
+			cast_string=None
 		):
 
 			self.checked_type_int = checked_type_int
@@ -77,15 +78,21 @@ def TestProcessedProperties():
 			self.checked_type_iterable = checked_type_iterable
 			self.checked_type_bool = checked_type_bool
 
-			# TODO: all length checking for optionals.
-			# self.checked_len = checked_len
-			self.checked_max_value = checked_max_value
-			self.checked_min_value = checked_min_value
-			self.checked_max_value_excl = checked_max_value_excl
-			self.checked_min_value_excl = checked_min_value_excl
+			if checked_list_len is not None:
+				self.checked_list_len = checked_list_len
+			if checked_max_value is not None:
+				self.checked_max_value = checked_max_value
+			if checked_min_value is not None:
+				self.checked_min_value = checked_min_value
+			if checked_max_value_excl is not None:
+				self.checked_max_value_excl = checked_max_value_excl
+			if checked_min_value_excl is not None:
+				self.checked_min_value_excl = checked_min_value_excl
+			if checked_bounds is not None:
+				self.checked_bounds = checked_bounds
 			self.checked_iterable_allowed = checked_iterable_allowed
-			self.optional = optional
-			self.optional_with_default = optional_with_default
-			self.string_cast_from_int = string_cast_from_int
+			self.optional_prop = optional_prop
+			self.optional_prop_with_default = optional_prop_with_default
+			self.cast_string = cast_string
 
 	return TestProcessedProperties
