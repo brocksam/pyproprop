@@ -271,7 +271,7 @@ def processed_property(name, **kwargs):
             If sequence length and specified value are not equal.
 
         """
-        if len() != len_sequence:
+        if len(value) != len_sequence:
             msg = (f"`{name}` must be a sequence of length {len_sequence}.")
             raise ValueError(msg)
 
