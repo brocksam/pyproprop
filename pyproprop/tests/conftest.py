@@ -14,6 +14,12 @@ def TestProcessedProperties():
 	class TestProcessedProperties:
 		"""Base class for testing pyproprop functionality."""
 
+		_REQUIRED_LENGTH = 5
+		_MAX_VALUE = 5
+		_MIN_VALUE = 5
+		_BOUNDS = (1, 10)
+		_DEFAULT_INT = 5
+
 		# TODO: expand to cover all use cases:
 		#  * Find suitable post method for use in test.
 		#  * Test description
@@ -28,21 +34,24 @@ def TestProcessedProperties():
 		checked_type_bool = processed_property("checked_type_bool", type=bool,
 			optional=True)
 
-		checked_len = processed_property("checked_len", len=3, optional=True)
+		checked_list_len = processed_property("checked_list_len",
+			len=_REQUIRED_LENGTH, optional=True)
 		checked_max_value = processed_property("checked_max_value",
-			max_value=4, optional=True)
+			max=_MAX_VALUE, optional=True)
 		checked_min_value = processed_property("checked_min_value",
-			min_value=4, optional=True)
+			min=_MIN_VALUE, optional=True)
 		checked_max_value_excl = processed_property("checked_max_value_excl",
-			max_value=4, exclusive=True, optional=True)
+			max=_MAX_VALUE, exclusive=True, optional=True)
 		checked_min_value_excl = processed_property("checked_min_value_excl",
-			min_value=4, exclusive=True, optional=True)
+			min=_MIN_VALUE, exclusive=True, optional=True)
+		checked_bounds = processed_property("checked_bounds", min=_BOUNDS[0],
+			max=_BOUNDS[1], optional=True)
 		checked_iterable_allowed = processed_property("checked_iterable_allowed",
 			iterable_allowed=True, optional=True)
-		optional = processed_property("optional", type=int, optional=True)
-		optional_with_default = processed_property("optional_with_default",
-			type=int, default=5, optional=True)
-		string_cast_from_int = processed_property("string_cast_from_int",
+		optional_prop = processed_property("optional_prop", type=int, optional=True)
+		optional_prop_with_default = processed_property("optional_prop_with_default",
+			type=int, default=_DEFAULT_INT, optional=True)
+		cast_string = processed_property("cast_string",
 			type=str, cast=True)
 
 		def __init__(self, *,
