@@ -5,11 +5,7 @@ from hypothesis import given
 from hypothesis.strategies import (booleans, floats, integers, iterables, text)
 import pytest
 
-try:
-	from pyproprop import processed_property
-except ImportError:
-	sys.path.append(os.path.abspath("../"))
-	from pyproprop import processed_property
+from pyproprop import processed_property
 
 
 @given(integer=integers(), float_=floats(), iterable=iterables(integers()))

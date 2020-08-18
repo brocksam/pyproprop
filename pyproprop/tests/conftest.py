@@ -4,14 +4,7 @@ import sys
 
 import pytest
 
-# TODO: remove once setup.py created, allowing
-# installation of package in development mode.
-
-try:
-	from pyproprop import processed_property
-except ImportError:
-	sys.path.append(os.path.abspath("../"))
-	from pyproprop import processed_property
+from pyproprop import processed_property
 
 
 @pytest.fixture(scope="session")
