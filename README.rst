@@ -6,7 +6,7 @@ What is pyproprop?
 
 Do you often find yourself writing classes with properties
 
-.. code-block:: python
+.. code:: python
    from some_other_module import DefaultObject, some_type
    
    class ExampleClass:
@@ -84,7 +84,7 @@ Do you often find yourself writing classes with properties
 
 With pyproprop all of this boilerplate can be removed and instead the exact same class can be rewritten as
 
-.. code-block:: python
+.. code:: python
    from pyproprop import processed_property
    from some_other_module import DefaultObject, some_type
    
