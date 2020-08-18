@@ -31,3 +31,8 @@ Do you often find yourself writing classes with properties such as
             msg = f"`bounded_numeric_attr` must be greater than {lower_bound}"
             raise ValueError(msg)
         self._type_checked_attr = val
+
+LICENSE
+-------
+
+This project is licensed under the terms of the MIT license.
