@@ -4,9 +4,9 @@ pyproprop
 What is pyproprop?
 ------------------
 
-Do you often find yourself writing classes with properties
+Do you often find yourself writing classes with properties such as:
 
-.. code:: python
+.. code-block:: python
    from some_other_module import DefaultObject, some_type
    
    class ExampleClass:
@@ -82,9 +82,10 @@ Do you often find yourself writing classes with properties
                val = DefaultObject()
            self._instantiate_default_if_none_attr = val
 
-With pyproprop all of this boilerplate can be removed and instead the exact same class can be rewritten as
 
-.. code:: python
+With pyproprop all of this boilerplate can be removed and instead the exact same class can be rewritten as:
+
+.. code-block:: python
    from pyproprop import processed_property
    from some_other_module import DefaultObject, some_type
    
@@ -131,6 +132,7 @@ With pyproprop all of this boilerplate can be removed and instead the exact same
            self.specific_length_sequence_attr = specific_length_sequence_value
            self.obj_with_method_applied_attr = obj_with_method_applied_value
            self.instantiate_default_if_none_attr = None
+
 
 LICENSE
 -------
