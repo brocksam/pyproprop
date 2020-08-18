@@ -17,15 +17,15 @@ def TestProcessedProperties():
 		# TODO: expand to cover all use cases:
 		#  * Find suitable post method for use in test.
 		#  * Test description
-		checked_type_int = processed_property("check_type_int", type=int,
+		checked_type_int = processed_property("checked_type_int", type=int,
 			optional=True)
-		checked_type_float = processed_property("check_type_int", type=float,
+		checked_type_float = processed_property("checked_type_float", type=float,
 			optional=True)
-		checked_type_str = processed_property("check_type_str", type=str,
+		checked_type_str = processed_property("checked_type_str", type=str,
 			optional=True)
 		checked_type_iterable = processed_property("checked_type_iterable",
 			type=Iterable, optional=True)
-		checked_type_bool = processed_property("bool", type=bool,
+		checked_type_bool = processed_property("checked_type_bool", type=bool,
 			optional=True)
 
 		checked_len = processed_property("checked_len", len=3, optional=True)
@@ -44,7 +44,6 @@ def TestProcessedProperties():
 			type=int, default=5, optional=True)
 		string_cast_from_int = processed_property("string_cast_from_int",
 			type=str, cast=True)
-
 
 		def __init__(self, *,
 			checked_type_int=None,
