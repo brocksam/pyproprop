@@ -216,12 +216,12 @@ def processed_property(name, **kwargs):
         """
         if exclusive:
             if value <= min_value:
-                msg = (f"{make_title_case(description)} must be greater than "
+                msg = (f"{make_title_case(name)} must be greater than "
                        f"{min_value}. {value} is invalid.")
                 raise ValueError(msg)
         else:
             if value < min_value:
-                msg = (f"{make_title_case(description)} must be greater than "
+                msg = (f"{make_title_case(name)} must be greater than "
                        f"or equal to {min_value}. {value} is invalid.")
                 raise ValueError(msg)
 
@@ -242,12 +242,12 @@ def processed_property(name, **kwargs):
         """
         if exclusive:
             if value >= max_value:
-                msg = (f"{make_title_case(description)} must be less than "
+                msg = (f"{make_title_case(name)} must be less than "
                        f"{max_value}. {value} is invalid.")
                 raise ValueError(msg)
         else:
             if value > max_value:
-                msg = (f"{make_title_case(description)} must be less than or "
+                msg = (f"{make_title_case(name)} must be less than or "
                        f"equal to {max_value}. {value} is invalid.")
                 raise ValueError(msg)
 
