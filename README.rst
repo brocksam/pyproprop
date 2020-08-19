@@ -18,7 +18,7 @@ Status
       - .. image:: https://travis-ci.com/brocksam/pyproprop.svg?branch=master
             :target: https://travis-ci.com/brocksam/pyproprop
     * - Appveyor
-      - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true&
+      - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true
             :target: https://ci.appveyor.com/project/brocksam/pyproprop
 
 What is pyproprop?
