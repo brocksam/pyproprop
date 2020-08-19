@@ -53,6 +53,8 @@ def TestProcessedProperties():
 			type=int, default=_DEFAULT_INT, optional=True)
 		cast_string = processed_property("cast_string",
 			type=str, cast=True)
+		optimisable_property = processed_property("optimisable_property",
+			optimisable=True)
 
 		def __init__(self, *,
 			checked_type_int=None,
@@ -69,7 +71,8 @@ def TestProcessedProperties():
 			checked_iterable_allowed=None,
 			optional_prop=None,
 			optional_prop_with_default=None,
-			cast_string=None
+			cast_string=None,
+			optimisable_property=None
 		):
 
 			self.checked_type_int = checked_type_int
@@ -94,5 +97,7 @@ def TestProcessedProperties():
 			self.optional_prop = optional_prop
 			self.optional_prop_with_default = optional_prop_with_default
 			self.cast_string = cast_string
+			if optimisable_property is not None:
+				self.optimisable_property = optimisable_property
 
 	return TestProcessedProperties
