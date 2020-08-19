@@ -84,7 +84,9 @@ def processed_property(name, **kwargs):
         if max_value is not None:
             check_max(value)
         if len_sequence is not None:
-            check_len(value)
+            check_len(value, len_sequence)
+        if optimisable:
+            value = process_optimisable(value)
         if post_method is not None:
             value = apply_method(value)
         setattr(self, storage_name, value)
@@ -257,13 +259,15 @@ def processed_property(name, **kwargs):
             return title_description
         return description.upper()
 
-    def check_len(value):
+    def check_len(value, len_sequence):
         """Enforces the set sequence length to be equal to a specified value.
 
         Parameters
         ----------
         value : obj
             Property object value for setting.
+        len_sequence : obj:`int`
+            Length of desired sequence.
 
         Raises
         ------
