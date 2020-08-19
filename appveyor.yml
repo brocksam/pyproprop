@@ -42,23 +42,23 @@ install:
 
   # This upates conda and installs the necessary packages.
   - conda clean --yes --all
-  - "%CMD_IN_ENV% update --yes conda"
-  - "%CMD_IN_ENV% update --yes --all"
-  - "%CMD_IN_ENV% config --prepend channels conda-forge"
-  - "%CMD_IN_ENV% install --yes python=%PYTHON_VERSION%"
-  - "%CMD_IN_ENV% install --yes --file=requirements.txt"
-  - "%CMD_IN_ENV% install --yes --file=docs/requirements.txt"
-  - "%CMD_IN_ENV% update -y --all"
-  - "%CMD_IN_ENV% info"
-  - "%CMD_IN_ENV% list"
+  - conda update --yes conda
+  - conda update --yes --all
+  - conda config --prepend channels conda-forge
+  - "conda install --yes python=%PYTHON_VERSION%"
+  - conda install --yes --file=requirements.txt
+  - conda install --yes --file=docs/requirements.txt
+  - conda update -y --all
+  - conda info
+  - conda list
 
   # Check that we have the expected version and architecture for Python
-  - "python --version"
-  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+  - python --version
+  - python -c "import struct; print(struct.calcsize('P') * 8)"
 
 build_script:
   # Build the compiled extension
-  - "%CMD_IN_ENV% python setup.py build"
+  - python setup.py build
 
 test_script:
   - "%CMD_IN_ENV% python setup.py install"
