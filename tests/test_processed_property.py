@@ -6,8 +6,6 @@ from hypothesis.strategies import (booleans, floats, integers, iterables,
 import numpy as np
 import pytest
 
-from pyproprop import processed_property
-
 
 @given(input_=one_of(booleans(), floats(), integers(), iterables(integers()),
                      lists(integers()), text()))
