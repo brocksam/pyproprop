@@ -22,7 +22,7 @@ def test_integer_type_checking(TestProcessedProperties, input_):
 @given(integer_1=integers(), integer_2=integers(), float_=floats())
 def test_type_checking_correct_when_property_updated(TestProcessedProperties,
                                                      integer_1, integer_2, float_):
-    """Tests type checking and returning of type checked values when 
+    """Tests type checking and returning of type checked values when
     property is updated outside of an `__init__` method."""
     test_instance = TestProcessedProperties(checked_type_int=integer_1)
     assert test_instance.checked_type_int == integer_1
@@ -47,7 +47,7 @@ def test_string_type_checking(TestProcessedProperties, input_):
 @given(input_=one_of(booleans(), floats(allow_nan=False), integers(), iterables(integers()),
                      lists(integers()), text()))
 def test_float_type_checking(TestProcessedProperties, input_):
-    """Tests error messaging is correct when `expected_type=float`. Fails 
+    """Tests error messaging is correct when `expected_type=float`. Fails
     if `checked_type_float` set to `NaN`."""
     if isinstance(input_, float):
         test_instance = TestProcessedProperties(checked_type_float=input_)
@@ -84,7 +84,7 @@ def test_boolean_type_checking(TestProcessedProperties, input_):
 
 @given(list_=lists(floats()))
 def test_length_checking(TestProcessedProperties, list_):
-    """Validates length checking error messaging and return statements 
+    """Validates length checking error messaging and return statements
     function correctly."""
     required_length = TestProcessedProperties._REQUIRED_LENGTH
     if np.isclose(len(list_), required_length):
@@ -97,7 +97,7 @@ def test_length_checking(TestProcessedProperties, list_):
 
 @given(float_=floats())
 def test_max_value_checking(TestProcessedProperties, float_):
-    """Validates max value error messaging and return statements function 
+    """Validates max value error messaging and return statements function
     correctly."""
     max_value = TestProcessedProperties._MAX_VALUE
 
@@ -111,7 +111,7 @@ def test_max_value_checking(TestProcessedProperties, float_):
 
 @given(float_=floats())
 def test_min_value_checking(TestProcessedProperties, float_):
-    """Validates min value error messaging and return statements function 
+    """Validates min value error messaging and return statements function
     correctly."""
     min_value = TestProcessedProperties._MIN_VALUE
 
@@ -125,7 +125,7 @@ def test_min_value_checking(TestProcessedProperties, float_):
 
 @given(float_=floats())
 def test_max_value_excl_checking(TestProcessedProperties, float_):
-    """Validates exclusive max value error messaging and return statements 
+    """Validates exclusive max value error messaging and return statements
     function correctly."""
     max_value = TestProcessedProperties._MAX_VALUE
 
@@ -140,7 +140,7 @@ def test_max_value_excl_checking(TestProcessedProperties, float_):
 
 @given(float_=floats())
 def test_min_value_excl_checking(TestProcessedProperties, float_):
-    """Validates exclusive min value error messaging and return statements 
+    """Validates exclusive min value error messaging and return statements
     function correctly."""
     min_value = TestProcessedProperties._MIN_VALUE
 
@@ -155,7 +155,7 @@ def test_min_value_excl_checking(TestProcessedProperties, float_):
 
 @given(float_=floats(allow_nan=False))
 def test_bound_checking(TestProcessedProperties, float_):
-    """Validates bound checking error messaging and return statements 
+    """Validates bound checking error messaging and return statements
     function correctly. `float_` set to `nan` causes this test to fail. """
     lower_bound = TestProcessedProperties._BOUNDS[0]
     upper_bound = TestProcessedProperties._BOUNDS[1]
@@ -187,7 +187,7 @@ def test_optional_return(TestProcessedProperties, integer):
 
 
 def test_optional_default_object_return(TestProcessedProperties):
-    """Tests a property flagged as optional, with a default, defaults to 
+    """Tests a property flagged as optional, with a default, defaults to
     correct value."""
     default = TestProcessedProperties._DEFAULT_INT
     test_instance = TestProcessedProperties()
