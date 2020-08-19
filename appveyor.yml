@@ -39,10 +39,8 @@ install:
   - ps: "ls \"C:/\""
 
   #- ECHO "Installed SDKs:"
-  #- ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
-
-  # Install the appropriate Miniconda, PIP, conda-build
-  - powershell .\\continuous-integration\\appveyor\\install.ps1
+  - ps: "ls \"C:/Program Files\""
+  # - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
 
   # This upates conda and installs the necessary packages.
   - "%CMD_IN_ENV% clean --yes --all"
