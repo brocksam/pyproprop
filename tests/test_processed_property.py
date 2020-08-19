@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from hypothesis import given
+from hypothesis import given, example
 from hypothesis.strategies import (booleans, floats, integers, iterables,
                                    lists, one_of, text, tuples)
 import numpy as np
@@ -212,18 +212,19 @@ def test_cast_to_string(TestProcessedProperties, integer, float_):
                             max_value=9.223372036854776e+18),
                      floats(allow_nan=False, min_value=-9.223372036854776e+18,
                             max_value=9.223372036854776e+18)))
+@example(value=0, bounds=(-204797952.00000006, -204800000.00000006))
 def test_optimisable_arg_passing(TestProcessedProperties, value, bounds):
     test_instance = TestProcessedProperties(optimisable_property=value)
     assert test_instance.optimisable_property == value
-    if bounds[0] < bounds[1]:
+    if np.isclose(bounds[0], bounds[1]):
+        test_instance = TestProcessedProperties(optimisable_property=bounds)
+        assert test_instance.optimisable_property == bounds[0]
+    elif bounds[0] < bounds[1]:
         test_instance = TestProcessedProperties(optimisable_property=bounds)
         assert test_instance.optimisable_property == bounds
     elif bounds[0] > bounds[1]:
         with pytest.raises(ValueError):
             test_instance = TestProcessedProperties(optimisable_property=bounds)
-    elif np.isclose(bounds[0], bounds[1]):
-        test_instance = TestProcessedProperties(optimisable_property=bounds)
-        assert test_instance.optimisable_property == bounds[0]
 
 
 @given(float_bounds=tuples(floats(allow_nan=False,
