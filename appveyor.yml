@@ -60,9 +60,17 @@ build_script:
   - python setup.py build
 
 test_script:
+  # Install the package
   - python setup.py install
-  - conda.exe install --yes --file=tests/requirements.txt
+
+  # Run the test suite
+  - conda install --yes --file=tests\requirements.txt
   - pytest
+
+  # Check the docs build
+  - conda install --yes --file=docs\requirements.txt
+  - cd docs; make clean; cd ..
+  - sphinx-build -nWT -b dummy docs\source docs\build
       
 after_test:
   # If tests are successful, create binary packages for the project.
