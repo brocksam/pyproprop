@@ -15,7 +15,7 @@ Status
       - .. image:: https://badge.fury.io/py/pyproprop.svg
             :target: https://badge.fury.io/py/pyproprop
     * - Travis CI
-      .. image:: https://travis-ci.com/brocksam/pyproprop.svg?branch=master
+      - .. image:: https://travis-ci.com/brocksam/pyproprop.svg?branch=master
             :target: https://travis-ci.com/brocksam/pyproprop
 
 What is pyproprop?
