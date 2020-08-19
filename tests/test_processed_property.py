@@ -203,7 +203,7 @@ def test_cast_to_string(TestProcessedProperties, integer, float_):
     when attempting to cast floats equal to `inf` or `nan`."""
     test_instance = TestProcessedProperties(cast_string=integer)
     assert test_instance.cast_string == str(integer)
-    assert isinstance(test_instance.cast_string, str) == True
+    assert isinstance(test_instance.cast_string, str) is True
     test_instance = TestProcessedProperties(cast_string=float_)
     assert test_instance.cast_string == str(float_)
-    assert isinstance(test_instance.cast_string, str) == True
+    assert isinstance(test_instance.cast_string, str) is True
