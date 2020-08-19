@@ -41,7 +41,7 @@ install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
   # This upates conda and installs the necessary packages.
-  - "%CMD_IN_ENV% clean --yes --all"
+  - conda clean --yes --all
   - "%CMD_IN_ENV% update --yes conda"
   - "%CMD_IN_ENV% update --yes --all"
   - "%CMD_IN_ENV% config --prepend channels conda-forge"
