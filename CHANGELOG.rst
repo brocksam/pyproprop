@@ -41,6 +41,11 @@ Added
 
 - ``optimisable`` processed properties.
 
+Changed
+~~~~~~~
+
+- Increase Python 3 usage to include older versions 3.5, 3.6 and 3.7.
+
 [0.0.3] - 2020-08-19
 --------------------
 
