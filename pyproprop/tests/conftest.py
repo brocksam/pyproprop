@@ -14,6 +14,12 @@ def TestProcessedProperties():
 	class TestProcessedProperties:
 		"""Base class for testing pyproprop functionality."""
 
+		_REQUIRED_LENGTH = 5
+		_MAX_VALUE = 5
+		_MIN_VALUE = 5
+		_BOUNDS = (1, 10)
+		_DEFAULT_INT = 5
+
 		# TODO: expand to cover all use cases:
 		#  * Find suitable post method for use in test.
 		#  * Test description
@@ -28,21 +34,24 @@ def TestProcessedProperties():
 		checked_type_bool = processed_property("checked_type_bool", type=bool,
 			optional=True)
 
-		checked_len = processed_property("checked_len", len=3, optional=True)
+		checked_list_len = processed_property("checked_list_len",
+			len=_REQUIRED_LENGTH, optional=True)
 		checked_max_value = processed_property("checked_max_value",
-			max_value=4, optional=True)
+			max=_MAX_VALUE, optional=True)
 		checked_min_value = processed_property("checked_min_value",
-			min_value=4, optional=True)
+			min=_MIN_VALUE, optional=True)
 		checked_max_value_excl = processed_property("checked_max_value_excl",
-			max_value=4, exclusive=True, optional=True)
+			max=_MAX_VALUE, exclusive=True, optional=True)
 		checked_min_value_excl = processed_property("checked_min_value_excl",
-			min_value=4, exclusive=True, optional=True)
+			min=_MIN_VALUE, exclusive=True, optional=True)
+		checked_bounds = processed_property("checked_bounds", min=_BOUNDS[0],
+			max=_BOUNDS[1], optional=True)
 		checked_iterable_allowed = processed_property("checked_iterable_allowed",
 			iterable_allowed=True, optional=True)
-		optional = processed_property("optional", type=int, optional=True)
-		optional_with_default = processed_property("optional_with_default",
-			type=int, default=5, optional=True)
-		string_cast_from_int = processed_property("string_cast_from_int",
+		optional_prop = processed_property("optional_prop", type=int, optional=True)
+		optional_prop_with_default = processed_property("optional_prop_with_default",
+			type=int, default=_DEFAULT_INT, optional=True)
+		cast_string = processed_property("cast_string",
 			type=str, cast=True)
 
 		def __init__(self, *,
@@ -51,15 +60,16 @@ def TestProcessedProperties():
 			checked_type_str=None,
 			checked_type_iterable=None,
 			checked_type_bool=None,
-			checked_len=None,
+			checked_list_len=None,
 			checked_max_value=None,
 			checked_min_value=None,
 			checked_max_value_excl=None,
 			checked_min_value_excl=None,
+			checked_bounds=None,
 			checked_iterable_allowed=None,
-			optional=None,
-			optional_with_default=None,
-			string_cast_from_int=None
+			optional_prop=None,
+			optional_prop_with_default=None,
+			cast_string=None
 		):
 
 			self.checked_type_int = checked_type_int
@@ -68,15 +78,21 @@ def TestProcessedProperties():
 			self.checked_type_iterable = checked_type_iterable
 			self.checked_type_bool = checked_type_bool
 
-			# TODO: all length checking for optionals.
-			# self.checked_len = checked_len
-			self.checked_max_value = checked_max_value
-			self.checked_min_value = checked_min_value
-			self.checked_max_value_excl = checked_max_value_excl
-			self.checked_min_value_excl = checked_min_value_excl
+			if checked_list_len is not None:
+				self.checked_list_len = checked_list_len
+			if checked_max_value is not None:
+				self.checked_max_value = checked_max_value
+			if checked_min_value is not None:
+				self.checked_min_value = checked_min_value
+			if checked_max_value_excl is not None:
+				self.checked_max_value_excl = checked_max_value_excl
+			if checked_min_value_excl is not None:
+				self.checked_min_value_excl = checked_min_value_excl
+			if checked_bounds is not None:
+				self.checked_bounds = checked_bounds
 			self.checked_iterable_allowed = checked_iterable_allowed
-			self.optional = optional
-			self.optional_with_default = optional_with_default
-			self.string_cast_from_int = string_cast_from_int
+			self.optional_prop = optional_prop
+			self.optional_prop_with_default = optional_prop_with_default
+			self.cast_string = cast_string
 
 	return TestProcessedProperties
