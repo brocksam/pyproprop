@@ -183,7 +183,7 @@ def test_optional_return(TestProcessedProperties, integer):
     test_instance = TestProcessedProperties(optional_prop=integer)
     assert test_instance.optional_prop == integer
     test_instance = TestProcessedProperties()
-    assert test_instance.optional_prop == None
+    assert test_instance.optional_prop is None
 
 
 def test_optional_default_object_return(TestProcessedProperties):
