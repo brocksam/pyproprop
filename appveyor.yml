@@ -69,7 +69,9 @@ test_script:
 
   # Check the docs build
   - conda install --yes --file=docs\requirements.txt
-  - cd docs; make clean; cd ..
+  - cd docs
+  - make clean
+  - cd ..
   - sphinx-build -nWT -b dummy docs\source docs\build
       
 after_test:
