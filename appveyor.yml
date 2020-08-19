@@ -40,6 +40,9 @@ install:
   # parent CMD process).
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
+  # Activate base Anaconda env (see https://github.com/numpy/numpy/issues/15003)
+  - "CALL %PYTHON%\\Scripts\\activate.bat base"
+
   # This upates conda and installs the necessary packages.
   - conda clean --yes --all
   - conda update --yes conda
