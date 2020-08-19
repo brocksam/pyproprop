@@ -2,6 +2,24 @@
 pyproprop
 *********
 
+Status
+======
+
+.. list-table::
+
+    * - Docs
+      - .. image:: https://readthedocs.org/projects/pyproprop/badge/?version=latest
+            :target: https://pyproprop.readthedocs.io/en/latest/?badge=latest
+            :alt: Documentation Status
+        .. image:: https://anaconda.org/conda-forge/cyipopt/badges/downloads.svg
+           :target: https://anaconda.org/conda-forge/cyipopt
+    * - PyPI
+      - .. image:: https://badge.fury.io/py/pyproprop.svg
+            :target: https://badge.fury.io/py/pyproprop
+    * - Travis CI
+      - image:: https://secure.travis-ci.org/brocksam/pyproprop.png
+            :target: http://travis-ci.org/brocksam/pyproprop
+
 What is pyproprop?
 ==================
 
