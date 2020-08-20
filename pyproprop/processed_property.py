@@ -7,7 +7,10 @@ reuse.
 
 """
 
+from numbers import Real
 from typing import Iterable
+
+import numpy as np
 
 
 __all__ = ["processed_property"]
@@ -42,6 +45,7 @@ def processed_property(name, **kwargs):
     max_value = kwargs.get("max")
     min_value = kwargs.get("min")
     exclusive = kwargs.get("exclusive", False)
+    optimisable = kwargs.get("optimisable", False)
     post_method = kwargs.get("method")
 
     @property
@@ -84,7 +88,9 @@ def processed_property(name, **kwargs):
         if max_value is not None:
             check_max(value)
         if len_sequence is not None:
-            check_len(value)
+            check_len(value, len_sequence)
+        if optimisable:
+            value = process_optimisable(value)
         if post_method is not None:
             value = apply_method(value)
         setattr(self, storage_name, value)
@@ -257,13 +263,15 @@ def processed_property(name, **kwargs):
             return title_description
         return description.upper()
 
-    def check_len(value):
+    def check_len(value, len_sequence):
         """Enforces the set sequence length to be equal to a specified value.
 
         Parameters
         ----------
         value : obj
             Property object value for setting.
+        len_sequence : obj:`int`
+            Length of desired sequence.
 
         Raises
         ------
@@ -291,6 +299,81 @@ def processed_property(name, **kwargs):
         if optional and value is None:
             return None
         return post_method(value)
+
+    def process_optimisable(value):
+        """Processes properties flagged as `optimisable`.
+
+        Parameters
+        ----------
+        value : obj
+            Property object value for setting.
+
+        Returns
+        -------
+        `numbers.Real`
+            If a number is supplied by user.
+        `tuple`
+            If a set of valid bounds are supplied (see `check_bounds`).
+        `ValueError`
+            If supplied `Iterable` is not of length 2.
+        `Type Error`
+            If either supplied bounds are not of type `numbers.Real` or 
+            the single supplied value is not of type `numbers.Real`
+
+        """
+        if isinstance(value, Real):
+            return value
+        if isinstance(value, Iterable):
+            check_len(value, 2)
+            bounds = []
+            msg = (f"Both {name} bounds must be of type {Real}, instead got "
+                f"{value[0]} at index 0 (type {type(value[0])}) and "
+                f"{value[1]} at index 1 (type {type(value[1])}).")
+            for bound in value:
+                if not isinstance(bound, Real):
+                    raise TypeError(msg)
+                bounds.append(bound)
+            bounds = check_bounds(bounds)
+            return bounds
+        msg = (f"{name} must be a {Real} or {Iterable} of length 2, instead "
+            f"got {repr(type(value))}.")
+        raise TypeError(msg)
+
+    def check_bounds(bounds):
+        """Validates bounds for `optimisable` processed property.
+
+        Parameters
+        ----------
+        bounds : :obj:`Iterable`
+            `Iterable` of bounds to be validated.
+
+        Returns
+        -------
+        :obj:`numbers.Real`
+            If the first bound equals the second bound.
+        :obj:`tuple`
+            If the second bound exceeds the first bound.
+        `ValueError`
+            If the first bound exceeds the second bound.
+
+        """
+        lower_bound = bounds[0]
+        upper_bound = bounds[1]
+        try:
+            # Test if both bounds can be represented as signed 64-bit number.
+            np.asarray(bounds, dtype=np.int64)
+        except OverflowError:
+            msg = ("Individual bounds must be able to be represented as a "
+                   "signed 64-bit number, and hence must lie in the range "
+                   "(-9223372036854775808, 9223372036854775807).")
+            raise ValueError(msg)
+        if np.isclose(lower_bound, upper_bound):
+            return lower_bound
+        if lower_bound > upper_bound:
+            msg = (f"Lower bound ({lower_bound}) at index 0 must be less "
+                f"than upper bound ({upper_bound}) at index 1.")
+            raise ValueError(msg)
+        return tuple(bounds)
 
     return prop
 

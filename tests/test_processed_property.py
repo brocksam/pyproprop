@@ -1,8 +1,8 @@
 from typing import Iterable
 
-from hypothesis import given
+from hypothesis import given, example
 from hypothesis.strategies import (booleans, floats, integers, iterables,
-                                   lists, one_of, text)
+                                   lists, one_of, text, tuples)
 import numpy as np
 import pytest
 
@@ -205,3 +205,63 @@ def test_cast_to_string(TestProcessedProperties, integer, float_):
     test_instance = TestProcessedProperties(cast_string=float_)
     assert test_instance.cast_string == str(float_)
     assert isinstance(test_instance.cast_string, str) is True
+
+
+@given(value=one_of(integers(), floats(allow_nan=False)),
+       bounds=tuples(floats(allow_nan=False, min_value=-9.223372036854776e+18,
+                            max_value=9.223372036854776e+18),
+                     floats(allow_nan=False, min_value=-9.223372036854776e+18,
+                            max_value=9.223372036854776e+18)))
+@example(value=0, bounds=(-204797952.00000006, -204800000.00000006))
+def test_optimisable_arg_passing(TestProcessedProperties, value, bounds):
+    test_instance = TestProcessedProperties(optimisable_property=value)
+    assert test_instance.optimisable_property == value
+    if np.isclose(bounds[0], bounds[1]):
+        test_instance = TestProcessedProperties(optimisable_property=bounds)
+        assert test_instance.optimisable_property == bounds[0]
+    elif bounds[0] < bounds[1]:
+        test_instance = TestProcessedProperties(optimisable_property=bounds)
+        assert test_instance.optimisable_property == bounds
+    elif bounds[0] > bounds[1]:
+        with pytest.raises(ValueError):
+            test_instance = TestProcessedProperties(optimisable_property=bounds)
+
+
+@given(float_bounds=tuples(floats(allow_nan=False,
+                                  min_value=9.223372036854776e+18),
+                           floats(allow_nan=False,
+                                  max_value=-9.223372036854776e+18)),
+       integer_bounds=tuples(integers(min_value=9223372036854775807),
+                             integers(max_value=-9223372036854775808)))
+def test_optimisable_error_messaging_for_non_64_bit_bounds(
+        TestProcessedProperties, float_bounds, integer_bounds):
+    """Test error handling when optimisable bounds cannot represented as
+    signed 64-bit number."""
+    with pytest.raises(ValueError):
+        test_instance = TestProcessedProperties(optimisable_property=float_bounds)
+    with pytest.raises(ValueError):
+        test_instance = TestProcessedProperties(optimisable_property=integer_bounds)
+
+
+@given(short_string=text(max_size=1),
+       two_char_string=text(min_size=2, max_size=2),
+       long_string=text(min_size=3),
+       short_list=lists(integers(), min_size=0, max_size=1),
+       long_list=lists(integers(), min_size=3),
+       invalid_bounds=tuples(integers(), text()))
+def test_optimisable_error_handling(TestProcessedProperties, short_string,
+                                    two_char_string, long_string,
+                                    short_list, long_list, invalid_bounds):
+    """Tests error handling for properties flagged as `optimisable`."""
+    with pytest.raises(ValueError):
+        test_instance = TestProcessedProperties(optimisable_property=short_string)
+    with pytest.raises(TypeError):
+        test_instance = TestProcessedProperties(optimisable_property=two_char_string)
+    with pytest.raises(ValueError):
+        test_instance = TestProcessedProperties(optimisable_property=long_string)
+    with pytest.raises(ValueError):
+        test_instance = TestProcessedProperties(optimisable_property=short_list)
+    with pytest.raises(ValueError):
+        test_instance = TestProcessedProperties(optimisable_property=long_list)
+    with pytest.raises(TypeError):
+        test_instance = TestProcessedProperties(optimisable_property=invalid_bounds)
