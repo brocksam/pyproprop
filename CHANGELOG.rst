@@ -38,6 +38,14 @@ Unreleased
 
 - None
 
+[0.0.5] - 2020-08-20
+--------------------
+
+Added
+~~~~~
+
+- Include pyproprop/*, setup.py, LICENSE, CHANGELOG.rst, LICENSE.rst, requirements.txt, docs/* and tests/* in MANIFEST.in.
+
 [0.0.4] - 2020-08-20
 --------------------
 
