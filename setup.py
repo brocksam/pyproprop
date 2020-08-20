@@ -137,9 +137,6 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3.8",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Framework :: Pytest",
-    "Framework :: Hypothesis",
-    "Framework :: Sphinx",
     "Natural Language :: English",
     "Topic :: Utilities",
 ]
