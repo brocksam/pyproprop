@@ -129,7 +129,7 @@ LICENSE = "MIT"
 URL = "https://github.com/brocksam/hsad"
 KEYWORDS = ["property", "type-checking", "bound-checking", "type-casting"]
 CLASSIFIERS = [
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.6",
@@ -137,6 +137,9 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3.8",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Framework :: Pytest",
+    "Framework :: Hypothesis",
+    "Framework :: Sphinx",
 ]
 PYTHON_REQUIRES = ">=3.6"
 
