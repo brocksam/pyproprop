@@ -8,8 +8,9 @@ reuse.
 """
 
 from numbers import Real
-import numpy as np
 from typing import Iterable
+
+import numpy as np
 
 
 __all__ = ["processed_property"]
