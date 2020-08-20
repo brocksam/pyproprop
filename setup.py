@@ -140,6 +140,8 @@ CLASSIFIERS = [
     "Framework :: Pytest",
     "Framework :: Hypothesis",
     "Framework :: Sphinx",
+    "Natural Language :: English",
+    "Topic :: Utilities",
 ]
 PYTHON_REQUIRES = ">=3.6"
 
