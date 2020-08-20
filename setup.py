@@ -126,7 +126,7 @@ AUTHOR_EMAIL = "sambrockie@icloud.com"
 DESCRIPTION = ("Package for aiding writing classes with lots of similar "
                "simple properties without the boilerplate")
 LICENSE = "MIT"
-URL = "https://github.com/brocksam/hsad"
+URL = "https://pypi.org/project/pyproprop/"
 KEYWORDS = ["property", "type-checking", "bound-checking", "type-casting"]
 CLASSIFIERS = [
     "Development Status :: 4 - Beta",
