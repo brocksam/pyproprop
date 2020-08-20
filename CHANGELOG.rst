@@ -36,10 +36,15 @@ Version History
 Unreleased
 ----------
 
+- None
+
+[0.0.4] - 2020-08-20
+--------------------
+
 Added
 ~~~~~
 
-- ``optimisable`` processed properties.
+- ``optimisable`` processed properties (#1).
 
 Changed
 ~~~~~~~
@@ -48,5 +53,8 @@ Changed
 
 [0.0.3] - 2020-08-19
 --------------------
+
+Added
+~~~~~
 
 - Initial release to PyPI.
