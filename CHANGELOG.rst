@@ -38,6 +38,14 @@ Unreleased
 
 - None
 
+[0.1.1] - 2020-08-21
+--------------------
+
+Changed
+~~~~~~~
+
+- Descriptiveness of error messages improved.
+
 [0.1.0] - 2020-08-21
 --------------------
 
