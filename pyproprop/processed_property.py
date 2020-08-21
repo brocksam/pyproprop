@@ -129,7 +129,8 @@ def processed_property(name, **kwargs):
         elif cast_to_type:
             return cast_type(value)
         else:
-            msg = (f"`{name}` must be a {repr(expected_type)}, instead got a "
+            name_str = generate_name_description_error_message()
+            msg = (f"{name_str} must be a {repr(expected_type)}, instead got a "
                    f"{repr(type(value))}.")
             raise TypeError(msg)
 
@@ -157,7 +158,8 @@ def processed_property(name, **kwargs):
         try:
             exec(cast_str)
         except (ValueError, TypeError) as e:
-            msg = (f"`{name}` must be a {repr(expected_type)}, instead got a "
+            name_str = generate_name_description_error_message()
+            msg = (f"{name_str} must be a {repr(expected_type)}, instead got a "
                    f"{repr(type(value))} which cannot be cast.")
             raise e(msg)
         return locals()['processed_value']
@@ -220,15 +222,16 @@ def processed_property(name, **kwargs):
             If the value attempting to be set is less than the specified
             minimum.
         """
+        name_str = generate_name_description_error_message()
         if exclusive:
             if value <= min_value:
-                msg = (f"{make_title_case(name)} must be greater than "
-                       f"{min_value}. {value} is invalid.")
+                msg = (f"{name_str} must be greater than {min_value}. {value} "
+                       f"is invalid.")
                 raise ValueError(msg)
         else:
             if value < min_value:
-                msg = (f"{make_title_case(name)} must be greater than "
-                       f"or equal to {min_value}. {value} is invalid.")
+                msg = (f"{name_str} must be greater than or equal to "
+                       f"{min_value}. {value} is invalid.")
                 raise ValueError(msg)
 
     def check_max(value):
@@ -246,16 +249,22 @@ def processed_property(name, **kwargs):
             If the value attempting to be set is less than the specified
             maximum.
         """
+        name_str = generate_name_description_error_message()
         if exclusive:
             if value >= max_value:
-                msg = (f"{make_title_case(name)} must be less than "
-                       f"{max_value}. {value} is invalid.")
+                msg = (f"{name_str} must be less than {max_value}. {value} is "
+                       f"invalid.")
                 raise ValueError(msg)
         else:
             if value > max_value:
-                msg = (f"{make_title_case(name)} must be less than or "
-                       f"equal to {max_value}. {value} is invalid.")
+                msg = (f"{name_str} must be less than or equal to "
+                       f"{max_value}. {value} is invalid.")
                 raise ValueError(msg)
+
+    def generate_name_description_error_message():
+        if description is None:
+            return f"`{name}`"
+        return f"{make_title_case(description)} (`{name}`)"
 
     def make_title_case(description):
         if len(description) > 1:
@@ -280,7 +289,8 @@ def processed_property(name, **kwargs):
 
         """
         if len(value) != len_sequence:
-            msg = (f"`{name}` must be a sequence of length {len_sequence}.")
+            name_str = generate_name_description_error_message()
+            msg = (f"{name_str} must be a sequence of length {len_sequence}.")
             raise ValueError(msg)
 
     def apply_method(value):
@@ -317,26 +327,27 @@ def processed_property(name, **kwargs):
         `ValueError`
             If supplied `Iterable` is not of length 2.
         `Type Error`
-            If either supplied bounds are not of type `numbers.Real` or 
+            If either supplied bounds are not of type `numbers.Real` or
             the single supplied value is not of type `numbers.Real`
 
         """
+        name_str = generate_name_description_error_message()
         if isinstance(value, Real):
             return value
         if isinstance(value, Iterable):
             check_len(value, 2)
             bounds = []
-            msg = (f"Both {name} bounds must be of type {Real}, instead got "
-                f"{value[0]} at index 0 (type {type(value[0])}) and "
-                f"{value[1]} at index 1 (type {type(value[1])}).")
+            msg = (f"Both {name_str} bounds must be of type {Real}, instead "
+                   f"got {value[0]} at index 0 (type {type(value[0])}) and "
+                   f"{value[1]} at index 1 (type {type(value[1])}).")
             for bound in value:
                 if not isinstance(bound, Real):
                     raise TypeError(msg)
                 bounds.append(bound)
             bounds = check_bounds(bounds)
             return bounds
-        msg = (f"{name} must be a {Real} or {Iterable} of length 2, instead "
-            f"got {repr(type(value))}.")
+        msg = (f"{name_str} must be a {Real} or {Iterable} of length 2, "
+               f"instead got {repr(type(value))}.")
         raise TypeError(msg)
 
     def check_bounds(bounds):
