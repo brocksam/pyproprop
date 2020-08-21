@@ -174,8 +174,8 @@ For more information, refer to the `installation documentation <https://pypropro
 Contribute
 ==========
 
-- Issue Tracker: github.com/brocksam/pyproprop/issues
-- Source Code: github.com/brocksam/pyproprop
+- Issue Tracker: https://github.com/brocksam/pyproprop/issues
+- Source Code: https://github.com/brocksam/pyproprop
 
 License
 =======
