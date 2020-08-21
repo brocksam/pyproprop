@@ -129,7 +129,7 @@ LICENSE = "MIT"
 URL = "https://pypi.org/project/pyproprop/"
 KEYWORDS = ["property", "type-checking", "bound-checking", "type-casting"]
 CLASSIFIERS = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.6",
