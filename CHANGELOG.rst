@@ -38,6 +38,14 @@ Unreleased
 
 - None
 
+[0.1.0] - 2020-08-21
+--------------------
+
+Changed
+~~~~~~~
+
+- Development status classifier upgraded from "4 - Beta" to "5 - Production/Stable.
+
 [0.0.5] - 2020-08-20
 --------------------
 
