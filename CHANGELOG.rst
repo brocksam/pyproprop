@@ -45,6 +45,7 @@ Changed
 ~~~~~~~
 
 - Descriptiveness of error messages improved.
+- Hyperlinks in README reformatted to ReST.
 
 [0.1.0] - 2020-08-21
 --------------------

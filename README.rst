@@ -157,7 +157,7 @@ With pyproprop all of this boilerplate can be removed and instead the exact same
 Installation
 ============
 
-The easiest way to install pyproprop is using the [Anaconda Python distribution](https://www.anaconda.com/what-is-anaconda/) and its included *Conda* package management system. To install pyproprop and its required dependencies, enter the following command at a command prompt:
+The easiest way to install pyproprop is using the `Anaconda Python distribution <https://www.anaconda.com/what-is-anaconda/>`_ and its included *Conda* package management system. To install pyproprop and its required dependencies, enter the following command at a command prompt:
 
 .. code-block:: bash
 
@@ -169,7 +169,7 @@ To install using pip, enter the following command at a command prompt:
 
     pip install pyproprop
 
-For more information, refer to the [installation documentation](https://pyproprop.readthedocs.io/en/latest/installation.html).
+For more information, refer to the `installation documentation <https://pyproprop.readthedocs.io/en/latest/installation.html>`_.
 
 Contribute
 ==========
