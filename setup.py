@@ -118,7 +118,7 @@ def get_contents_from_file(filepath, by_line=False, strip=""):
 
 
 PACKAGE_NAME = "pyproprop"
-VERSION_FILE = "VERSION.txt"
+VERSION = "0.1.1"
 AUTHOR = "Sam Brockie"
 AUTHOR_EMAIL = "sambrockie@icloud.com"
 DESCRIPTION = ("Package for aiding writing classes with lots of similar "
@@ -143,7 +143,7 @@ PYTHON_REQUIRES = ">=3.6"
 if __name__ == "__main__":
     setuptools.setup(
         name=PACKAGE_NAME,
-        version=get_contents_from_file(VERSION_FILE),
+        version=VERSION,
         author=AUTHOR,
         author_email=AUTHOR_EMAIL,
         packages=setuptools.find_packages(),
