@@ -46,6 +46,7 @@ Changed
 
 - Descriptiveness of error messages improved.
 - Hyperlinks in README reformatted to ReST.
+- Replace `pyproprop/version.py` module with `VERSION.txt` in package root directory as single source package version as this fixes a problem with conda recipe requiring Numpy as a host dependency.
 
 [0.1.0] - 2020-08-21
 --------------------
