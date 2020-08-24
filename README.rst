@@ -169,7 +169,7 @@ To install using pip, enter the following command at a command prompt:
 
     pip install pyproprop
 
-For more information, refer to the `installation documentation <https://pyproprop.readthedocs.io/en/latest/installation.html>`_.
+For more information, refer to the `installation documentation <https://pyproprop.readthedocs.io/en/latest/user/installation.html>`_.
 
 Contribute
 ==========
