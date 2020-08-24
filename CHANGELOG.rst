@@ -41,6 +41,11 @@ Unreleased
 [0.1.1] - 2020-08-24
 --------------------
 
+Added
+~~~~~
+
+- Basic user and development documentation.
+
 Changed
 ~~~~~~~
 
