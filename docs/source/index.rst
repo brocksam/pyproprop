@@ -1,20 +1,15 @@
-.. pyproprop documentation master file, created by
-   sphinx-quickstart on Tue Aug 18 12:50:03 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+_pyproprop_ Documentation
+=========================
 
-Welcome to pyproprop's documentation!
-=====================================
+Welcome to the documentation for _pyproprop_! _pyproprop_ (from Python-processed-properties) is a Python package to help you write classes that contain lots of repetitive properties which implement idioms such as type checking, bounds checking, type casting, method applications etc. with ease and in a DRY manner.
+
+New users of _pyproprop_ should check out the :doc:`User Manual <user/index>`. 
 
 .. toctree::
+   :numbered:
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   user/index
+   dev/index
+   api/index
