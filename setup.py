@@ -27,8 +27,6 @@ VERSION : str
 
 import setuptools
 
-from pyproprop import __version__
-
 
 def get_contents_from_file(filepath, by_line=False, strip=""):
     """Helper function to read 'requires' info from :dir:`requirements/`.
@@ -120,7 +118,7 @@ def get_contents_from_file(filepath, by_line=False, strip=""):
 
 
 PACKAGE_NAME = "pyproprop"
-VERSION = __version__
+VERSION_FILE = "VERSION.txt"
 AUTHOR = "Sam Brockie"
 AUTHOR_EMAIL = "sambrockie@icloud.com"
 DESCRIPTION = ("Package for aiding writing classes with lots of similar "
@@ -145,7 +143,7 @@ PYTHON_REQUIRES = ">=3.6"
 if __name__ == "__main__":
     setuptools.setup(
         name=PACKAGE_NAME,
-        version=VERSION,
+        version=process_file_contents(VERSION_FILE),
         author=AUTHOR,
         author_email=AUTHOR_EMAIL,
         packages=setuptools.find_packages(),
