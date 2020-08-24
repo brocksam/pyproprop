@@ -1,9 +1,9 @@
 _pyproprop_ Documentation
 =========================
 
-Welcome to the documentation for _pyproprop_! _pyproprop_ (from Python-processed-properties) is a Python package to help you write classes that contain lots of repetitive properties which implement idioms such as type checking, bounds checking, type casting, method applications etc. with ease and in a DRY manner.
+Welcome to the documentation for *pyproprop*! *pyproprop* (from Python-processed-properties) is a Python package to help you write classes that contain lots of repetitive properties which implement idioms such as type checking, bounds checking, type casting, method applications etc. with ease and in a DRY manner.
 
-New users of _pyproprop_ should check out the :doc:`User Manual <user/index>`. 
+New users of *pyproprop* should check out the :doc:`User Manual <user/index>`. 
 
 .. toctree::
    :numbered:
