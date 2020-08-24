@@ -143,7 +143,7 @@ PYTHON_REQUIRES = ">=3.6"
 if __name__ == "__main__":
     setuptools.setup(
         name=PACKAGE_NAME,
-        version=process_file_contents(VERSION_FILE),
+        version=get_contents_from_file(VERSION_FILE),
         author=AUTHOR,
         author_email=AUTHOR_EMAIL,
         packages=setuptools.find_packages(),
