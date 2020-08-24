@@ -1,8 +1,8 @@
 import os
-from typing import Iterable
 import sys
 
 import pytest
+from typing import Iterable
 
 from pyproprop import processed_property
 
