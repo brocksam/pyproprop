@@ -149,15 +149,11 @@ def processed_property(name, **kwargs):
 
         Raises
         ------
-        e
-            Description
-
-        No Longer Raises
-        ----------------
         ValueError
             If the casting fails.
         TypeError
             If the casting fails.
+
         """
         cast_str = f"processed_value = {expected_type.__name__}({value})"
         try:
@@ -268,19 +264,19 @@ def processed_property(name, **kwargs):
 
     def generate_name_description_error_message(is_sentence_start=False,
                                                 with_preposition=False):
-        """Summary
+        """Combine the name and description for correctly-formatted error.
 
         Parameters
         ----------
         is_sentence_start : bool, optional
-            Description
+            Should the formatted str be return in title case.
         with_preposition : bool, optional
-            Description
+            Should 'a' or 'an' be preappended to the error message.
 
         Returns
         -------
-        TYPE
-            Description
+        str
+            Formatted description.
         """
         if description is None:
             return f"`{name}`"
@@ -300,17 +296,20 @@ def processed_property(name, **kwargs):
         return f"{formatted_description} (`{name}`)"
 
     def make_title_case(description):
-        """Summary
+        """Returns a str in title case.
+
+        Correctly formats title case handling scenario when appreviations are
+        included in the name/description.
 
         Parameters
         ----------
-        description : TYPE
-            Description
+        description : str
+            Description for formatting
 
         Returns
         -------
-        TYPE
-            Description
+        str
+            Formatted description
         """
         if len(description) > 1:
             title_description = description[0].upper() + description[1:]
@@ -369,16 +368,14 @@ def processed_property(name, **kwargs):
             If a number is supplied by user.
         `tuple`
             If a set of valid bounds are supplied (see `check_bounds`).
-        `ValueError`
-            If supplied `Iterable` is not of length 2.
-        `Type Error`
-            If either supplied bounds are not of type `numbers.Real` or
-            the single supplied value is not of type `numbers.Real`
 
         Raises
         ------
+        ValueError
+            If supplied `Iterable` is not of length 2.
         TypeError
-            Description
+            If either supplied bounds are not of type `numbers.Real` or
+            the single supplied value is not of type `numbers.Real`.
 
         """
         name_str = generate_name_description_error_message()
@@ -420,7 +417,8 @@ def processed_property(name, **kwargs):
         Raises
         ------
         ValueError
-            Description
+            If integer is outside 64-bit range or is lower bounds exceeds
+            upper bound.
 
         """
         lower_bound = bounds[0]
