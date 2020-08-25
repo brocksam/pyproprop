@@ -1,7 +1,7 @@
 import keyword
 import string
 
-from hypothesis import assume, given
+from hypothesis import assume, given, reproduce_failure
 import hypothesis.strategies as st
 import pytest
 
@@ -32,7 +32,7 @@ def test_named_iterable_creation_as_mapping(keys, values):
 
 @given(iterable=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1), min_size=1, unique=True))
 def test_named_iterable_creation_data_object(iterable):
-    assume(not keyword.iskeyword(str(key)) for key in iterable)
+    assume(any(not keyword.iskeyword(str(key)) for key in iterable))
     _ = named_iterable(iterable)
 
 
