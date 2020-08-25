@@ -38,6 +38,20 @@ Unreleased
 
 - None
 
+[0.1.2] - 2020-08-25
+--------------------
+
+Added
+~~~~~
+
+- `named_iterable` functionality that allows for dot-indexible attributes to be created. This is implemented in the `pyproprop/named_iterable.py` module and comes with tests.
+
+Fixes
+~~~~~
+
+- PR #6 fixes the bug in issue #3 whereby user-supplied default values were being cast to an expected type, causing an error when used with `uncastable` objects within processed properties.
+- PR #9 fixes the bug in issue #4 where error messages for processed properties with non-string options were not formatting correctly.
+
 [0.1.1] - 2020-08-24
 --------------------
 
