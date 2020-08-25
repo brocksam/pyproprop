@@ -222,7 +222,8 @@ def processed_property(name, **kwargs):
             If the value attempting to be set is less than the specified
             minimum.
         """
-        name_str = generate_name_description_error_message()
+        name_str = generate_name_description_error_message(
+            is_sentence_start=True)
         if exclusive:
             if value <= min_value:
                 msg = (f"{name_str} must be greater than {min_value}. {value} "
@@ -249,7 +250,8 @@ def processed_property(name, **kwargs):
             If the value attempting to be set is less than the specified
             maximum.
         """
-        name_str = generate_name_description_error_message()
+        name_str = generate_name_description_error_message(
+            is_sentence_start=True)
         if exclusive:
             if value >= max_value:
                 msg = (f"{name_str} must be less than {max_value}. {value} is "
