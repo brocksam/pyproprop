@@ -1,4 +1,7 @@
-from hypothesis import given, example
+
+
+from hypothesis import assume, given, example
+import hypothesis.strategies as st
 from hypothesis.strategies import (booleans, floats, integers, iterables,
                                    lists, one_of, text, tuples)
 import numpy as np
@@ -274,7 +277,21 @@ def test_optimisable_error_handling(TestProcessedProperties, short_string,
             optimisable_property=invalid_bounds)
 
 
-def test_error_message_for_options(TestProcessedProperties):
+@given(st.one_of(st.just(1), st.just(2)))
+def test_options_settable(TestProcessedProperties, val):
     """Ensures correct error message raised."""
     obj = TestProcessedProperties()
-    
+    obj.int_from_options = val
+    assert obj.int_from_options == val
+
+
+@given(st.integers())
+def test_error_message_for_options(TestProcessedProperties, val):
+    """Ensures correct error message raised."""
+    assume(val not in {1, 2})
+    obj = TestProcessedProperties()
+    expected_error_msg = (f"'{str(val)}' is not a valid option of integer "
+                          f"from a set of options (.*int_from_options.*). "
+                          f"Choose one of: '1' or '2'.")
+    with pytest.raises(ValueError, match=expected_error_msg):
+        obj.int_from_options = val
