@@ -123,7 +123,7 @@ def processed_property(name, **kwargs):
             return value
         elif optional and value is None:
             if default:
-                return expected_type(default)
+                return default
             else:
                 return None
         elif cast_to_type:
