@@ -25,12 +25,16 @@ class TestNamedIterable:
 
 
 @given(keys=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1),
-                         min_size=1),
+                         min_size=1,
+                         unique=True),
        values=st.iterables(st.one_of(st.floats(),
                                      st.integers(),
                                      st.booleans()),
                            min_size=1))
 def test_named_iterable_creation_as_mapping(keys, values):
+    keys = list(keys)
+    values = list(values)
+    assume(any(not keyword.iskeyword(str(key)) for key in keys))
     _ = named_iterable(dict(zip(keys, values)))
 
 
