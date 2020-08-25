@@ -34,7 +34,7 @@ class TestNamedIterable:
 def test_named_iterable_creation_as_mapping(keys, values):
     keys = list(keys)
     values = list(values)
-    assume(any(not keyword.iskeyword(str(key)) for key in keys))
+    assume(not any(keyword.iskeyword(str(key)) for key in keys))
     _ = named_iterable(dict(zip(keys, values)))
 
 
@@ -43,7 +43,7 @@ def test_named_iterable_creation_as_mapping(keys, values):
                              min_size=1,
                              unique=True))
 def test_named_iterable_creation_data_object(iterable):
-    assume(any(not keyword.iskeyword(str(key)) for key in iterable))
+    assume(not any(keyword.iskeyword(str(key)) for key in iterable))
     _ = named_iterable(iterable)
 
 
