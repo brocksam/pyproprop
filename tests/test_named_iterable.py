@@ -29,8 +29,7 @@ def test_named_iterable_creation_as_mapping(keys, values):
     _ = named_iterable(dict(zip(keys, values)))
 
 
-@given(iterable=st.just(iter(['A'])))
-# @given(iterable=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1), min_size=1, unique=True))
+@given(iterable=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1), min_size=1, unique=True))
 def test_named_iterable_creation_data_object(iterable):
     _ = named_iterable(iterable)
 
