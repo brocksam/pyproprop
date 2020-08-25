@@ -1,7 +1,7 @@
 import keyword
 import string
 
-from hypothesis import assume, given, reproduce_failure
+from hypothesis import assume, given
 import hypothesis.strategies as st
 import pytest
 
@@ -24,19 +24,29 @@ class TestNamedIterable:
         assert self.double_named_iter.y == self.double_named_iter[1]
 
 
-@given(keys=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1), min_size=1),
-       values=st.iterables(st.one_of(st.floats(), st.integers(), st.booleans()), min_size=1))
+@given(keys=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1),
+                         min_size=1),
+       values=st.iterables(st.one_of(st.floats(),
+                                     st.integers(),
+                                     st.booleans()),
+                           min_size=1))
 def test_named_iterable_creation_as_mapping(keys, values):
     _ = named_iterable(dict(zip(keys, values)))
 
 
-@given(iterable=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1), min_size=1, unique=True))
+@given(iterable=st.iterables(st.text(alphabet=string.ascii_letters,
+                                     min_size=1),
+                             min_size=1,
+                             unique=True))
 def test_named_iterable_creation_data_object(iterable):
     assume(any(not keyword.iskeyword(str(key)) for key in iterable))
     _ = named_iterable(iterable)
 
 
-@given(iterable=st.iterables(st.one_of(st.just(kwarg) for kwarg in keyword.kwlist), min_size=1, unique=True))
+@given(iterable=st.iterables(st.one_of(st.just(kwarg)
+                                       for kwarg in keyword.kwlist),
+                             min_size=1,
+                             unique=True))
 def test_named_iterable_creation_keyword_raises_error(iterable):
     expected_error_msg = ("Type names and field names cannot be a "
                           "keyword: '.*'")
@@ -44,8 +54,15 @@ def test_named_iterable_creation_keyword_raises_error(iterable):
         _ = named_iterable(iterable)
 
 
-@given(keys=st.iterables(st.text(alphabet=(string.digits + string.punctuation + string.whitespace), min_size=1), min_size=1),
-       values=st.iterables(st.one_of(st.floats(), st.integers(), st.booleans()), min_size=1))
+@given(keys=st.iterables(st.text(alphabet=(string.digits
+                                           + string.punctuation
+                                           + string.whitespace),
+                                 min_size=1),
+                         min_size=1),
+       values=st.iterables(st.one_of(st.floats(),
+                                     st.integers(),
+                                     st.booleans()),
+                           min_size=1))
 def test_invalid_identifiers(keys, values):
     """Invalid identifiers raise ValueError."""
     with pytest.raises(ValueError):
