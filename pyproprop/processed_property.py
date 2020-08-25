@@ -106,12 +106,11 @@ def processed_property(name, **kwargs):
         Returns
         -------
         Optional[obj]
-            The value is return if is already of the expected type. If the
-            value is None and the property has been specified as optional, None
-            is returned unless there is a default in which case the default is
-            returned and cast to the expected type. Finally the supplied value
-            is attempted to be cast to the specified type and if successful
-            this is returned.
+            The value is returned if is already of the expected type. If the
+            value is None and the property has been specified as optional,
+            `None` is returned unless there is a default in which case the
+            default is returned. Finally the supplied value is attempted to be
+            cast to the specified type and if successful this is returned.
 
         Raises
         ------
