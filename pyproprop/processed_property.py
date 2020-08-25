@@ -8,7 +8,7 @@ reuse.
 """
 
 from numbers import Real
-from typing import Iterable
+from typing import Any, Iterable, Tuple
 
 import numpy as np
 
@@ -129,8 +129,8 @@ def processed_property(name, **kwargs):
             return cast_type(value)
         else:
             name_str = generate_name_description_error_message()
-            msg = (f"{name_str} must be a {repr(expected_type)}, instead got a "
-                   f"{repr(type(value))}.")
+            msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
+                   f"a {repr(type(value))}.")
             raise TypeError(msg)
 
     def cast_type(value):
@@ -152,14 +152,15 @@ def processed_property(name, **kwargs):
             If the casting fails.
         TypeError
             If the casting fails.
+
         """
         cast_str = f"processed_value = {expected_type.__name__}({value})"
         try:
             exec(cast_str)
         except (ValueError, TypeError) as e:
             name_str = generate_name_description_error_message()
-            msg = (f"{name_str} must be a {repr(expected_type)}, instead got a "
-                   f"{repr(type(value))} which cannot be cast.")
+            msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
+                   f"a {repr(type(value))} which cannot be cast.")
             raise e(msg)
         return locals()['processed_value']
 
@@ -190,9 +191,8 @@ def processed_property(name, **kwargs):
         if value in unsupported_options:
             formatted_unsupported_option = format_for_output(value,
                                                              with_verb=True)
-            formatted_description = format_for_output([description],
-                                                      wrapping_char="",
-                                                      with_preposition=True)
+            formatted_description = generate_name_description_error_message(
+                with_preposition=True)
             msg = (
                 f"{formatted_unsupported_option} not currently supported as "
                 f"{formatted_description}. Choose one of: "
@@ -201,8 +201,9 @@ def processed_property(name, **kwargs):
             raise ValueError(msg)
         elif value not in options:
             formatted_value = format_for_output(value, with_verb=True)
+            name_str = generate_name_description_error_message()
             msg = (
-                f"{formatted_value} not a valid option of {description}. "
+                f"{formatted_value} not a valid option of {name_str}. "
                 f"Choose one of: {formatted_valid_options}.")
             raise ValueError(msg)
 
@@ -260,12 +261,55 @@ def processed_property(name, **kwargs):
                        f"{max_value}. {value} is invalid.")
                 raise ValueError(msg)
 
-    def generate_name_description_error_message():
+    def generate_name_description_error_message(is_sentence_start=False,
+                                                with_preposition=False):
+        """Combine the name and description for correctly-formatted error.
+
+        Parameters
+        ----------
+        is_sentence_start : bool, optional
+            Should the formatted str be return in title case.
+        with_preposition : bool, optional
+            Should 'a' or 'an' be preappended to the error message.
+
+        Returns
+        -------
+        str
+            Formatted description.
+        """
         if description is None:
             return f"`{name}`"
-        return f"{make_title_case(description)} (`{name}`)"
+        if with_preposition:
+            first_word, _ = description.split(maxsplit=1)
+            starts_with_vowel = first_word[0] in {"a", "e", "h", "i", "o", "u"}
+            is_acronym = first_word.upper() == first_word
+            if starts_with_vowel or is_acronym:
+                preposition = "an"
+            else:
+                preposition = "a"
+            formatted_description = " ".join([preposition, description])
+        else:
+            formatted_description = description
+        if is_sentence_start:
+            formatted_description = make_title_case(formatted_description)
+        return f"{formatted_description} (`{name}`)"
 
     def make_title_case(description):
+        """Returns a str in title case.
+
+        Correctly formats title case handling scenario when appreviations are
+        included in the name/description.
+
+        Parameters
+        ----------
+        description : str
+            Description for formatting
+
+        Returns
+        -------
+        str
+            Formatted description
+        """
         if len(description) > 1:
             title_description = description[0].upper() + description[1:]
             return title_description
@@ -323,11 +367,14 @@ def processed_property(name, **kwargs):
             If a number is supplied by user.
         `tuple`
             If a set of valid bounds are supplied (see `check_bounds`).
-        `ValueError`
+
+        Raises
+        ------
+        ValueError
             If supplied `Iterable` is not of length 2.
-        `Type Error`
+        TypeError
             If either supplied bounds are not of type `numbers.Real` or
-            the single supplied value is not of type `numbers.Real`
+            the single supplied value is not of type `numbers.Real`.
 
         """
         name_str = generate_name_description_error_message()
@@ -366,6 +413,12 @@ def processed_property(name, **kwargs):
         `ValueError`
             If the first bound exceeds the second bound.
 
+        Raises
+        ------
+        ValueError
+            If integer is outside 64-bit range or is lower bounds exceeds
+            upper bound.
+
         """
         lower_bound = bounds[0]
         upper_bound = bounds[1]
@@ -381,7 +434,7 @@ def processed_property(name, **kwargs):
             return lower_bound
         if lower_bound > upper_bound:
             msg = (f"Lower bound ({lower_bound}) at index 0 must be less "
-                f"than upper bound ({upper_bound}) at index 1.")
+                   f"than upper bound ({upper_bound}) at index 1.")
             raise ValueError(msg)
         return tuple(bounds)
 
@@ -438,12 +491,11 @@ def format_for_output(items, *args, **kwargs):
 
 def format_multiple_items_for_output(items, wrapping_char="'", *,
                                      prefix_char="", case=None,
-                                     with_verb=False, with_or=False,
-                                     with_preposition=False):
+                                     with_verb=False, with_or=False):
     """Format multiple items for pretty console output.
 
-    Args
-    ----
+    Parameters
+    ----------
     items : iterable of str
         Items to be formatted.
     wrapping_char : str (default `"'"`)
@@ -454,25 +506,18 @@ def format_multiple_items_for_output(items, wrapping_char="'", *,
         Keyword for :func:`format_case`.
     with_verb : bool, optional (default `False`)
         Append the correct conjugation of "is"/"are" to end of list.
+    with_or : bool, optional
+        Description
 
     Returns
     -------
     str
         Formatted string of multiple items for console output.
     """
-    items = (items, ) if isinstance(items, str) else items
+    items = format_as_iterable(items)
     items = [f"{prefix_char}{format_case(item, case)}" for item in items]
     if len(items) == 1:
         formatted_items = f"{wrapping_char}{items[0]}{wrapping_char}"
-        if with_preposition and wrapping_char == "":
-            first_word, _ = formatted_items.split(maxsplit=1)
-            starts_with_vowel = first_word[0] in {"a", "e", "h", "i", "o", "u"}
-            is_acronym = first_word.upper() == first_word
-            if starts_with_vowel or is_acronym:
-                preposition = "an"
-            else:
-                preposition = "a"
-            formatted_items = " ".join([preposition, formatted_items])
     else:
         pad = f"{wrapping_char}, {wrapping_char}"
         joiner = "or" if with_or else "and"
@@ -484,3 +529,28 @@ def format_multiple_items_for_output(items, wrapping_char="'", *,
         formatted_items = f"{formatted_items} {verb}"
 
     return formatted_items
+
+
+def format_as_iterable(items):
+    """Checks whether an item can be iterated over like a list.
+
+    Parameters
+    ----------
+    items : Any
+        Object to be tested for whether it is a list-like iterable.
+
+    Returns
+    -------
+    Union[Tuple[Any], Iterable[Any]]
+        If the passed object is already a list-like iterable then this is
+        returned straight away. Otherwise, the object is inserted in to a tuple
+        of length 1.
+
+    """
+    if isinstance(items, str):
+        return (items, )
+    try:
+        iter(items)
+    except TypeError:
+        return (items, )
+    return items
