@@ -106,6 +106,13 @@ def TestProcessedProperties():
             "optimisable_property",
             optimisable=True,
         )
+        int_from_options = processed_property(
+            "int_from_options",
+            description="integer from a set of options",
+            type=int,
+            cast=True,
+            options=(1, 2),
+        )
 
         def __init__(self, *,
                      checked_type_int=None,
