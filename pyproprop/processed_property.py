@@ -495,8 +495,8 @@ def format_multiple_items_for_output(items, wrapping_char="'", *,
                                      with_verb=False, with_or=False):
     """Format multiple items for pretty console output.
 
-    Args
-    ----
+    Parameters
+    ----------
     items : iterable of str
         Items to be formatted.
     wrapping_char : str (default `"'"`)
@@ -535,8 +535,8 @@ def format_multiple_items_for_output(items, wrapping_char="'", *,
 def format_as_iterable(items):
     """Checks whether an item can be iterated over like a list.
 
-    Args
-    ----
+    Parameters
+    ----------
     items : Any
         Object to be tested for whether it is a list-like iterable.
 
