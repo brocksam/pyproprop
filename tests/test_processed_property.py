@@ -1,10 +1,9 @@
-from typing import Iterable
-
 from hypothesis import given, example
 from hypothesis.strategies import (booleans, floats, integers, iterables,
                                    lists, one_of, text, tuples)
 import numpy as np
 import pytest
+from typing import Iterable
 
 
 @given(input_=one_of(booleans(), floats(), integers(), iterables(integers()),
@@ -224,7 +223,8 @@ def test_optimisable_arg_passing(TestProcessedProperties, value, bounds):
         assert test_instance.optimisable_property == bounds
     elif bounds[0] > bounds[1]:
         with pytest.raises(ValueError):
-            test_instance = TestProcessedProperties(optimisable_property=bounds)
+            test_instance = TestProcessedProperties(
+                optimisable_property=bounds)
 
 
 @given(float_bounds=tuples(floats(allow_nan=False,
@@ -238,9 +238,11 @@ def test_optimisable_error_messaging_for_non_64_bit_bounds(
     """Test error handling when optimisable bounds cannot represented as
     signed 64-bit number."""
     with pytest.raises(ValueError):
-        test_instance = TestProcessedProperties(optimisable_property=float_bounds)
+        test_instance = TestProcessedProperties(
+            optimisable_property=float_bounds)
     with pytest.raises(ValueError):
-        test_instance = TestProcessedProperties(optimisable_property=integer_bounds)
+        test_instance = TestProcessedProperties(
+            optimisable_property=integer_bounds)
 
 
 @given(short_string=text(max_size=1),
@@ -254,14 +256,25 @@ def test_optimisable_error_handling(TestProcessedProperties, short_string,
                                     short_list, long_list, invalid_bounds):
     """Tests error handling for properties flagged as `optimisable`."""
     with pytest.raises(ValueError):
-        test_instance = TestProcessedProperties(optimisable_property=short_string)
+        _ = TestProcessedProperties(
+            optimisable_property=short_string)
     with pytest.raises(TypeError):
-        test_instance = TestProcessedProperties(optimisable_property=two_char_string)
+        _ = TestProcessedProperties(
+            optimisable_property=two_char_string)
     with pytest.raises(ValueError):
-        test_instance = TestProcessedProperties(optimisable_property=long_string)
+        _ = TestProcessedProperties(
+            optimisable_property=long_string)
     with pytest.raises(ValueError):
-        test_instance = TestProcessedProperties(optimisable_property=short_list)
+        _ = TestProcessedProperties(
+            optimisable_property=short_list)
     with pytest.raises(ValueError):
-        test_instance = TestProcessedProperties(optimisable_property=long_list)
+        _ = TestProcessedProperties(optimisable_property=long_list)
     with pytest.raises(TypeError):
-        test_instance = TestProcessedProperties(optimisable_property=invalid_bounds)
+        _ = TestProcessedProperties(
+            optimisable_property=invalid_bounds)
+
+
+def test_error_message_for_options(TestProcessedProperties):
+    """Ensures correct error message raised."""
+    obj = TestProcessedProperties()
+    
