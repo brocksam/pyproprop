@@ -1,6 +1,7 @@
+import keyword
 import string
 
-from hypothesis import given
+from hypothesis import assume, given
 import hypothesis.strategies as st
 import pytest
 
@@ -29,10 +30,18 @@ def test_named_iterable_creation_as_mapping(keys, values):
     _ = named_iterable(dict(zip(keys, values)))
 
 
-@given(iterable=st.just(iter(['A'])))
-# @given(iterable=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1), min_size=1, unique=True))
+@given(iterable=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1), min_size=1, unique=True))
 def test_named_iterable_creation_data_object(iterable):
+    assume(not keyword.iskeyword(str(key)) for key in iterable)
     _ = named_iterable(iterable)
+
+
+@given(iterable=st.iterables(st.one_of(st.just(kwarg) for kwarg in keyword.kwlist), min_size=1, unique=True))
+def test_named_iterable_creation_keyword_raises_error(iterable):
+    expected_error_msg = ("Type names and field names cannot be a "
+                          "keyword: '.*'")
+    with pytest.raises(ValueError, match=expected_error_msg):
+        _ = named_iterable(iterable)
 
 
 @given(keys=st.iterables(st.text(alphabet=(string.digits + string.punctuation + string.whitespace), min_size=1), min_size=1),
