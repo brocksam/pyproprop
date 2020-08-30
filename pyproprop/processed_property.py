@@ -130,7 +130,8 @@ def processed_property(name, **kwargs):
         elif cast_to_type:
             return cast_type(value)
         else:
-            name_str = generate_name_description_error_message()
+            name_str = generate_name_description_error_message(name,
+                                                               description)
             msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
                    f"a {repr(type(value))}.")
             raise TypeError(msg)
@@ -160,7 +161,8 @@ def processed_property(name, **kwargs):
         try:
             exec(cast_str)
         except (ValueError, TypeError) as e:
-            name_str = generate_name_description_error_message()
+            name_str = generate_name_description_error_message(name,
+                                                               description)
             msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
                    f"a {repr(type(value))} which cannot be cast.")
             raise e(msg)
@@ -194,6 +196,8 @@ def processed_property(name, **kwargs):
             formatted_unsupported_option = format_for_output(value,
                                                              with_verb=True)
             formatted_description = generate_name_description_error_message(
+                name,
+                description,
                 with_preposition=True)
             msg = (
                 f"{formatted_unsupported_option} not currently supported as "
@@ -203,7 +207,8 @@ def processed_property(name, **kwargs):
             raise ValueError(msg)
         elif value not in options:
             formatted_value = format_for_output(value, with_verb=True)
-            name_str = generate_name_description_error_message()
+            name_str = generate_name_description_error_message(name,
+                                                               description)
             msg = (
                 f"{formatted_value} not a valid option of {name_str}. "
                 f"Choose one of: {formatted_valid_options}.")
@@ -225,6 +230,8 @@ def processed_property(name, **kwargs):
             minimum.
         """
         name_str = generate_name_description_error_message(
+            name,
+            description,
             is_sentence_start=True)
         if exclusive:
             if value <= min_value:
@@ -253,6 +260,8 @@ def processed_property(name, **kwargs):
             maximum.
         """
         name_str = generate_name_description_error_message(
+            name,
+            description,
             is_sentence_start=True)
         if exclusive:
             if value >= max_value:
@@ -282,7 +291,8 @@ def processed_property(name, **kwargs):
 
         """
         if len(value) != len_sequence:
-            name_str = generate_name_description_error_message()
+            name_str = generate_name_description_error_message(name,
+                                                               description)
             msg = (f"{name_str} must be a sequence of length {len_sequence}.")
             raise ValueError(msg)
 
@@ -327,7 +337,7 @@ def processed_property(name, **kwargs):
             the single supplied value is not of type `numbers.Real`.
 
         """
-        name_str = generate_name_description_error_message()
+        name_str = generate_name_description_error_message(name, description)
         if isinstance(value, Real):
             return value
         if isinstance(value, Iterable):
