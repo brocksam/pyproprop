@@ -49,6 +49,11 @@ def processed_property(name, **kwargs):
     exclusive = kwargs.get("exclusive", False)
     optimisable = kwargs.get("optimisable", False)
     post_method = kwargs.get("method")
+    less_than = kwargs.get("less_than")
+    greater_than = kwargs.get("greater_than")
+    at_least = kwargs.get("at_least")
+    at_most = kwargs.get("at_most")
+    equal = kwargs.get("equal")
 
     @property
     def prop(self):
@@ -89,6 +94,16 @@ def processed_property(name, **kwargs):
             check_min(value)
         if max_value is not None:
             check_max(value)
+        if less_than is not None:
+            check_less_than(value)
+        if greater_than is not None:
+            check_greater_than(value)
+        if at_least is not None:
+            check_at_least(value)
+        if at_most is not None:
+            check_at_most(value)
+        if equal is not None:
+            check_equal(value)
         if len_sequence is not None:
             check_len(value, len_sequence)
         if optimisable:
@@ -273,6 +288,21 @@ def processed_property(name, **kwargs):
                 msg = (f"{name_str} must be less than or equal to "
                        f"{max_value}. {value} is invalid.")
                 raise ValueError(msg)
+
+    def check_less_than(value):
+        pass
+
+    def check_greater_than(value):
+        pass
+
+    def check_at_least(value):
+        pass
+
+    def check_at_most(value):
+        pass
+
+    def check_equal(value):
+        pass
 
     def check_len(value, len_sequence):
         """Enforces the set sequence length to be equal to a specified value.
