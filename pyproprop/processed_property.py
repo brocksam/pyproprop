@@ -12,7 +12,7 @@ from typing import Any, Iterable, Tuple
 
 import numpy as np
 
-from .utils import format_for_output
+from .utils import (format_for_output, generate_name_description_error_message)
 
 
 __all__ = ["processed_property"]
@@ -264,60 +264,6 @@ def processed_property(name, **kwargs):
                 msg = (f"{name_str} must be less than or equal to "
                        f"{max_value}. {value} is invalid.")
                 raise ValueError(msg)
-
-    def generate_name_description_error_message(is_sentence_start=False,
-                                                with_preposition=False):
-        """Combine the name and description for correctly-formatted error.
-
-        Parameters
-        ----------
-        is_sentence_start : bool, optional
-            Should the formatted str be return in title case.
-        with_preposition : bool, optional
-            Should 'a' or 'an' be preappended to the error message.
-
-        Returns
-        -------
-        str
-            Formatted description.
-        """
-        if description is None:
-            return f"`{name}`"
-        if with_preposition:
-            first_word, _ = description.split(maxsplit=1)
-            starts_with_vowel = first_word[0] in {"a", "e", "h", "i", "o", "u"}
-            is_acronym = first_word.upper() == first_word
-            if starts_with_vowel or is_acronym:
-                preposition = "an"
-            else:
-                preposition = "a"
-            formatted_description = " ".join([preposition, description])
-        else:
-            formatted_description = description
-        if is_sentence_start:
-            formatted_description = make_title_case(formatted_description)
-        return f"{formatted_description} (`{name}`)"
-
-    def make_title_case(description):
-        """Returns a str in title case.
-
-        Correctly formats title case handling scenario when appreviations are
-        included in the name/description.
-
-        Parameters
-        ----------
-        description : str
-            Description for formatting
-
-        Returns
-        -------
-        str
-            Formatted description
-        """
-        if len(description) > 1:
-            title_description = description[0].upper() + description[1:]
-            return title_description
-        return description.upper()
 
     def check_len(value, len_sequence):
         """Enforces the set sequence length to be equal to a specified value.
