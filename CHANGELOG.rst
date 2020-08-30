@@ -36,7 +36,10 @@ Version History
 Unreleased
 ----------
 
-- None
+Added
+~~~~~
+
+- Created new `pyproprop/utils.py` module.
 
 [0.1.2] - 2020-08-25
 --------------------
