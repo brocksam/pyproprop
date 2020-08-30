@@ -12,6 +12,8 @@ from typing import Any, Iterable, Tuple
 
 import numpy as np
 
+from .utils import format_for_output
+
 
 __all__ = ["processed_property"]
 
