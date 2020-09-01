@@ -40,6 +40,7 @@ Added
 ~~~~~
 
 - Created new `pyproprop/utils.py` module.
+- Add functionality for comparing values of processed properties to one another as requested in issue #11. This comes with a new test module `tests/test_processed_property_comparison.py`.
 
 [0.1.2] - 2020-08-25
 --------------------
@@ -47,7 +48,7 @@ Added
 Added
 ~~~~~
 
-- `named_iterable` functionality that allows for dot-indexible attributes to be created. This is implemented in the `pyproprop/named_iterable.py` module and comes with tests.
+- `named_iterable` functionality that allows for dot-indexible attributes to be created as requested in issue #5. This is implemented in the `pyproprop/named_iterable.py` module and comes with tests.
 
 Fixes
 ~~~~~
