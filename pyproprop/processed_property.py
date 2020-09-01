@@ -293,32 +293,32 @@ def processed_property(name, **kwargs):
 
     def check_less_than(self, value):
         def less_than_lambda(val_1, val_2):
-            return val_1 >= val_2
+            return val_1 < val_2
         check_comparison(self, value, less_than, "less than",
                          less_than_lambda)
 
     def check_greater_than(self, value):
         def greater_than_lambda(val_1, val_2):
-            return val_1 <= val_2
+            return val_1 > val_2
         check_comparison(self, value, greater_than, "greater than",
                          greater_than_lambda)
 
     def check_at_least(self, value):
         def at_least_lambda(val_1, val_2):
-            return val_1 < val_2
+            return val_1 >= val_2
         check_comparison(self, value, at_least, "at least",
                          at_least_lambda)
 
     def check_at_most(self, value):
         def at_most_lambda(val_1, val_2):
-            return val_1 > val_2
+            return val_1 <= val_2
         check_comparison(self, value, at_most, "at most",
                          at_most_lambda)
 
     def check_equal_to(self, value):
         def equal_to_lambda(val_1, val_2):
             return val_1 == val_2
-        check_comparison(self, value, equal_to, "equal_to",
+        check_comparison(self, value, equal_to, "equal to",
                          equal_to_lambda)
 
     def check_comparison(self, value, other, comparison_description,
@@ -328,7 +328,7 @@ def processed_property(name, **kwargs):
         except AttributeError:
             pass
         else:
-            if comparison_func(value, other_value):
+            if not comparison_func(value, other_value):
                 other_dir = getattr(self, f"_{other}_dir")
                 other_name = other_dir["name"]
                 other_description = other_dir["description"]
