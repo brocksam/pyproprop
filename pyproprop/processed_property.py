@@ -305,13 +305,13 @@ def processed_property(name, **kwargs):
 
     def check_at_least(self, value):
         def at_least_lambda(val_1, val_2):
-            return val_1 > val_2
+            return val_1 < val_2
         check_comparison(self, value, at_least, "at least",
                          at_least_lambda)
 
     def check_at_most(self, value):
         def at_most_lambda(val_1, val_2):
-            return val_1 < val_2
+            return val_1 > val_2
         check_comparison(self, value, at_most, "at most",
                          at_most_lambda)
 
@@ -339,7 +339,7 @@ def processed_property(name, **kwargs):
                 value_formatted = format_for_output(value)
                 other_value_formatted = format_for_output(other_value)
                 msg = (f"{name_str} with value {value_formatted} must be "
-                       f"{comparison_description} than {other_name_str} with "
+                       f"{comparison_description} {other_name_str} with "
                        f"value {other_value_formatted}.")
                 raise ValueError(msg)
 
