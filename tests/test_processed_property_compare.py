@@ -11,8 +11,8 @@ FIXTURE_UPPER_BOUND : int
 
 Notes
 -----
-- Add docstrings for fixtures and tests.
-- Add tests for at least, at most and equal to comparisons (float & int).
+    - Add docstrings for fixtures and tests.
+    - Add tests for at least, at most and equal to comparisons (float & int).
 
 """
 
