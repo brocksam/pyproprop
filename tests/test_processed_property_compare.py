@@ -95,6 +95,7 @@ def make_fixture(lower_bound, upper_bound, prop_type, lower_comparison_kwarg,
 
 @pytest.fixture
 def compare_exclusive_float_fixture():
+    """Create fixture with float greater than and less than properties."""
     fixture = make_fixture(FIXTURE_LOWER_BOUND, FIXTURE_UPPER_BOUND, float,
                            "less_than", "greater_than")
     return fixture
@@ -102,13 +103,15 @@ def compare_exclusive_float_fixture():
 
 @pytest.fixture
 def compare_inclusive_float_fixture():
+    """Create fixture with float at most and at least properties."""
     fixture = make_fixture(FIXTURE_LOWER_BOUND, FIXTURE_UPPER_BOUND, float,
-                           "at_least", "at_most")
+                           "at_most", "at_least")
     return fixture
 
 
 @pytest.fixture
 def compare_equal_float_fixture():
+    """Create fixture with two float equal to properties."""
     fixture = make_fixture(FIXTURE_LOWER_BOUND, FIXTURE_UPPER_BOUND, float,
                            "equal_to", "equal_to")
     return fixture
@@ -116,6 +119,7 @@ def compare_equal_float_fixture():
 
 @pytest.fixture
 def compare_exclusive_int_fixture():
+    """Create fixture with int greater than and less than properties."""
     fixture = make_fixture(FIXTURE_LOWER_BOUND, FIXTURE_UPPER_BOUND, int,
                            "less_than", "greater_than")
     return fixture
@@ -123,13 +127,15 @@ def compare_exclusive_int_fixture():
 
 @pytest.fixture
 def compare_inclusive_int_fixture():
+    """Create fixture with int at most and at least properties."""
     fixture = make_fixture(FIXTURE_LOWER_BOUND, FIXTURE_UPPER_BOUND, int,
-                           "at_least", "at_most")
+                           "at_most", "at_least")
     return fixture
 
 
 @pytest.fixture
 def compare_equal_int_fixture():
+    """Create fixture with two int equal to properties."""
     fixture = make_fixture(FIXTURE_LOWER_BOUND, FIXTURE_UPPER_BOUND, int,
                            "equal_to", "equal_to")
     return fixture
@@ -137,6 +143,7 @@ def compare_equal_int_fixture():
 
 @pytest.fixture
 def compare_fixture(request):
+    """Utility fixture to support providing multiple fixtures to same test."""
     return request.getfixturevalue(request.param)
 
 
@@ -149,13 +156,14 @@ def compare_fixture(request):
                           "compare_equal_int_fixture"],
                          indirect=True)
 def test_valid_init_values_do_not_raise_error(compare_fixture):
+    """Check all fixtures initialise to values correctly."""
     assert compare_fixture.some_prop_min == FIXTURE_LOWER_BOUND
     assert compare_fixture.some_prop_max == FIXTURE_UPPER_BOUND
 
 
 def test_invalid_exclusive_float_comparison_raises_error(
         compare_exclusive_float_fixture):
-    """"""
+    """ValueError raised setting greater and less than properties equal."""
     test_fixture = compare_exclusive_float_fixture
     expected_error_msg = (f".*some_prop_min.* with value "
                           f"'{float(FIXTURE_UPPER_BOUND)}' must be less than "
@@ -173,7 +181,7 @@ def test_invalid_exclusive_float_comparison_raises_error(
 
 def test_invalid_exclusive_int_comparison_raises_error(
         compare_exclusive_int_fixture):
-    """"""
+    """ValueError raised setting greater and less than properties equal."""
     test_fixture = compare_exclusive_int_fixture
     expected_error_msg = (f".*some_prop_min.* with value "
                           f"'{int(FIXTURE_UPPER_BOUND)}' must be less than "
@@ -187,3 +195,44 @@ def test_invalid_exclusive_int_comparison_raises_error(
                           f"'{int(FIXTURE_LOWER_BOUND)}'.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_max = test_fixture.some_prop_min
+
+
+# def test_invalid_inclusive_float_comparison_raises_error(
+#         compare_inclusive_float_fixture):
+#     """ValueError raised setting greater and less than properties equal."""
+#     test_fixture = compare_inclusive_float_fixture
+#     test_value = float((FIXTURE_LOWER_BOUND + FIXTURE_UPPER_BOUND) / 2)
+#     increment = 0.1
+#     test_min_value = test_value + increment
+#     test_max_value = test_value
+#     test_fixture.some_prop_max = test_max_value
+#     expected_error_msg = (f".*some_prop_min.* with value "
+#                           f"'{test_min_value}' must be at most "
+#                           f".*some_prop_max.* with value "
+#                           f"'{test_max_value}'.")
+#     with pytest.raises(ValueError, match=expected_error_msg):
+#         test_fixture.some_prop_min = test_min_value
+#     expected_error_msg = (f".*some_prop_max.* with value "
+#                           f"'{float(FIXTURE_LOWER_BOUND)}' must be at most "
+#                           f".*some_prop_min.* with value "
+#                           f"'{float(FIXTURE_LOWER_BOUND)}'.")
+#     with pytest.raises(ValueError, match=expected_error_msg):
+#         test_fixture.some_prop_max = test_fixture.some_prop_min - 0.1
+
+
+# def test_invalid_inclusive_int_comparison_raises_error(
+#         compare_inclusive_int_fixture):
+#     """ValueError raised setting greater and less than properties equal."""
+#     test_fixture = compare_inclusive_int_fixture
+#     expected_error_msg = (f".*some_prop_min.* with value "
+#                           f"'{int(FIXTURE_UPPER_BOUND)}' must be less than "
+#                           f".*some_prop_max.* with value "
+#                           f"'{int(FIXTURE_UPPER_BOUND)}'.")
+#     with pytest.raises(ValueError, match=expected_error_msg):
+#         test_fixture.some_prop_min = test_fixture.some_prop_max + 1
+#     expected_error_msg = (f".*some_prop_max.* with value "
+#                           f"'{int(FIXTURE_LOWER_BOUND)}' must be greater "
+#                           f"than .*some_prop_min.* with value "
+#                           f"'{int(FIXTURE_LOWER_BOUND)}'.")
+#     with pytest.raises(ValueError, match=expected_error_msg):
+#         test_fixture.some_prop_max = test_fixture.some_prop_min - 1
