@@ -49,6 +49,11 @@ def processed_property(name, **kwargs):
     exclusive = kwargs.get("exclusive", False)
     optimisable = kwargs.get("optimisable", False)
     post_method = kwargs.get("method")
+    less_than = kwargs.get("less_than")
+    greater_than = kwargs.get("greater_than")
+    at_least = kwargs.get("at_least")
+    at_most = kwargs.get("at_most")
+    equal_to = kwargs.get("equal_to")
 
     @property
     def prop(self):
@@ -89,6 +94,16 @@ def processed_property(name, **kwargs):
             check_min(value)
         if max_value is not None:
             check_max(value)
+        if less_than is not None:
+            check_less_than(self, value)
+        if greater_than is not None:
+            check_greater_than(self, value)
+        if at_least is not None:
+            check_at_least(self, value)
+        if at_most is not None:
+            check_at_most(self, value)
+        if equal_to is not None:
+            check_equal_to(self, value)
         if len_sequence is not None:
             check_len(value, len_sequence)
         if optimisable:
@@ -96,6 +111,8 @@ def processed_property(name, **kwargs):
         if post_method is not None:
             value = apply_method(value)
         setattr(self, storage_name, value)
+        setattr(self, f"{storage_name}_dir", {"name": name,
+                                              "description": description})
 
     def check_type(value):
         """Ensure the type of the property value to be set is as specified.
@@ -272,6 +289,58 @@ def processed_property(name, **kwargs):
             if value > max_value:
                 msg = (f"{name_str} must be less than or equal to "
                        f"{max_value}. {value} is invalid.")
+                raise ValueError(msg)
+
+    def check_less_than(self, value):
+        def less_than_lambda(val_1, val_2):
+            return val_1 < val_2
+        check_comparison(self, value, less_than, "less than",
+                         less_than_lambda)
+
+    def check_greater_than(self, value):
+        def greater_than_lambda(val_1, val_2):
+            return val_1 > val_2
+        check_comparison(self, value, greater_than, "greater than",
+                         greater_than_lambda)
+
+    def check_at_least(self, value):
+        def at_least_lambda(val_1, val_2):
+            return val_1 >= val_2
+        check_comparison(self, value, at_least, "at least",
+                         at_least_lambda)
+
+    def check_at_most(self, value):
+        def at_most_lambda(val_1, val_2):
+            return val_1 <= val_2
+        check_comparison(self, value, at_most, "at most",
+                         at_most_lambda)
+
+    def check_equal_to(self, value):
+        def equal_to_lambda(val_1, val_2):
+            return val_1 == val_2
+        check_comparison(self, value, equal_to, "equal to",
+                         equal_to_lambda)
+
+    def check_comparison(self, value, other, comparison_description,
+                         comparison_func):
+        try:
+            other_value = getattr(self, other)
+        except AttributeError:
+            pass
+        else:
+            if not comparison_func(value, other_value):
+                other_dir = getattr(self, f"_{other}_dir")
+                other_name = other_dir["name"]
+                other_description = other_dir["description"]
+                name_str = generate_name_description_error_message(
+                    name, description, is_sentence_start=True)
+                other_name_str = generate_name_description_error_message(
+                    other_name, other_description)
+                value_formatted = format_for_output(value)
+                other_value_formatted = format_for_output(other_value)
+                msg = (f"{name_str} with value {value_formatted} must be "
+                       f"{comparison_description} {other_name_str} with "
+                       f"value {other_value_formatted}.")
                 raise ValueError(msg)
 
     def check_len(value, len_sequence):
