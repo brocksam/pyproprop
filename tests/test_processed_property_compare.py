@@ -9,11 +9,6 @@ FIXTURE_UPPER_BOUND : int
     Constant value for maximum value of processed properties in this test
     module.
 
-Notes
------
-    - Add docstrings for fixtures and tests.
-    - Add tests for at least, at most and equal to comparisons (float & int).
-
 """
 
 import pytest
