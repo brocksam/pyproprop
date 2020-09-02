@@ -12,6 +12,8 @@ UPPER_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
     String identifier for upper case formatting.
 TITLE_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
     String identifier for title case formatting.
+START_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+    String identifier for start case formatting.
 SNAKE_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
     String identifier for snake case formatting.
 PASCAL_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
@@ -32,12 +34,14 @@ import titlecase
 LOWER_STR_CASE_FORMAT_KEYWORD = "lower"
 UPPER_STR_CASE_FORMAT_KEYWORD = "upper"
 TITLE_STR_CASE_FORMAT_KEYWORD = "title"
+START_STR_CASE_FORMAT_KEYWORD = "start"
 SNAKE_STR_CASE_FORMAT_KEYWORD = "snake"
 PASCAL_STR_CASE_FORMAT_KEYWORD = "pascal"
 SUPPORTED_STR_FORMAT_OPTIONS = {None,
                                 LOWER_STR_CASE_FORMAT_KEYWORD,
                                 UPPER_STR_CASE_FORMAT_KEYWORD,
                                 TITLE_STR_CASE_FORMAT_KEYWORD,
+                                START_STR_CASE_FORMAT_KEYWORD,
                                 SNAKE_STR_CASE_FORMAT_KEYWORD,
                                 PASCAL_STR_CASE_FORMAT_KEYWORD,
                                 }
@@ -52,7 +56,7 @@ def generate_name_description_error_message(name,
     Parameters
     ----------
     is_sentence_start : bool, optional
-        Should the formatted str be return in title case.
+        Should the formatted str be return in start case.
     with_preposition : bool, optional
         Should 'a' or 'an' be preappended to the error message.
 
@@ -75,7 +79,8 @@ def generate_name_description_error_message(name,
     else:
         formatted_description = description
     if is_sentence_start:
-        formatted_description = titlecase.titlecase(formatted_description)
+        formatted_description = format_str_case(formatted_description,
+                                                START_STR_CASE_FORMAT_KEYWORD)
     return f"{formatted_description} (`{name}`)"
 
 
@@ -287,31 +292,6 @@ def format_str_pascal_case(item):
     return re.sub(r" ", r"", item)
 
 
-def format_case(item, case):
-    """Allow :obj:`str` case formatting method application from keyword.
-
-    Parameters
-    ----------
-    item : str
-        Item to be case formatted.
-    case : str
-        Which case format method to use.
-
-    Returns
-    -------
-    str
-        :arg:`item` with case method applied.
-    """
-    if case == "title":
-        return item.title()
-    elif case == "upper":
-        return item.upper()
-    elif case == "lower":
-        return item.lower()
-    else:
-        return item
-
-
 def format_for_output(items, *args, **kwargs):
     """Utility method for formatting console output.
 
@@ -349,7 +329,7 @@ def format_multiple_items_for_output(items, wrapping_char="'", *,
     prefix_char : str (default `""`)
         Additional prefix.
     case : str (default `None`)
-        Keyword for :func:`format_case`.
+        Keyword for :func:`format_str_case`.
     with_verb : bool, optional (default `False`)
         Append the correct conjugation of "is"/"are" to end of list.
     with_or : bool, optional
@@ -408,6 +388,7 @@ FORMAT_STR_DISPATCHER = {None: lambda item: item,
                          LOWER_STR_CASE_FORMAT_KEYWORD: format_str_lower_case,
                          UPPER_STR_CASE_FORMAT_KEYWORD: format_str_upper_case,
                          TITLE_STR_CASE_FORMAT_KEYWORD: format_str_title_case,
+                         START_STR_CASE_FORMAT_KEYWORD: format_str_start_case,
                          SNAKE_STR_CASE_FORMAT_KEYWORD: format_str_snake_case,
                          PASCAL_STR_CASE_FORMAT_KEYWORD: format_str_pascal_case,
                          }
