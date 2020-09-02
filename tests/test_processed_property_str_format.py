@@ -11,6 +11,9 @@ UPPER_KEYWORD : :py:obj:`str`
 TITLE_KEYWORD : :py:obj:`str`
     String identifier for title case formatting. This is the same keyword that
     is seen in :py:mod:`pyproprop/utils`.
+START_KEYWORD : :py:obj:`str`
+    String identifier for start case formatting. This is the same keyword that
+    is seen in :py:mod:`pyproprop/utils`.
 SNAKE_KEYWORD : :py:obj:`str`
     String identifier for snake case formatting. This is the same keyword that
     is seen in :py:mod:`pyproprop/utils`.
@@ -46,6 +49,7 @@ from pyproprop import processed_property
 LOWER_KEYWORD = "lower"
 UPPER_KEYWORD = "upper"
 TITLE_KEYWORD = "title"
+START_KEYWORD = "start"
 SNAKE_KEYWORD = "snake"
 PASCAL_KEYWORD = "pascal"
 
@@ -54,6 +58,7 @@ EXAMPLE_STR_1 = "this is a string"
 EXAMPLE_STR_1_FORMATTED = {LOWER_KEYWORD: "this is a string",
                            UPPER_KEYWORD: "THIS IS A STRING",
                            TITLE_KEYWORD: "This Is a String",
+                           START_KEYWORD: "This is a string",
                            SNAKE_KEYWORD: "this_is_a_string",
                            PASCAL_KEYWORD: "ThisIsAString",
                            }
@@ -61,6 +66,7 @@ EXAMPLE_STR_2 = "string with an   ABRV"
 EXAMPLE_STR_2_FORMATTED = {LOWER_KEYWORD: "string with an abrv",
                            UPPER_KEYWORD: "STRING WITH AN ABRV",
                            TITLE_KEYWORD: "String With an ABRV",
+                           START_KEYWORD: "String with an ABRV",
                            SNAKE_KEYWORD: "string_with_an_abrv",
                            PASCAL_KEYWORD: "StringWithAnABRV",
                            }
@@ -68,6 +74,7 @@ EXAMPLE_STR_3 = "string_with %_£+"
 EXAMPLE_STR_3_FORMATTED = {LOWER_KEYWORD: "string_with %_£+",
                            UPPER_KEYWORD: "STRING_WITH %_£+",
                            TITLE_KEYWORD: "String_with %_£+",
+                           START_KEYWORD: "String_with %_£+",
                            SNAKE_KEYWORD: "string_with",
                            PASCAL_KEYWORD: "StringWith",
                            }
@@ -75,6 +82,7 @@ EXAMPLE_STR_4 = "it's an example-with punctuation!"
 EXAMPLE_STR_4_FORMATTED = {LOWER_KEYWORD: "it's an example-with punctuation!",
                            UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
                            TITLE_KEYWORD: "It's an Example-With Punctuation!",
+                           TITLE_KEYWORD: "It's an example-with punctuation!",
                            SNAKE_KEYWORD: "its_an_example_with_punctuation",
                            PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
                            }
@@ -95,6 +103,8 @@ def test_fixture():
             String processed property that automatically formats to upper case.
         title_prop : :py:property:`processed_property`
             String processed property that automatically formats to title case.
+        start_prop : :py:property:`processed_property`
+            String processed property that automatically formats to start case.
         snake_prop : :py:property:`processed_property`
             String processed property that automatically formats to snake case.
         pascal_prop : :py:property:`processed_property`
@@ -108,13 +118,15 @@ def test_fixture():
                                         str_format="upper")
         title_prop = processed_property("title_prop", type=str, default="",
                                         str_format="title")
+        start_prop = processed_property("start_prop", type=str, default="",
+                                        str_format="start")
         snake_prop = processed_property("snake_prop", type=str, default="",
                                         str_format="snake")
         pascal_prop = processed_property("pascal_prop", type=str, default="",
                                          str_format="pascal")
 
         def __init__(self, lower_prop="", upper_prop="", title_prop="",
-                     snake_prop="", pascal_prop=""):
+                     start_prop="", snake_prop="", pascal_prop=""):
             """Initialise the numerical bounds on the processed properties.
 
             Parameters
@@ -125,6 +137,8 @@ def test_fixture():
                 Value to initialise the :py:attr:`upper_prop` to.
             title : :py:obj:`str`
                 Value to initialise the :py:attr:`title_prop` to.
+            start : :py:obj:`str`
+                Value to initialise the :py:attr:`start_prop` to.
             snake : :py:obj:`str`
                 Value to initialise the :py:attr:`snake_prop` to.
             pascal : :py:obj:`str`
@@ -134,6 +148,7 @@ def test_fixture():
             self.lower_prop = lower_prop
             self.upper_prop = upper_prop
             self.title_prop = title_prop
+            self.start_prop = start_prop
             self.snake_prop = snake_prop
             self.pascal_prop = pascal_prop
 
@@ -158,6 +173,8 @@ def test_formatted_string_expected_result(test_fixture, input_str, expected):
     assert test_fixture.upper_prop == expected[UPPER_KEYWORD]
     test_fixture.title_prop = input_str
     assert test_fixture.title_prop == expected[TITLE_KEYWORD]
+    test_fixture.start_prop = input_str
+    assert test_fixture.start_prop == expected[START_KEYWORD]
     test_fixture.snake_prop = input_str
     assert test_fixture.snake_prop == expected[SNAKE_KEYWORD]
     test_fixture.pascal_prop = input_str
