@@ -38,6 +38,15 @@ Unreleased
 
 - None
 
+[0.2.1] - 2020-09-02
+--------------------
+
+Added
+~~~~~
+
+- Support start of sentence capitalisation as requested in issue #19.
+- Use `__repr__`s in error messages to help user distinguish between types as requested in issue #20.
+
 [0.2.0] - 2020-09-02
 --------------------
 
