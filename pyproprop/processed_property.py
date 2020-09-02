@@ -127,7 +127,7 @@ def processed_property(name, **kwargs):
         if optimisable:
             value = process_optimisable(value)
         if str_format:
-            value = format_str_case(value, str_format)
+            value = format_str_case(value, str_format, process=True)
         if post_method is not None:
             value = apply_method(value)
         setattr(self, storage_name, value)
