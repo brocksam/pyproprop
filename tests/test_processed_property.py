@@ -1,4 +1,6 @@
+"""Generic tests for processed properties."""
 
+import re
 
 from hypothesis import assume, given, example
 import hypothesis.strategies as st
@@ -290,8 +292,8 @@ def test_error_message_for_options(TestProcessedProperties, val):
     """Ensures correct error message raised."""
     assume(val not in {1, 2})
     obj = TestProcessedProperties()
-    expected_error_msg = (f"'{str(val)}' is not a valid option of integer "
-                          f"from a set of options (.*int_from_options.*). "
-                          f"Choose one of: '1' or '2'.")
+    expected_error_msg = re.escape(
+        f"`{repr(val)}` is not a valid option of integer from a set of "
+        f"options (`int_from_options`). Choose one of: `1` or `2`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         obj.int_from_options = val
