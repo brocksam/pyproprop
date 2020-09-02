@@ -207,6 +207,43 @@ def format_str_title_case(item):
     return titlecase.titlecase(item)
 
 
+def format_str_start_case(item):
+    """Format the given string to start case.
+
+    Examples
+    --------
+    >>> format_str_start_case("this is a string")
+    "This is a string"
+
+    >>> format_str_start_case("string with an   ABRV")
+    "String with an ABRV"
+
+    >>> format_str_start_case("string_with %_£+")
+    "String_with %_£+"
+
+    >>> format_str_start_case("it's an example-with punctuation!")
+    "It's an example-with punctuation!"
+
+    Parameters
+    ----------
+    item : :py:obj:`str`
+        The string object to be formatted.
+
+    Returns
+    -------
+    str
+        The string item passed as a parameter in formatted form.
+
+    """
+    len_item = len(item)
+    if len_item == 0:
+        return ""
+    elif len_item == 1:
+        return item.upper()
+    else:
+        return item[0].upper() + item[1:]
+
+
 def format_str_snake_case(item):
     """Format the given string to snake case.
 

@@ -82,7 +82,7 @@ EXAMPLE_STR_4 = "it's an example-with punctuation!"
 EXAMPLE_STR_4_FORMATTED = {LOWER_KEYWORD: "it's an example-with punctuation!",
                            UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
                            TITLE_KEYWORD: "It's an Example-With Punctuation!",
-                           TITLE_KEYWORD: "It's an example-with punctuation!",
+                           START_KEYWORD: "It's an example-with punctuation!",
                            SNAKE_KEYWORD: "its_an_example_with_punctuation",
                            PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
                            }
