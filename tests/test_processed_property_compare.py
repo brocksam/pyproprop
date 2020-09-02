@@ -177,16 +177,16 @@ def test_invalid_exclusive_float_comparison_raises_error(
         compare_exclusive_float_fixture):
     """ValueError raised setting greater and less than properties equal."""
     test_fixture = compare_exclusive_float_fixture
-    expected_error_msg = (f".*some_prop_min.* with value "
-                          f"'{float(FIXTURE_UPPER_BOUND)}' must be less than "
-                          f".*some_prop_max.* with value "
-                          f"'{float(FIXTURE_UPPER_BOUND)}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_min` with value `{float(FIXTURE_UPPER_BOUND)}` must be "
+        f"less than `some_prop_max` with value "
+        f"`{float(FIXTURE_UPPER_BOUND)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_min = test_fixture.some_prop_max
-    expected_error_msg = (f".*some_prop_max.* with value "
-                          f"'{float(FIXTURE_LOWER_BOUND)}' must be greater "
-                          f"than .*some_prop_min.* with value "
-                          f"'{float(FIXTURE_LOWER_BOUND)}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_max` with value `{float(FIXTURE_LOWER_BOUND)}` must be "
+        f"greater than `some_prop_min` with value "
+        f"`{float(FIXTURE_LOWER_BOUND)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_max = test_fixture.some_prop_min
 
@@ -195,16 +195,15 @@ def test_invalid_exclusive_int_comparison_raises_error(
         compare_exclusive_int_fixture):
     """ValueError raised setting greater and less than properties equal."""
     test_fixture = compare_exclusive_int_fixture
-    expected_error_msg = (f".*some_prop_min.* with value "
-                          f"'{int(FIXTURE_UPPER_BOUND)}' must be less than "
-                          f".*some_prop_max.* with value "
-                          f"'{int(FIXTURE_UPPER_BOUND)}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_min` with value `{int(FIXTURE_UPPER_BOUND)}` must be "
+        f"less than `some_prop_max` with value `{int(FIXTURE_UPPER_BOUND)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_min = test_fixture.some_prop_max
-    expected_error_msg = (f".*some_prop_max.* with value "
-                          f"'{int(FIXTURE_LOWER_BOUND)}' must be greater "
-                          f"than .*some_prop_min.* with value "
-                          f"'{int(FIXTURE_LOWER_BOUND)}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_max` with value `{int(FIXTURE_LOWER_BOUND)}` must be "
+        f"greater than `some_prop_min` with value "
+        f"`{int(FIXTURE_LOWER_BOUND)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_max = test_fixture.some_prop_min
 
@@ -218,19 +217,17 @@ def test_invalid_inclusive_float_comparison_raises_error(
     test_min_value = test_value + increment
     test_max_value = test_value
     test_fixture.some_prop_max = test_max_value
-    expected_error_msg = (f".*some_prop_min.* with value "
-                          f"'{test_min_value}' must be at most "
-                          f".*some_prop_max.* with value "
-                          f"'{test_max_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_min` with value `{repr(test_min_value)}` must be at most "
+        f"`some_prop_max` with value `{repr(test_max_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_min = test_min_value
     test_min_value = test_value
     test_max_value = test_value - increment
     test_fixture.some_prop_min = test_min_value
-    expected_error_msg = (f".*some_prop_max.* with value "
-                          f"'{test_max_value}' must be at least "
-                          f".*some_prop_min.* with value "
-                          f"'{test_min_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_max` with value `{repr(test_max_value)}` must be at "
+        f"least `some_prop_min` with value `{repr(test_min_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_max = test_max_value
 
@@ -244,19 +241,17 @@ def test_invalid_inclusive_int_comparison_raises_error(
     test_min_value = test_value + increment
     test_max_value = test_value
     test_fixture.some_prop_max = test_max_value
-    expected_error_msg = (f".*some_prop_min.* with value "
-                          f"'{test_min_value}' must be at most "
-                          f".*some_prop_max.* with value "
-                          f"'{test_max_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_min` with value `{repr(test_min_value)}` must be at most "
+        f"`some_prop_max` with value `{repr(test_max_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_min = test_min_value
     test_min_value = test_value
     test_max_value = test_value - increment
     test_fixture.some_prop_min = test_min_value
-    expected_error_msg = (f".*some_prop_max.* with value "
-                          f"'{test_max_value}' must be at least "
-                          f".*some_prop_min.* with value "
-                          f"'{test_min_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_max` with value `{repr(test_max_value)}` must be at "
+        f"least `some_prop_min` with value `{repr(test_min_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_max = test_max_value
 
@@ -269,19 +264,17 @@ def test_invalid_equal_float_comparison_raises_error(
     test_min_value = test_value + increment
     test_max_value = test_value
     test_fixture.some_prop_max = test_max_value
-    expected_error_msg = (f".*some_prop_min.* with value "
-                          f"'{test_min_value}' must be equal to "
-                          f".*some_prop_max.* with value "
-                          f"'{test_max_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_min` with value `{repr(test_min_value)}` must be equal "
+        f"to `some_prop_max` with value `{repr(test_max_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_min = test_min_value
     test_min_value = test_value
     test_max_value = test_value - increment
     test_fixture.some_prop_min = test_min_value
-    expected_error_msg = (f".*some_prop_max.* with value "
-                          f"'{test_max_value}' must be equal to "
-                          f".*some_prop_min.* with value "
-                          f"'{test_min_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_max` with value `{repr(test_max_value)}` must be equal "
+        f"to `some_prop_min` with value `{repr(test_min_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_max = test_max_value
 
@@ -295,18 +288,16 @@ def test_invalid_equal_int_comparison_raises_error(
     test_min_value = test_value + increment
     test_max_value = test_value
     test_fixture.some_prop_max = test_max_value
-    expected_error_msg = (f".*some_prop_min.* with value "
-                          f"'{test_min_value}' must be equal to "
-                          f".*some_prop_max.* with value "
-                          f"'{test_max_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_min` with value `{repr(test_min_value)}` must be equal "
+        f"to `some_prop_max` with value `{repr(test_max_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_min = test_min_value
     test_min_value = test_value
     test_max_value = test_value - increment
     test_fixture.some_prop_min = test_min_value
-    expected_error_msg = (f".*some_prop_max.* with value "
-                          f"'{test_max_value}' must be equal to "
-                          f".*some_prop_min.* with value "
-                          f"'{test_min_value}'.")
+    expected_error_msg = re.escape(
+        f"`some_prop_max` with value `{repr(test_max_value)}` must be equal "
+        f"to `some_prop_min` with value `{repr(test_min_value)}`.")
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.some_prop_max = test_max_value
