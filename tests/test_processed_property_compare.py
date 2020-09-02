@@ -11,6 +11,8 @@ FIXTURE_UPPER_BOUND : int
 
 """
 
+import re
+
 import pytest
 
 from pyproprop import processed_property
