@@ -20,6 +20,11 @@ Status
     * - Appveyor
       - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true
             :target: https://ci.appveyor.com/project/brocksam/pyproprop
+    * - Coverage
+      - .. image:: https://coveralls.io/repos/github/brocksam/pyproprop/badge.svg?branch=master
+            :target: https://coveralls.io/github/brocksam/pyproprop?branch=master
+
+
 
 What is pyproprop?
 ==================
