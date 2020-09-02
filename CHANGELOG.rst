@@ -41,6 +41,12 @@ Added
 
 - Created new `pyproprop/utils.py` module.
 - Add functionality for comparing values of processed properties to one another as requested in issue #11. This comes with a new test module `tests/test_processed_property_comparison.py`.
+- Improved case formatting of strings within proessed properties. PyPI package "titlecase" now a project requirement.
+
+Changes
+~~~~~~~
+
+- Both Travis CI and AppVeyor now contain logic to first try to install requirements using conda, but if a package is not available on the set-up channels, it falls back to trying to use pip and PyPI.
 
 [0.1.2] - 2020-08-25
 --------------------
