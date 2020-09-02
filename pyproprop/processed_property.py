@@ -12,7 +12,9 @@ from typing import Any, Iterable, Tuple
 
 import numpy as np
 
-from .utils import (format_for_output, generate_name_description_error_message)
+from .utils import (format_for_output, format_str_case,
+                    generate_name_description_error_message,
+                    SUPPORTED_STR_FORMAT_OPTIONS)
 
 
 __all__ = ["processed_property"]
@@ -34,6 +36,20 @@ def processed_property(name, **kwargs):
         The metaprogrammed property object with setter including specified
         settings.
     """
+
+    def parse_kwarg(kwarg_name, description, valids, default):
+        kwarg = kwargs.get(kwarg_name, default)
+        if isinstance(valids, type) and not isinstance(kwarg, valids):
+            msg = (f"{repr(kwarg)} is not a valid {description}. Please "
+                   f"use a value of type {repr(valids)}.")
+            raise TypeError(msg)
+        elif not isinstance(valids, type) and kwarg not in valids:
+            formatted_valids = format_for_output(valids, with_or=True)
+            msg = (f"{repr(kwarg)} is not a valid {description}. Please "
+                   "choose one of: {formatted_valids}.")
+            raise ValueError(msg)
+        return kwarg
+
     storage_name = "_" + name
     description = kwargs.get("description")
     expected_type = kwargs.get("type")
@@ -54,6 +70,8 @@ def processed_property(name, **kwargs):
     at_least = kwargs.get("at_least")
     at_most = kwargs.get("at_most")
     equal_to = kwargs.get("equal_to")
+    str_format = parse_kwarg("str_format", "string case format",
+                             SUPPORTED_STR_FORMAT_OPTIONS, None)
 
     @property
     def prop(self):
@@ -108,6 +126,8 @@ def processed_property(name, **kwargs):
             check_len(value, len_sequence)
         if optimisable:
             value = process_optimisable(value)
+        if str_format:
+            value = format_str_case(value, str_format)
         if post_method is not None:
             value = apply_method(value)
         setattr(self, storage_name, value)
