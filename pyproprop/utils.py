@@ -65,11 +65,17 @@ def generate_name_description_error_message(name,
     str
         Formatted description.
     """
+    need_an = {"a", "e", "h", "i", "o", "u"}
     if description is None:
+        starts_with_vowel = name[0] in need_an
+        if starts_with_vowel and with_preposition:
+            return f"an `{name}`"
+        elif with_preposition:
+            return f"a `{name}`"
         return f"`{name}`"
     if with_preposition:
         first_word, _ = description.split(maxsplit=1)
-        starts_with_vowel = first_word[0] in {"a", "e", "h", "i", "o", "u"}
+        starts_with_vowel = first_word[0] in need_an
         is_acronym = first_word.upper() == first_word
         if starts_with_vowel or is_acronym:
             preposition = "an"
@@ -80,11 +86,12 @@ def generate_name_description_error_message(name,
         formatted_description = description
     if is_sentence_start:
         formatted_description = format_str_case(formatted_description,
-                                                START_STR_CASE_FORMAT_KEYWORD)
+                                                START_STR_CASE_FORMAT_KEYWORD,
+                                                process=True)
     return f"{formatted_description} (`{name}`)"
 
 
-def format_str_case(item, case):
+def format_str_case(item, case, process=False):
     """Format the given string to a specified formatting case.
 
     Options for formatting cases are: lower, upper, title, snake and pascal.
@@ -104,13 +111,14 @@ def format_str_case(item, case):
         The string item passed as a parameter in formatted form.
 
     """
-    # Convert whitespace to single space
-    item = re.sub(" +", " ", item)
-    # Insert whitespace after [,.!?]
-    item = re.sub(r"([,.!?])([^ ])", r"\1 \2", item)
-    # Strip trailing or leading whitespace
-    item = item.strip()
-    # Dispatch specialised case format method
+    if process:
+        # Convert whitespace to single space
+        item = re.sub(" +", " ", item)
+        # Insert whitespace after [,.!?]
+        item = re.sub(r"([,.!?])([^ 0-9])", r"\1 \2", item)
+        # Strip trailing or leading whitespace
+        item = item.strip()
+        # Dispatch specialised case format method
     return FORMAT_STR_DISPATCHER[case](item)
 
 
@@ -352,7 +360,7 @@ def format_for_output(items, *args, **kwargs):
     return format_multiple_items_for_output(items, *args, **kwargs)
 
 
-def format_multiple_items_for_output(items, wrapping_char="'", *,
+def format_multiple_items_for_output(items, wrapping_char="`", *,
                                      prefix_char="", case=None,
                                      with_verb=False, with_or=False):
     """Format multiple items for pretty console output.
@@ -379,7 +387,7 @@ def format_multiple_items_for_output(items, wrapping_char="'", *,
     """
     items = format_as_iterable(items)
     items = [f"{prefix_char}"
-             f"{format_str_case(item, case) if isinstance(item, str) else item}"
+             f"{repr(format_str_case(item, case)) if isinstance(item, str) else repr(item)}"
              for item in items]
     if len(items) == 1:
         formatted_items = f"{wrapping_char}{items[0]}{wrapping_char}"
