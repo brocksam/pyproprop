@@ -49,8 +49,8 @@ install:
   - conda update --yes --all
   - conda config --prepend channels conda-forge
   - "conda install --yes python=%PYTHON_VERSION%"
+  # Taken from https://stackoverflow.com/questions/35802939/install-only-available-packages-using-conda-install-yes-file-requirements-t
   - FOR /F "delims=~" %f in (requirements.txt) DO conda install --yes "%f" || pip install "%f"
-  # - conda install --yes --file=requirements.txt
   - conda update -y --all
   - conda info
   - conda list
