@@ -272,13 +272,13 @@ def processed_property(name, **kwargs):
             is_sentence_start=True)
         if exclusive:
             if value <= min_value:
-                msg = (f"{name_str} must be greater than {min_value}. {value} "
-                       f"is invalid.")
+                msg = (f"{name_str} must be greater than `{repr(min_value)}`. "
+                       f"`{repr(value)}` is invalid.")
                 raise ValueError(msg)
         else:
             if value < min_value:
                 msg = (f"{name_str} must be greater than or equal to "
-                       f"{min_value}. {value} is invalid.")
+                       f"`{repr(min_value)}`. `{repr(value)}` is invalid.")
                 raise ValueError(msg)
 
     def check_max(value):
@@ -302,13 +302,13 @@ def processed_property(name, **kwargs):
             is_sentence_start=True)
         if exclusive:
             if value >= max_value:
-                msg = (f"{name_str} must be less than {max_value}. {value} is "
-                       f"invalid.")
+                msg = (f"{name_str} must be less than `{repr(max_value)}`. "
+                       f"`{repr(value)}` is invalid.")
                 raise ValueError(msg)
         else:
             if value > max_value:
                 msg = (f"{name_str} must be less than or equal to "
-                       f"{max_value}. {value} is invalid.")
+                       f"`{repr(max_value)}`. `{repr(value)}` is invalid.")
                 raise ValueError(msg)
 
     def check_less_than(self, value):
