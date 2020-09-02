@@ -22,7 +22,8 @@ install:
   - conda info -a
   - conda create -q -n install-env python=$TRAVIS_PYTHON_VERSION
   - source activate install-env
-  - conda install -q -y --file=requirements.txt
+  - while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt
+  # - conda install -q -y --file=requirements.txt
   - conda install -q -y --file=tests/requirements.txt
   - conda install -q -y --file=docs/requirements.txt
   - conda list
