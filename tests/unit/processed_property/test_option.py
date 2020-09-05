@@ -121,9 +121,6 @@ def test_single_option_all_unsupported_option():
                 unsupported_options=(OPTION_1_KEYWORD, ),
             )
 
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.one_all_unsupported_option_prop = option
-
 
 def test_missing_option_kwarg_with_unsupported_option():
     """"""
@@ -139,9 +136,6 @@ def test_missing_option_kwarg_with_unsupported_option():
                 type=str,
                 unsupported_options=(OPTION_1_KEYWORD, ),
             )
-
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.one_all_unsupported_option_prop = option
 
 
 def test_no_option_with_unsupported_option():
@@ -159,9 +153,6 @@ def test_no_option_with_unsupported_option():
                 options=(),
                 unsupported_options=(OPTION_1_KEYWORD, ),
             )
-
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.one_all_unsupported_option_prop = option
 
 
 def test_multiple_option_all_are_unsupported_option():
@@ -190,9 +181,6 @@ def test_multiple_option_all_are_unsupported_option():
                                      OPTION_5_KEYWORD,
                                      ),
             )
-
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.mul_all_unsupported_option_prop = option
 
 
 def test_correct_initialisation_class_with_option_properties(test_fixture):
