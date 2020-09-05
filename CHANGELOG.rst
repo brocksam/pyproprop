@@ -38,6 +38,25 @@ Unreleased
 
 - None
 
+[0.2.2] - 2020-09-05
+--------------------
+
+Added
+~~~~~
+
+- Added coverage report from codecov.io to README.rst as requested by issue #22.
+- Added test coverage for the `pyproprop/utils.py` module.
+
+Changed
+~~~~~~~
+
+- Added backtick formatting around values in `processed_property`s with min and max values as requested by issue #21.
+
+Fixed
+~~~~~
+
+- Fixed a bug relating to correctly processing and formatting `processed_property` descriptions in error messages, relating to issue #24.
+
 [0.2.1] - 2020-09-02
 --------------------
 
