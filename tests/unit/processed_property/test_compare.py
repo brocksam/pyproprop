@@ -50,10 +50,12 @@ def make_fixture(lower_bound, upper_bound, prop_type, lower_comparison_kwarg,
     """
     some_prop_min_keyword = "some_prop_min"
     some_prop_max_keyword = "some_prop_max"
-    min_kwargs = {"type": prop_type, "cast": True, "min": lower_bound,
+    min_kwargs = {"desciption": "a property with an enforced minimum value",
+                  "type": prop_type, "cast": True, "min": lower_bound,
                   "max": upper_bound,
                   lower_comparison_kwarg: some_prop_max_keyword}
-    max_kwargs = {"type": prop_type, "cast": True, "min": lower_bound,
+    max_kwargs = {"desciption": "a property with an enforced maximum value",
+                  "type": prop_type, "cast": True, "min": lower_bound,
                   "max": upper_bound,
                   upper_comparison_kwarg: some_prop_min_keyword}
 
