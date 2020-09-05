@@ -50,10 +50,12 @@ def make_fixture(lower_bound, upper_bound, prop_type, lower_comparison_kwarg,
     """
     some_prop_min_keyword = "some_prop_min"
     some_prop_max_keyword = "some_prop_max"
-    min_kwargs = {"type": prop_type, "cast": True, "min": lower_bound,
+    min_kwargs = {"desciption": "a property with an enforced minimum value",
+                  "type": prop_type, "cast": True, "min": lower_bound,
                   "max": upper_bound,
                   lower_comparison_kwarg: some_prop_max_keyword}
-    max_kwargs = {"type": prop_type, "cast": True, "min": lower_bound,
+    max_kwargs = {"desciption": "a property with an enforced maximum value",
+                  "type": prop_type, "cast": True, "min": lower_bound,
                   "max": upper_bound,
                   upper_comparison_kwarg: some_prop_min_keyword}
 
@@ -166,7 +168,7 @@ def test_valid_init_values_do_not_raise_error(compare_fixture):
                          ["compare_equal_float_fixture",
                           "compare_equal_int_fixture"],
                          indirect=True)
-def test_valid_init_values_do_not_raise_error(compare_fixture):
+def test_valid_setter_values_do_not_raise_error(compare_fixture):
     """Check all fixtures initialise to values correctly."""
     average = (FIXTURE_LOWER_BOUND + FIXTURE_UPPER_BOUND) / 2
     assert compare_fixture.some_prop_min == 6.0

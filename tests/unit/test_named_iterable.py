@@ -18,12 +18,27 @@ class TestNamedIterable:
         """Simple fixture setting up an named iterables."""
         self.single_named_iter = named_iterable(1, named_keys=["x"])
         self.double_named_iter = named_iterable([1, 2], named_keys=["x", "y"])
+        self.sympy_named_iter = named_iterable([1, 2], named_keys=["x", "y"],
+                                               sympify=True)
+        self.not_named_iter = named_iterable([1, 2], use_named=False)
 
     def test_dot_indexing(self):
         """Check that value- and dot-indexing are equivalent."""
         assert self.single_named_iter.x == self.single_named_iter[0]
         assert self.double_named_iter.x == self.double_named_iter[0]
         assert self.double_named_iter.y == self.double_named_iter[1]
+        assert self.sympy_named_iter.x == self.sympy_named_iter[0]
+        assert self.sympy_named_iter.y == self.sympy_named_iter[1]
+
+    def test_not_named_dot_indexing_raises_error(self):
+        with pytest.raises(AttributeError):
+            self.sympy_named_iter.x = None
+        with pytest.raises(AttributeError):
+            self.sympy_named_iter.y = None
+
+
+def test_make_named_iterable_not_iterable():
+    some_iterable = named_iterable([])
 
 
 @given(keys=st.iterables(st.text(alphabet=string.ascii_letters, min_size=1),

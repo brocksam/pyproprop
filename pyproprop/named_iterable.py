@@ -3,6 +3,10 @@
 Named iterables are a way of defining instance attributes for a class that
 are able to support dot-indexing via user-specified names.
 
+Note
+----
+Docstrings need improving.
+
 """
 
 from collections import namedtuple
@@ -31,8 +35,8 @@ def named_iterable(iterable, use_named=True, named_keys=None, sympify=False):
 
     Returns
     -------
-    TYPE
-        Description
+    named_tuple
+        Formatted named iterable that is dot-indexible.
     """
     iterable, named_keys = make_iterable(iterable, named_keys)
     if sympify:
@@ -50,7 +54,6 @@ def named_iterable(iterable, use_named=True, named_keys=None, sympify=False):
     return formatted_entries
 
 
-
 def make_iterable(iterable, named_keys):
     """
     Parameters
@@ -59,22 +62,20 @@ def make_iterable(iterable, named_keys):
         Description
     named_keys : TYPE
         Description
-    
+
     Returns
     -------
     TYPE
         Description
-    
-    
-    
+
     """
     if not iterable:
-        return ()
+        return (), named_keys
     try:
         iter(iterable)
     except TypeError:
         return (iterable, ), named_keys
     try:
         return iterable.values(), iterable.keys()
-    except:
+    except AttributeError:
         return iterable, named_keys

@@ -38,11 +38,13 @@ class ClassWithOptionProperties:
     """
     one_option_prop = processed_property(
         "one_option_prop",
+        description="option property with a single option",
         type=str,
         options=(OPTION_1_KEYWORD, )
     )
     mul_option_prop = processed_property(
         "mul_option_prop",
+        description="option property with multiple options",
         type=str,
         options=(OPTION_1_KEYWORD,
                  OPTION_2_KEYWORD,
@@ -53,6 +55,8 @@ class ClassWithOptionProperties:
     )
     one_unsupported_option_prop = processed_property(
         "one_unsupported_option_prop",
+        description=("option property with multiple options and a single "
+                     "unsupported option"),
         type=str,
         options=(OPTION_1_KEYWORD,
                  OPTION_2_KEYWORD,
@@ -64,6 +68,8 @@ class ClassWithOptionProperties:
     )
     mul_unsupported_option_prop = processed_property(
         "mul_unsupported_option_prop",
+        description=("option property with multiple options and multiple "
+                     "unsupported options"),
         type=str,
         options=(OPTION_1_KEYWORD,
                  OPTION_2_KEYWORD,
@@ -121,9 +127,6 @@ def test_single_option_all_unsupported_option():
                 unsupported_options=(OPTION_1_KEYWORD, ),
             )
 
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.one_all_unsupported_option_prop = option
-
 
 def test_missing_option_kwarg_with_unsupported_option():
     """"""
@@ -139,9 +142,6 @@ def test_missing_option_kwarg_with_unsupported_option():
                 type=str,
                 unsupported_options=(OPTION_1_KEYWORD, ),
             )
-
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.one_all_unsupported_option_prop = option
 
 
 def test_no_option_with_unsupported_option():
@@ -159,9 +159,6 @@ def test_no_option_with_unsupported_option():
                 options=(),
                 unsupported_options=(OPTION_1_KEYWORD, ),
             )
-
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.one_all_unsupported_option_prop = option
 
 
 def test_multiple_option_all_are_unsupported_option():
@@ -191,12 +188,16 @@ def test_multiple_option_all_are_unsupported_option():
                                      ),
             )
 
-            def __init__(self, option=OPTION_1_KEYWORD):
-                self.mul_all_unsupported_option_prop = option
-
 
 def test_correct_initialisation_class_with_option_properties(test_fixture):
     assert test_fixture.one_option_prop == OPTION_1_KEYWORD
     assert test_fixture.mul_option_prop == OPTION_1_KEYWORD
     assert test_fixture.one_unsupported_option_prop == OPTION_1_KEYWORD
     assert test_fixture.mul_unsupported_option_prop == OPTION_1_KEYWORD
+
+
+def test_raises_value_error_with_invalid_option(test_fixture):
+    with pytest.raises(ValueError):
+        test_fixture.one_option_prop = OPTION_2_KEYWORD
+    with pytest.raises(ValueError):
+        test_fixture.one_unsupported_option_prop = OPTION_5_KEYWORD
