@@ -166,7 +166,7 @@ def test_valid_init_values_do_not_raise_error(compare_fixture):
                          ["compare_equal_float_fixture",
                           "compare_equal_int_fixture"],
                          indirect=True)
-def test_valid_init_values_do_not_raise_error(compare_fixture):
+def test_valid_setter_values_do_not_raise_error(compare_fixture):
     """Check all fixtures initialise to values correctly."""
     average = (FIXTURE_LOWER_BOUND + FIXTURE_UPPER_BOUND) / 2
     assert compare_fixture.some_prop_min == 6.0
