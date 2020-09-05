@@ -74,13 +74,7 @@ def generate_name_description_error_message(name,
             return f"a `{name}`"
         return f"`{name}`"
     if with_preposition:
-        first_word, _ = description.split(maxsplit=1)
-        starts_with_vowel = first_word[0] in need_an
-        is_acronym = first_word.upper() == first_word
-        if starts_with_vowel or is_acronym:
-            preposition = "an"
-        else:
-            preposition = "a"
+        preposition = "an" if description[0] in need_an else "a"
         formatted_description = " ".join([preposition, description])
     else:
         formatted_description = description
