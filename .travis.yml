@@ -32,7 +32,8 @@ install:
 
 script:
   # Tests
-  - pytest --cov=./
+  # Solution from https://stackoverflow.com/questions/56337918/run-coverage-on-tests-directory-via-travis-ci
+  - pytest --cov-report term --cov=pyproprop tests/
   # Docs
   - cd docs; make clean; cd ..
   - sphinx-build -nWT -b dummy docs/source docs/build
