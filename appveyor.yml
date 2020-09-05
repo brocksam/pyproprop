@@ -51,7 +51,8 @@ install:
   - "conda install --yes python=%PYTHON_VERSION%"
   # Taken from https://stackoverflow.com/questions/35802939/install-only-available-packages-using-conda-install-yes-file-requirements-t
   # CMD command edited with https://ss64.com/nt/for.html
-  - FOR /F "delims=~" %%F in (requirements.txt) DO (conda install -q -y %%F || pip install %%F)
+  # - FOR /F "delims=~" %%F in (requirements.txt) DO (conda install -q -y %%F || pip install %%F)
+  - conda install -q -y --file=requirements.txt
   - conda update -y --all
   - conda info
   - conda list

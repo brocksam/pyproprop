@@ -46,9 +46,38 @@ def processed_property(name, **kwargs):
         elif not isinstance(valids, type) and kwarg not in valids:
             formatted_valids = format_for_output(valids, with_or=True)
             msg = (f"{repr(kwarg)} is not a valid {description}. Please "
-                   "choose one of: {formatted_valids}.")
+                   f"choose one of: {formatted_valids}.")
             raise ValueError(msg)
         return kwarg
+
+    def error_check_option_kwarg(options, unsupported_options):
+        """Error checking of the `options` and `unsupported_options`.
+
+        Returns
+        -------
+        tuple of tuples
+            Tuple of length two where the first element is a tuple of the 
+            options and the second is a tuple of the unsupported options.
+
+        Raises
+        ------
+        ValueError
+            If an unsupported option is specified that is also not specified as
+            an option. If all of the options specified are also specified as
+            unsupported options. If unsupported options are specified but no
+            options are.
+
+        """
+        if (options is None and unsupported_options) or (set(unsupported_options).difference(set(options))):
+            msg = (f"{name_str} does not have any supported options. Check "
+                   f"unsupported options are valid options: "
+                   f"{format_for_output(unsupported_options)}.")
+            raise ValueError(msg)
+        if not set(options).symmetric_difference(set(unsupported_options)):
+            msg = (f"{name_str} does not have any supported options from: "
+                   f"{format_for_output(options)}.")
+            raise ValueError(msg)
+        return tuple(options), tuple(unsupported_options)
 
     storage_name = "_" + name
     description = kwargs.get("description")
@@ -72,6 +101,11 @@ def processed_property(name, **kwargs):
     equal_to = kwargs.get("equal_to")
     str_format = parse_kwarg("str_format", "string case format",
                              SUPPORTED_STR_FORMAT_OPTIONS, None)
+
+    # Additional error checking of kwargs
+    name_str = generate_name_description_error_message(name, description)
+    if options or unsupported_options:
+        error_check_option_kwarg(options, unsupported_options)
 
     @property
     def prop(self):
@@ -265,6 +299,11 @@ def processed_property(name, **kwargs):
         ValueError
             If the value attempting to be set is less than the specified
             minimum.
+
+        Note
+        ----
+        Use function from py:mod:`utils` to format repr values with backticks.
+
         """
         name_str = generate_name_description_error_message(
             name,
@@ -272,13 +311,13 @@ def processed_property(name, **kwargs):
             is_sentence_start=True)
         if exclusive:
             if value <= min_value:
-                msg = (f"{name_str} must be greater than {min_value}. {value} "
-                       f"is invalid.")
+                msg = (f"{name_str} must be greater than `{repr(min_value)}`. "
+                       f"`{repr(value)}` is invalid.")
                 raise ValueError(msg)
         else:
             if value < min_value:
                 msg = (f"{name_str} must be greater than or equal to "
-                       f"{min_value}. {value} is invalid.")
+                       f"`{repr(min_value)}`. `{repr(value)}` is invalid.")
                 raise ValueError(msg)
 
     def check_max(value):
@@ -295,6 +334,11 @@ def processed_property(name, **kwargs):
         ValueError
             If the value attempting to be set is less than the specified
             maximum.
+
+        Note
+        ----
+        Use function from py:mod:`utils` to format repr values with backticks.
+
         """
         name_str = generate_name_description_error_message(
             name,
@@ -302,13 +346,13 @@ def processed_property(name, **kwargs):
             is_sentence_start=True)
         if exclusive:
             if value >= max_value:
-                msg = (f"{name_str} must be less than {max_value}. {value} is "
-                       f"invalid.")
+                msg = (f"{name_str} must be less than `{repr(max_value)}`. "
+                       f"`{repr(value)}` is invalid.")
                 raise ValueError(msg)
         else:
             if value > max_value:
                 msg = (f"{name_str} must be less than or equal to "
-                       f"{max_value}. {value} is invalid.")
+                       f"`{repr(max_value)}`. `{repr(value)}` is invalid.")
                 raise ValueError(msg)
 
     def check_less_than(self, value):

@@ -242,6 +242,11 @@ def format_str_start_case(item):
     str
         The string item passed as a parameter in formatted form.
 
+    Note
+    ----
+    Use :py:package:`titlecase` on first word for more intelligent
+    capitalisation.
+
     """
     len_item = len(item)
     if len_item == 0:
