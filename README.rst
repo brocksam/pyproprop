@@ -30,7 +30,8 @@ Status
       - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true
             :target: https://ci.appveyor.com/project/brocksam/pyproprop
     * - **Coverage**
-      - .. image:: https://codecov.io/gh/brocksam/pyproprop/branch/master/graph/badge.svg
+      - .. image:: https://img.shields.io/codecov/c/github/brocksam/pyproprop?color=brightgreen&logo=codecov
+            :alt: Codecov
             :target: https://codecov.io/gh/brocksam/pyproprop
     * - **License**
       - .. image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
