@@ -27,6 +27,9 @@ Status
       - .. image:: https://img.shields.io/conda/dn/conda-forge/pyproprop?color=brightgreen&label=conda-forge&logo=conda-forge
             :alt: Conda
             :target: https://anaconda.org/conda-forge/pyproprop
+    * - **License**
+      - .. image:: https://img.shields.io/badge/License-MIT-brightgreen.svg
+           :target: https://github.com/brocksam/pyproprop/blob/master/LICENSE
 
 
 What is pyproprop?
