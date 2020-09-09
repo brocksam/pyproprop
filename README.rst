@@ -23,7 +23,7 @@ Status
     * - Coverage
       - .. image:: https://codecov.io/gh/brocksam/pyproprop/branch/master/graph/badge.svg
             :target: https://codecov.io/gh/brocksam/pyproprop
-    * - conda-forge
+    * - Anaconda
       - .. image:: https://img.shields.io/conda/dn/conda-forge/pyproprop?color=brightgreen&label=conda-forge&logo=conda-forge
             :alt: Conda
             :target: https://anaconda.org/conda-forge/pyproprop
