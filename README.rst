@@ -7,23 +7,29 @@ Status
 
 .. list-table::
 
-    * - Docs
+    * - **Docs**
       - .. image:: https://readthedocs.org/projects/pyproprop/badge/?version=latest
             :target: https://pyproprop.readthedocs.io/en/latest/?badge=latest
             :alt: Documentation Status
-    * - PyPI
+    * - **PyPI**
       - .. image:: https://badge.fury.io/py/pyproprop.svg
             :target: https://badge.fury.io/py/pyproprop
-    * - Travis CI
+    * - **Travis CI**
       - .. image:: https://travis-ci.com/brocksam/pyproprop.svg?branch=master
             :target: https://travis-ci.com/brocksam/pyproprop
-    * - Appveyor
+    * - **Appveyor**
       - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true
             :target: https://ci.appveyor.com/project/brocksam/pyproprop
-    * - Coverage
+    * - **Coverage**
       - .. image:: https://codecov.io/gh/brocksam/pyproprop/branch/master/graph/badge.svg
             :target: https://codecov.io/gh/brocksam/pyproprop
-
+    * - **Anaconda**
+      - .. image:: https://img.shields.io/conda/dn/conda-forge/pyproprop?color=brightgreen&label=conda-forge&logo=conda-forge
+            :alt: Conda
+            :target: https://anaconda.org/conda-forge/pyproprop
+    * - **License**
+      - .. image:: https://img.shields.io/badge/License-MIT-brightgreen.svg
+           :target: https://github.com/brocksam/pyproprop/blob/master/LICENSE
 
 
 What is pyproprop?
