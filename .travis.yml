@@ -41,7 +41,6 @@ script:
 notifications:
   slack: 
     rooms: 
-      - lapysim:iK2uynW8fR6IbFVTpQwTlbwR#dev
       - lapysim:iK2uynW8fR6IbFVTpQwTlbwR#pyproprop
 
 after_success:
