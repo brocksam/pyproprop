@@ -2,41 +2,42 @@
 pyproprop
 *********
 
+Package for aiding writing classes with lots of similar simple properties without the boilerplate.
+
 Status
 ======
 
 .. list-table::
+   :widths: 50 50 50 50
 
-    * - **Latest Release**
-      - .. image:: https://img.shields.io/pypi/v/pyproprop?color=brightgreen&label=version
+   * - **Latest Release**
+     - .. image:: https://img.shields.io/pypi/v/pyproprop?color=brightgreen&label=version
             :alt: PyPI
             :target: https://pypi.org/project/pyproprop/
-    * - **Docs**
-      - .. image:: https://readthedocs.org/projects/pyproprop/badge/?version=latest
+     - **Travis CI**
+     - .. image:: https://travis-ci.com/brocksam/pyproprop.svg?branch=master
+            :target: https://travis-ci.com/brocksam/pyproprop
+   * - **Docs**
+     - .. image:: https://readthedocs.org/projects/pyproprop/badge/?version=latest
             :target: https://pyproprop.readthedocs.io/en/latest/?badge=latest
             :alt: Documentation Status
-    * - **PyPI**
-      - .. image:: https://img.shields.io/pypi/dm/pyproprop?color=brightgreen&label=downloads&logo=pypi
+     - **Appveyor**
+     - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true
+            :target: https://ci.appveyor.com/project/brocksam/pyproprop
+   * - **PyPI**
+     - .. image:: https://img.shields.io/pypi/dm/pyproprop?color=brightgreen&label=downloads&logo=pypi
             :alt: PyPI - Downloads
             :target: https://pypi.org/project/pyproprop/
-    * - **Anaconda**
-      - .. image:: https://img.shields.io/conda/dn/conda-forge/pyproprop?color=brightgreen&label=downloads&logo=conda-forge
+     - **Coverage**
+     - .. image:: https://img.shields.io/codecov/c/github/brocksam/pyproprop?color=brightgreen&logo=codecov
+            :alt: Codecov
+   * - **Anaconda**
+     - .. image:: https://img.shields.io/conda/dn/conda-forge/pyproprop?color=brightgreen&label=downloads&logo=conda-forge
             :alt: Conda
             :target: https://anaconda.org/conda-forge/pyproprop
-    * - **Travis CI**
-      - .. image:: https://travis-ci.com/brocksam/pyproprop.svg?branch=master
-            :target: https://travis-ci.com/brocksam/pyproprop
-    * - **Appveyor**
-      - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true
-            :target: https://ci.appveyor.com/project/brocksam/pyproprop
-    * - **Coverage**
-      - .. image:: https://img.shields.io/codecov/c/github/brocksam/pyproprop?color=brightgreen&logo=codecov
-            :alt: Codecov
-            :target: https://codecov.io/gh/brocksam/pyproprop
-    * - **License**
-      - .. image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
+     - **License**
+     - .. image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
            :target: https://github.com/brocksam/pyproprop/blob/master/LICENSE
-        
 
 
 
