@@ -12,9 +12,8 @@ from typing import Any, Iterable, Tuple
 
 import numpy as np
 
-from .utils import (format_for_output, format_str_case,
-                    generate_name_description_error_message,
-                    SUPPORTED_STR_FORMAT_OPTIONS)
+from .format_str_case import (format_str_case, SUPPORTED_STR_FORMAT_OPTIONS)
+from .utils import (generate_name_description_error_message, format_for_output)
 
 
 __all__ = ["processed_property"]
