@@ -2,9 +2,57 @@ import os
 import sys
 
 import pytest
+from pyproprop import processed_property
 from typing import Iterable
 
-from pyproprop import processed_property
+
+@pytest.fixture(scope="session")
+def LOWER_KEYWORD():
+    """:py:obj:`str` : String identifier for lower case formatting. This is
+    the same keyword that is seen in :py:mod:`pyproprop/utils`."""
+    return "lower"
+
+
+@pytest.fixture(scope="session")
+def UPPER_KEYWORD():
+    """:py:obj:`str` : String identifier for upper case formatting. This is
+    the same keyword that is seen in :py:mod:`pyproprop/utils`."""
+    return "upper"
+
+
+@pytest.fixture(scope="session")
+def TITLE_KEYWORD():
+    """:py:obj:`str` : String identifier for title case formatting. This is
+    the same keyword that is seen in :py:mod:`pyproprop/utils`."""
+    return "title"
+
+
+@pytest.fixture(scope="session")
+def START_KEYWORD():
+    """:py:obj:`str` : String identifier for start case formatting. This is
+    the same keyword that is seen in :py:mod:`pyproprop/utils`."""
+    return "start"
+
+
+@pytest.fixture(scope="session")
+def SNAKE_KEYWORD():
+    """:py:obj:`str` : String identifier for snake case formatting. This is
+    the same keyword that is seen in :py:mod:`pyproprop/utils`."""
+    return "snake"
+
+
+@pytest.fixture(scope="session")
+def PASCAL_KEYWORD():
+    """:py:obj:`str` : String identifier for pascal case formatting. This is
+    the same keyword that is seen in :py:mod:`pyproprop/utils`."""
+    return "pascal"
+
+
+@pytest.fixture(scope="session")
+def HYPHEN_KEYWORD():
+    """:py:obj:`str` : String identifier for hyphen case formatting. This is
+    the same keyword that is seen in :py:mod:`pyproprop/utils`."""
+    return "hyphen"
 
 
 @pytest.fixture(scope="session")
@@ -161,8 +209,43 @@ def TestProcessedProperties():
     return TestProcessedProperties
 
 
-@pytest.fixture(scope="session")
-def str_format_example_strings():
+@pytest.fixture(scope='session')
+def example_string_1(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
+                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+    """Strings for testing string formatting cases.
+
+    Parameters
+    ----------
+    EXAMPLE_STR_1 : :py:obj:`str`
+        Very basic test example.
+    EXAMPLE_STR_1_FORMATTED : :py:obj:`dict`
+        Expected formatted output strings for :py:const:`EXAMPLE_STR_1`.
+
+    Returns
+    -------
+    :py:obj:`list`
+        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
+        :py:obj:`tuple` structured as follows:
+        `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
+
+    """
+
+    EXAMPLE_STR_1 = "this is a string"
+    EXAMPLE_STR_1_FORMATTED = {LOWER_KEYWORD: "this is a string",
+                               UPPER_KEYWORD: "THIS IS A STRING",
+                               TITLE_KEYWORD: "This Is a String",
+                               START_KEYWORD: "This is a string",
+                               SNAKE_KEYWORD: "this_is_a_string",
+                               PASCAL_KEYWORD: "ThisIsAString",
+                               HYPHEN_KEYWORD: "this-is-a-string",
+                               }
+
+    return (EXAMPLE_STR_1, EXAMPLE_STR_1_FORMATTED)
+
+
+@pytest.fixture(scope='session')
+def example_string_2(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
+                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
     """Strings for testing string formatting cases.
 
     Parameters
@@ -188,24 +271,173 @@ def str_format_example_strings():
     HYPHEN_KEYWORD : :py:obj:`str`
         String identifier for hyphen case formatting. This is the same keyword
         that is seen in :py:mod:`pyproprop/utils`.
-    EXAMPLE_STR_1 : :py:obj:`str`
-        Very basic test example.
-    EXAMPLE_STR_1_FORMATTED : :py:obj:`dict`
-        Expected formatted output strings for :py:const:`EXAMPLE_STR_1`.
     EXAMPLE_STR_2 : :py:obj:`str`
         Test example involving multiple spaces and an abbreviation.
     EXAMPLE_STR_2_FORMATTED : :py:obj:`dict`
         Expected formatted output strings for :py:const:`EXAMPLE_STR_2`.
+
+    Returns
+    -------
+    :py:obj:`list`
+        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
+        :py:obj:`tuple` structured as follows:
+        `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
+
+    """
+
+    EXAMPLE_STR_2 = "string with an   ABRV"
+    EXAMPLE_STR_2_FORMATTED = {LOWER_KEYWORD: "string with an abrv",
+                               UPPER_KEYWORD: "STRING WITH AN ABRV",
+                               TITLE_KEYWORD: "String With an ABRV",
+                               START_KEYWORD: "String with an ABRV",
+                               SNAKE_KEYWORD: "string_with_an_abrv",
+                               PASCAL_KEYWORD: "StringWithAnABRV",
+                               HYPHEN_KEYWORD: "string-with-an-abrv",
+                               }
+
+    return (EXAMPLE_STR_2, EXAMPLE_STR_2_FORMATTED)
+
+
+@pytest.fixture(scope='session')
+def example_string_3(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
+                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+    """Strings for testing string formatting cases.
+
+    Parameters
+    ----------
+    LOWER_KEYWORD : :py:obj:`str`
+        String identifier for lower case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    UPPER_KEYWORD : :py:obj:`str`
+        String identifier for upper case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    TITLE_KEYWORD : :py:obj:`str`
+        String identifier for title case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    START_KEYWORD : :py:obj:`str`
+        String identifier for start case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    SNAKE_KEYWORD : :py:obj:`str`
+        String identifier for snake case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    PASCAL_KEYWORD : :py:obj:`str`
+        String identifier for pascal case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    HYPHEN_KEYWORD : :py:obj:`str`
+        String identifier for hyphen case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
     EXAMPLE_STR_3 : :py:obj:`str`
         Test example involving invalid identifier punctuation and underscores
         between words.
     EXAMPLE_STR_3_FORMATTED : :py:obj:`dict`
         Expected formatted output strings for :py:const:`EXAMPLE_STR_3`.
+
+    Returns
+    -------
+    :py:obj:`list`
+        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
+        :py:obj:`tuple` structured as follows:
+        `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
+
+    """
+
+    EXAMPLE_STR_3 = "string_with %_£+"
+    EXAMPLE_STR_3_FORMATTED = {LOWER_KEYWORD: "string_with %_£+",
+                               UPPER_KEYWORD: "STRING_WITH %_£+",
+                               TITLE_KEYWORD: "String_with %_£+",
+                               START_KEYWORD: "String_with %_£+",
+                               SNAKE_KEYWORD: "string_with",
+                               PASCAL_KEYWORD: "StringWith",
+                               HYPHEN_KEYWORD: "string-with",
+                               }
+
+    return (EXAMPLE_STR_3, EXAMPLE_STR_3_FORMATTED)
+
+
+@pytest.fixture(scope='session')
+def example_string_4(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
+                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+    """Strings for testing string formatting cases.
+
+    Parameters
+    ----------
+    LOWER_KEYWORD : :py:obj:`str`
+        String identifier for lower case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    UPPER_KEYWORD : :py:obj:`str`
+        String identifier for upper case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    TITLE_KEYWORD : :py:obj:`str`
+        String identifier for title case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    START_KEYWORD : :py:obj:`str`
+        String identifier for start case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    SNAKE_KEYWORD : :py:obj:`str`
+        String identifier for snake case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    PASCAL_KEYWORD : :py:obj:`str`
+        String identifier for pascal case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    HYPHEN_KEYWORD : :py:obj:`str`
+        String identifier for hyphen case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
     EXAMPLE_STR_4 : :py:obj:`str`
         Test example involving punctuation, hyphenation between words and
         apostrophies.
     EXAMPLE_STR_4_FORMATTED : :py:obj:`dict`
         Expected formatted output strings for :py:const:`EXAMPLE_STR_4`.
+
+    Returns
+    -------
+    :py:obj:`list`
+        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
+        :py:obj:`tuple` structured as follows:
+        `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
+
+    """
+
+    EXAMPLE_STR_4 = "it's an example-with punctuation!"
+    EXAMPLE_STR_4_FORMATTED = {LOWER_KEYWORD: "it's an example-with punctuation!",
+                               UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
+                               TITLE_KEYWORD: "It's an Example-With Punctuation!",
+                               START_KEYWORD: "It's an example-with punctuation!",
+                               SNAKE_KEYWORD: "its_an_example_with_punctuation",
+                               PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
+                               HYPHEN_KEYWORD: "its-an-example-with-punctuation",
+                               }
+
+    return (EXAMPLE_STR_4, EXAMPLE_STR_4_FORMATTED)
+
+
+@pytest.fixture(scope='session')
+def example_string_5(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
+                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+    """Strings for testing string formatting cases.
+
+    Parameters
+    ----------
+    LOWER_KEYWORD : :py:obj:`str`
+        String identifier for lower case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    UPPER_KEYWORD : :py:obj:`str`
+        String identifier for upper case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    TITLE_KEYWORD : :py:obj:`str`
+        String identifier for title case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    START_KEYWORD : :py:obj:`str`
+        String identifier for start case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    SNAKE_KEYWORD : :py:obj:`str`
+        String identifier for snake case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    PASCAL_KEYWORD : :py:obj:`str`
+        String identifier for pascal case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
+    HYPHEN_KEYWORD : :py:obj:`str`
+        String identifier for hyphen case formatting. This is the same keyword
+        that is seen in :py:mod:`pyproprop/utils`.
     EXAMPLE_STR_5 : :py:obj:`str`
         Test example involving different uses of underscores.
     EXAMPLE_STR_5_FORMATTED : :py:obj:`dict`
@@ -219,51 +451,6 @@ def str_format_example_strings():
         `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
 
     """
-    LOWER_KEYWORD = "lower"
-    UPPER_KEYWORD = "upper"
-    TITLE_KEYWORD = "title"
-    START_KEYWORD = "start"
-    SNAKE_KEYWORD = "snake"
-    PASCAL_KEYWORD = "pascal"
-    HYPHEN_KEYWORD = "hyphen"
-
-
-    EXAMPLE_STR_1 = "this is a string"
-    EXAMPLE_STR_1_FORMATTED = {LOWER_KEYWORD: "this is a string",
-                               UPPER_KEYWORD: "THIS IS A STRING",
-                               TITLE_KEYWORD: "This Is a String",
-                               START_KEYWORD: "This is a string",
-                               SNAKE_KEYWORD: "this_is_a_string",
-                               PASCAL_KEYWORD: "ThisIsAString",
-                               HYPHEN_KEYWORD: "this-is-a-string",
-                               }
-    EXAMPLE_STR_2 = "string with an   ABRV"
-    EXAMPLE_STR_2_FORMATTED = {LOWER_KEYWORD: "string with an abrv",
-                               UPPER_KEYWORD: "STRING WITH AN ABRV",
-                               TITLE_KEYWORD: "String With an ABRV",
-                               START_KEYWORD: "String with an ABRV",
-                               SNAKE_KEYWORD: "string_with_an_abrv",
-                               PASCAL_KEYWORD: "StringWithAnABRV",
-                               HYPHEN_KEYWORD: "string-with-an-abrv",
-                               }
-    EXAMPLE_STR_3 = "string_with %_£+"
-    EXAMPLE_STR_3_FORMATTED = {LOWER_KEYWORD: "string_with %_£+",
-                               UPPER_KEYWORD: "STRING_WITH %_£+",
-                               TITLE_KEYWORD: "String_with %_£+",
-                               START_KEYWORD: "String_with %_£+",
-                               SNAKE_KEYWORD: "string_with",
-                               PASCAL_KEYWORD: "StringWith",
-                               HYPHEN_KEYWORD: "string-with",
-                               }
-    EXAMPLE_STR_4 = "it's an example-with punctuation!"
-    EXAMPLE_STR_4_FORMATTED = {LOWER_KEYWORD: "it's an example-with punctuation!",
-                               UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
-                               TITLE_KEYWORD: "It's an Example-With Punctuation!",
-                               START_KEYWORD: "It's an example-with punctuation!",
-                               SNAKE_KEYWORD: "its_an_example_with_punctuation",
-                               PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
-                               HYPHEN_KEYWORD: "its-an-example-with-punctuation",
-                               }
 
     EXAMPLE_STR_5 = "string _with__lots___of_underscores_"
     EXAMPLE_STR_5_FORMATTED = {LOWER_KEYWORD: "string _with__lots___of_underscores_",
@@ -275,8 +462,4 @@ def str_format_example_strings():
                                HYPHEN_KEYWORD: "string-with-lots-of-underscores",
                                }
 
-    return [(EXAMPLE_STR_1, EXAMPLE_STR_1_FORMATTED),
-            (EXAMPLE_STR_2, EXAMPLE_STR_2_FORMATTED),
-            (EXAMPLE_STR_3, EXAMPLE_STR_3_FORMATTED),
-            (EXAMPLE_STR_4, EXAMPLE_STR_4_FORMATTED),
-            (EXAMPLE_STR_5, EXAMPLE_STR_5_FORMATTED)]
+    return (EXAMPLE_STR_5, EXAMPLE_STR_5_FORMATTED)
