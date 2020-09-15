@@ -6,10 +6,6 @@ well-formatted console output, usually to be used in error messages.
 
 """
 
-import re
-
-import titlecase
-
 from .format_str_case import (format_str_case, START_STR_CASE_FORMAT_KEYWORD)
 
 
