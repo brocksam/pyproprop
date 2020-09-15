@@ -249,27 +249,6 @@ def example_string_2(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Parameters
     ----------
-    LOWER_KEYWORD : :py:obj:`str`
-        String identifier for lower case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    UPPER_KEYWORD : :py:obj:`str`
-        String identifier for upper case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    TITLE_KEYWORD : :py:obj:`str`
-        String identifier for title case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    START_KEYWORD : :py:obj:`str`
-        String identifier for start case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    SNAKE_KEYWORD : :py:obj:`str`
-        String identifier for snake case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    PASCAL_KEYWORD : :py:obj:`str`
-        String identifier for pascal case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    HYPHEN_KEYWORD : :py:obj:`str`
-        String identifier for hyphen case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
     EXAMPLE_STR_2 : :py:obj:`str`
         Test example involving multiple spaces and an abbreviation.
     EXAMPLE_STR_2_FORMATTED : :py:obj:`dict`
@@ -303,27 +282,6 @@ def example_string_3(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Parameters
     ----------
-    LOWER_KEYWORD : :py:obj:`str`
-        String identifier for lower case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    UPPER_KEYWORD : :py:obj:`str`
-        String identifier for upper case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    TITLE_KEYWORD : :py:obj:`str`
-        String identifier for title case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    START_KEYWORD : :py:obj:`str`
-        String identifier for start case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    SNAKE_KEYWORD : :py:obj:`str`
-        String identifier for snake case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    PASCAL_KEYWORD : :py:obj:`str`
-        String identifier for pascal case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    HYPHEN_KEYWORD : :py:obj:`str`
-        String identifier for hyphen case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
     EXAMPLE_STR_3 : :py:obj:`str`
         Test example involving invalid identifier punctuation and underscores
         between words.
@@ -358,27 +316,6 @@ def example_string_4(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Parameters
     ----------
-    LOWER_KEYWORD : :py:obj:`str`
-        String identifier for lower case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    UPPER_KEYWORD : :py:obj:`str`
-        String identifier for upper case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    TITLE_KEYWORD : :py:obj:`str`
-        String identifier for title case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    START_KEYWORD : :py:obj:`str`
-        String identifier for start case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    SNAKE_KEYWORD : :py:obj:`str`
-        String identifier for snake case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    PASCAL_KEYWORD : :py:obj:`str`
-        String identifier for pascal case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    HYPHEN_KEYWORD : :py:obj:`str`
-        String identifier for hyphen case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
     EXAMPLE_STR_4 : :py:obj:`str`
         Test example involving punctuation, hyphenation between words and
         apostrophies.
@@ -413,27 +350,6 @@ def example_string_5(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Parameters
     ----------
-    LOWER_KEYWORD : :py:obj:`str`
-        String identifier for lower case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    UPPER_KEYWORD : :py:obj:`str`
-        String identifier for upper case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    TITLE_KEYWORD : :py:obj:`str`
-        String identifier for title case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    START_KEYWORD : :py:obj:`str`
-        String identifier for start case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    SNAKE_KEYWORD : :py:obj:`str`
-        String identifier for snake case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    PASCAL_KEYWORD : :py:obj:`str`
-        String identifier for pascal case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
-    HYPHEN_KEYWORD : :py:obj:`str`
-        String identifier for hyphen case formatting. This is the same keyword
-        that is seen in :py:mod:`pyproprop/utils`.
     EXAMPLE_STR_5 : :py:obj:`str`
         Test example involving different uses of underscores.
     EXAMPLE_STR_5_FORMATTED : :py:obj:`dict`
