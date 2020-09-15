@@ -18,6 +18,8 @@ SNAKE_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
     String identifier for snake case formatting.
 PASCAL_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
     String identifier for pascal case formatting.
+HYPHEN_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+    String identifier for hyphen case formatting.
 SUPPORTED_STR_FORMAT_OPTIONS : :py:obj:`set`
     Supported options for formatting methods, via identifiers.
 FORMAT_STR_DISPATCHER : :py:obj:`dict`
@@ -37,6 +39,7 @@ TITLE_STR_CASE_FORMAT_KEYWORD = "title"
 START_STR_CASE_FORMAT_KEYWORD = "start"
 SNAKE_STR_CASE_FORMAT_KEYWORD = "snake"
 PASCAL_STR_CASE_FORMAT_KEYWORD = "pascal"
+HYPHEN_STR_CASE_FORMAT_KEYWORD = "hyphen"
 SUPPORTED_STR_FORMAT_OPTIONS = {None,
                                 LOWER_STR_CASE_FORMAT_KEYWORD,
                                 UPPER_STR_CASE_FORMAT_KEYWORD,
@@ -44,6 +47,7 @@ SUPPORTED_STR_FORMAT_OPTIONS = {None,
                                 START_STR_CASE_FORMAT_KEYWORD,
                                 SNAKE_STR_CASE_FORMAT_KEYWORD,
                                 PASCAL_STR_CASE_FORMAT_KEYWORD,
+                                HYPHEN_STR_CASE_FORMAT_KEYWORD,
                                 }
 
 
@@ -336,6 +340,46 @@ def format_str_pascal_case(item):
     return re.sub(r" ", r"", item)
 
 
+def format_str_hyphen_case(item):
+    """Format the given string to hyphen case.
+
+    Examples
+    --------
+    >>> format_str_hyphen_case("this is a string")
+    "this-is-a-string"
+
+    >>> format_str_hyphen_case("string with an   ABRV")
+    "string-with-an-abrv"
+
+    >>> format_str_hyphen_case("string_with %_£+")
+    "string-with"
+
+    >>> format_str_hyphen_case("it's an example-with punctuation!")
+    "its-an-example-with-punctuation"
+
+    Parameters
+    ----------
+    item : :py:obj:`str`
+        The string object to be formatted.
+
+    Returns
+    -------
+    :py:obj:`str`
+        The string item passed as a parameter in formatted form.
+
+    """
+    # Strip punctuation
+    item = re.sub(r"[,'!?\"'#$£%&\()*+./:;<=>?@\[\\\]^`{|}~]", r"", item)
+    # Replace separators with hyphens
+    item = re.sub(r"[ \-_]", r"-", item)
+    # Replace more than one consecutive hyphen with single hyphen
+    item = re.sub(r"-+", r"-", item)
+    # Strip hyphen from end of string
+    item = re.sub(r"-$", r"", item)
+    # Return lower case
+    return item.lower()
+
+
 def format_for_output(items, *args, **kwargs):
     """Utility method for formatting console output.
 
@@ -435,4 +479,5 @@ FORMAT_STR_DISPATCHER = {None: lambda item: item,
                          START_STR_CASE_FORMAT_KEYWORD: format_str_start_case,
                          SNAKE_STR_CASE_FORMAT_KEYWORD: format_str_snake_case,
                          PASCAL_STR_CASE_FORMAT_KEYWORD: format_str_pascal_case,
+                         HYPHEN_STR_CASE_FORMAT_KEYWORD: format_str_hyphen_case,
                          }
