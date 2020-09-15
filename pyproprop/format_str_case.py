@@ -66,6 +66,9 @@ def format_str_case(item, case, process=False):
         The keyword identifier for which formatting method is to be used. This
         is used to trigger the correct function call from the
         :py:const:`FORMAT_STR_DISPATCHER` dispatcher.
+    process : :py:obj:`bool`
+        If `True`, whitespace is converted to a single space, whitespace is
+        inserted after [,.!?], and leading/trailing whitespace is stripped.
 
     Returns
     -------
