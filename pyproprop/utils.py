@@ -31,11 +31,6 @@ def generate_name_description_error_message(name,
     :py:obj:`str`
         Formatted description.
 
-    Notes
-    -----
-    This function requires :py:function:`format_str_case` and hence
-    resides in :py:module:`format_str_case.py`.
-
     """
     need_an = {"a", "e", "h", "i", "o", "u"}
     if description is None:
@@ -81,11 +76,6 @@ def format_multiple_items_for_output(items, wrapping_char="`", *,
     -------
     str
         Formatted string of multiple items for console output.
-
-    Notes
-    -----
-    This function requires :py:function:`format_str_case` and hence
-    resides in :py:module:`format_str_case.py`.
 
     """
     items = format_as_iterable(items)
