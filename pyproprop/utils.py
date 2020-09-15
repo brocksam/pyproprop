@@ -66,7 +66,7 @@ def generate_name_description_error_message(name,
 
     Returns
     -------
-    str
+    :py:obj:`str`
         Formatted description.
     """
     need_an = {"a", "e", "h", "i", "o", "u"}
@@ -105,7 +105,7 @@ def format_str_case(item, case, process=False):
 
     Returns
     -------
-    str
+    :py:obj:`str`
         The string item passed as a parameter in formatted form.
 
     """
@@ -137,6 +137,9 @@ def format_str_lower_case(item):
     >>> format_str_lower_case("it's an example-with punctuation!")
     "it's an example-with punctuation!"
 
+    >>> format_str_lower_case("string _with__lots___of_underscores_")
+    "string _with__lots___of_underscores_"
+
     Parameters
     ----------
     item : :py:obj:`str`
@@ -144,7 +147,7 @@ def format_str_lower_case(item):
 
     Returns
     -------
-    str
+    :py:obj:`str`
         The string item passed as a parameter in formatted form.
 
     """
@@ -168,6 +171,9 @@ def format_str_upper_case(item):
     >>> format_str_upper_case("it's an example-with punctuation!")
     "IT'S AN EXAMPLE-WITH PUNCTUATION!"
 
+    >>> format_str_upper_case("string _with__lots___of_underscores_")
+    "STRING _WITH__LOTS___OF_UNDERSCORES_"
+
     Parameters
     ----------
     item : :py:obj:`str`
@@ -175,7 +181,7 @@ def format_str_upper_case(item):
 
     Returns
     -------
-    str
+    :py:obj:`str`
         The string item passed as a parameter in formatted form.
 
     """
@@ -199,6 +205,9 @@ def format_str_title_case(item):
     >>> format_str_title_case("it's an example-with punctuation!")
     "It's an Example-With Punctuation!"
 
+    >>> format_str_title_case("string _with__lots___of_underscores_")
+    "String _With__lots___of_underscores_"
+
     Parameters
     ----------
     item : :py:obj:`str`
@@ -206,7 +215,7 @@ def format_str_title_case(item):
 
     Returns
     -------
-    str
+    :py:obj:`str`
         The string item passed as a parameter in formatted form.
 
     """
@@ -230,6 +239,9 @@ def format_str_start_case(item):
     >>> format_str_start_case("it's an example-with punctuation!")
     "It's an example-with punctuation!"
 
+    >>> format_str_start_case("string _with__lots___of_underscores_")
+    "String _with__lots___of_underscores_"
+
     Parameters
     ----------
     item : :py:obj:`str`
@@ -237,7 +249,7 @@ def format_str_start_case(item):
 
     Returns
     -------
-    str
+    :py:obj:`str`
         The string item passed as a parameter in formatted form.
 
     Note
@@ -272,6 +284,9 @@ def format_str_snake_case(item):
     >>> format_str_snake_case("it's an example-with punctuation!")
     "its_an_example_with_punctuation"
 
+    >>> format_str_snake_case("string _with__lots___of_underscores_")
+    "string_with_lots_of_underscores"
+
     Parameters
     ----------
     item : :py:obj:`str`
@@ -279,7 +294,7 @@ def format_str_snake_case(item):
 
     Returns
     -------
-    str
+    :py:obj:`str`
         The string item passed as a parameter in formatted form.
 
     """
@@ -312,6 +327,9 @@ def format_str_pascal_case(item):
     >>> format_str_pascal_case("it's an example-with punctuation!")
     "ItsAnExampleWithPunctuation"
 
+    >>> format_str_pascal_case("string _with__lots___of_underscores_")
+    "StringWithLotsOfUnderscores"
+
     Parameters
     ----------
     item : :py:obj:`str`
@@ -319,7 +337,7 @@ def format_str_pascal_case(item):
 
     Returns
     -------
-    str
+    :py:obj:`str`
         The string item passed as a parameter in formatted form.
 
     """
@@ -356,6 +374,9 @@ def format_str_hyphen_case(item):
 
     >>> format_str_hyphen_case("it's an example-with punctuation!")
     "its-an-example-with-punctuation"
+
+    >>> format_str_hyphen_case("string _with__lots___of_underscores_")
+    "string-with-lots-of-underscores"
 
     Parameters
     ----------
