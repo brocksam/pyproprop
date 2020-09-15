@@ -223,9 +223,8 @@ def example_string_1(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Returns
     -------
-    :py:obj:`list`
-        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
-        :py:obj:`tuple` structured as follows:
+    :py:obj:`tuple`
+        A :py:obj:`tuple structured as follows:
         `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
 
     """
@@ -278,9 +277,8 @@ def example_string_2(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Returns
     -------
-    :py:obj:`list`
-        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
-        :py:obj:`tuple` structured as follows:
+    :py:obj:`tuple`
+        A :py:obj:`tuple structured as follows:
         `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
 
     """
@@ -334,9 +332,8 @@ def example_string_3(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Returns
     -------
-    :py:obj:`list`
-        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
-        :py:obj:`tuple` structured as follows:
+    :py:obj:`tuple`
+        A :py:obj:`tuple structured as follows:
         `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
 
     """
@@ -390,9 +387,8 @@ def example_string_4(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Returns
     -------
-    :py:obj:`list`
-        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
-        :py:obj:`tuple` structured as follows:
+    :py:obj:`tuple`
+        A :py:obj:`tuple structured as follows:
         `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
 
     """
@@ -445,9 +441,8 @@ def example_string_5(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
 
     Returns
     -------
-    :py:obj:`list`
-        A list of :py:obj:`tuple`s, one for each `EXAMPLE_STR`, with each
-        :py:obj:`tuple` structured as follows:
+    :py:obj:`tuple`
+        A :py:obj:`tuple structured as follows:
         `(EXAMPLE_STR_X, EXAMPLE_STR_X_FORMATTED)`.
 
     """
