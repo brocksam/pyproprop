@@ -87,6 +87,15 @@ EXAMPLE_STR_4_FORMATTED = {LOWER_KEYWORD: "it's an example-with punctuation!",
                            PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
                            }
 
+EXAMPLE_STR_5 = "string _with__lots___of_underscores_"
+EXAMPLE_STR_5_FORMATTED = {LOWER_KEYWORD: "string _with__lots___of_underscores_",
+                           UPPER_KEYWORD: "STRING _WITH__LOTS___OF_UNDERSCORES_",
+                           TITLE_KEYWORD: "String _With__lots___of_underscores_",
+                           START_KEYWORD: "String _with__lots___of_underscores_",
+                           SNAKE_KEYWORD: "string_with_lots_of_underscores",
+                           PASCAL_KEYWORD: "StringWithLotsOfUnderscores",
+                           }
+
 
 @pytest.fixture
 def test_fixture():
@@ -159,7 +168,8 @@ def test_fixture():
                          [(EXAMPLE_STR_1, EXAMPLE_STR_1_FORMATTED),
                           (EXAMPLE_STR_2, EXAMPLE_STR_2_FORMATTED),
                           (EXAMPLE_STR_3, EXAMPLE_STR_3_FORMATTED),
-                          (EXAMPLE_STR_4, EXAMPLE_STR_4_FORMATTED)])
+                          (EXAMPLE_STR_4, EXAMPLE_STR_4_FORMATTED),
+                          (EXAMPLE_STR_5, EXAMPLE_STR_5_FORMATTED)])
 def test_formatted_string_expected_result(test_fixture, input_str, expected):
     """Assert strings examples formatted exactly as expected.
 
