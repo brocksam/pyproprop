@@ -70,7 +70,7 @@ test_script:
   - python setup.py install
 
   # Run the test suite
-  - conda install --yes --file=tests\requirements.txt
+  - while read requirement; do conda install --yes $requirement || pip install $requirement; done < tests/requirements.txt
   - pytest
 
   # Check the docs build
