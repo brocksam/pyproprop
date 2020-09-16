@@ -38,6 +38,21 @@ Unreleased
 
 - None
 
+[0.3.0] - 2020-09-16
+--------------------
+
+Added
+~~~~~
+
+- Expose string formatting capability as stand-alone function as requested by issue #32.
+- Add new "hyphen" string formatting type to give "hyphen-case", like "snake_case" but with a hyphen instead of an underscore, related to issue #32.
+- Improve coverage from test suite.
+
+Changed
+~~~~~~~
+
+- Reformat README with additional badges. 
+
 [0.2.2] - 2020-09-05
 --------------------
 
