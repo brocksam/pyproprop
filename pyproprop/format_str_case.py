@@ -26,7 +26,6 @@ FORMAT_STR_DISPATCHER : :py:obj:`dict`
     functions.
 
 """
-
 import re
 
 import titlecase

@@ -1,9 +1,10 @@
 """Test formatting of a string value within a processed property."""
-
 import pytest
-from pytest_cases import fixture_ref, parametrize_plus
+from pytest_cases import fixture_ref
+from pytest_cases import parametrize_plus
 
-from pyproprop import format_str_case, processed_property
+from pyproprop import format_str_case
+from pyproprop import processed_property
 
 
 @pytest.fixture

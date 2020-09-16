@@ -5,8 +5,8 @@ Pyproprop package. These utilities predominantly process data and format it for
 well-formatted console output, usually to be used in error messages.
 
 """
-
-from .format_str_case import START_STR_CASE_FORMAT_KEYWORD, format_str_case
+from .format_str_case import format_str_case
+from .format_str_case import START_STR_CASE_FORMAT_KEYWORD
 
 
 def generate_name_description_error_message(
