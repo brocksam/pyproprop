@@ -47,7 +47,6 @@ EXAMPLE_STR_5_FORMATTED : :py:obj:`dict`
     Expected formatted output strings for :py:const:`EXAMPLE_STR_5`.
 
 """
-
 import pytest
 
 from pyproprop import format_str_case
