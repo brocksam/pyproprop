@@ -42,15 +42,16 @@ START_STR_CASE_FORMAT_KEYWORD = "start"
 SNAKE_STR_CASE_FORMAT_KEYWORD = "snake"
 PASCAL_STR_CASE_FORMAT_KEYWORD = "pascal"
 HYPHEN_STR_CASE_FORMAT_KEYWORD = "hyphen"
-SUPPORTED_STR_FORMAT_OPTIONS = {None,
-                                LOWER_STR_CASE_FORMAT_KEYWORD,
-                                UPPER_STR_CASE_FORMAT_KEYWORD,
-                                TITLE_STR_CASE_FORMAT_KEYWORD,
-                                START_STR_CASE_FORMAT_KEYWORD,
-                                SNAKE_STR_CASE_FORMAT_KEYWORD,
-                                PASCAL_STR_CASE_FORMAT_KEYWORD,
-                                HYPHEN_STR_CASE_FORMAT_KEYWORD,
-                                }
+SUPPORTED_STR_FORMAT_OPTIONS = {
+    None,
+    LOWER_STR_CASE_FORMAT_KEYWORD,
+    UPPER_STR_CASE_FORMAT_KEYWORD,
+    TITLE_STR_CASE_FORMAT_KEYWORD,
+    START_STR_CASE_FORMAT_KEYWORD,
+    SNAKE_STR_CASE_FORMAT_KEYWORD,
+    PASCAL_STR_CASE_FORMAT_KEYWORD,
+    HYPHEN_STR_CASE_FORMAT_KEYWORD,
+}
 
 
 def format_str_case(item, case, process=False):
@@ -319,8 +320,7 @@ def format_str_pascal_case(item):
     # Format title case
     item = titlecase.titlecase(item)
     # Iterate over words and ensure all start uppercase
-    item = "".join(f"{word[0].capitalize()}{word[1:]}"
-                   for word in item.split())
+    item = "".join(f"{word[0].capitalize()}{word[1:]}" for word in item.split())
     # Return with underscores removed
     return re.sub(r" ", r"", item)
 
@@ -328,32 +328,32 @@ def format_str_pascal_case(item):
 def format_str_hyphen_case(item):
     """Format the given string to hyphen case.
 
-    Examples
-    --------
-    >>> format_str_hyphen_case("this is a string")
-    "this-is-a-string"
+        Examples
+        --------
+        >>> format_str_hyphen_case("this is a string")
+        "this-is-a-string"
 
-    >>> format_str_hyphen_case("string with an   ABRV")
-    "string-with-an-abrv"
+        >>> format_str_hyphen_case("string with an   ABRV")
+        "string-with-an-abrv"
 
-    >>> format_str_hyphen_case("string_with %_£+")
-    "string-with"
+        >>> format_str_hyphen_case("string_with %_£+")
+        "string-with"
 
-    >>> format_str_hyphen_case("it's an example-with punctuation!")
-    "its-an-example-with-punctuation"
+        >>> format_str_hyphen_case("it's an example-with punctuation!")
+        "its-an-example-with-punctuation"
 
-    >>> format_str_hyphen_case("string _with__lots___of_underscores_")
-    "string-with-lots-of-underscores"
-x
-    Parameters
-    ----------
-    item : :py:obj:`str`
-        The string object to be formatted.
+        >>> format_str_hyphen_case("string _with__lots___of_underscores_")
+        "string-with-lots-of-underscores"
+    x
+        Parameters
+        ----------
+        item : :py:obj:`str`
+            The string object to be formatted.
 
-    Returns
-    -------
-    :py:obj:`str`
-        The string item passed as a parameter in formatted form.
+        Returns
+        -------
+        :py:obj:`str`
+            The string item passed as a parameter in formatted form.
 
     """
     # Strip punctuation
@@ -368,12 +368,13 @@ x
     return item.lower()
 
 
-FORMAT_STR_DISPATCHER = {None: lambda item: item,
-                         LOWER_STR_CASE_FORMAT_KEYWORD: format_str_lower_case,
-                         UPPER_STR_CASE_FORMAT_KEYWORD: format_str_upper_case,
-                         TITLE_STR_CASE_FORMAT_KEYWORD: format_str_title_case,
-                         START_STR_CASE_FORMAT_KEYWORD: format_str_start_case,
-                         SNAKE_STR_CASE_FORMAT_KEYWORD: format_str_snake_case,
-                         PASCAL_STR_CASE_FORMAT_KEYWORD: format_str_pascal_case,
-                         HYPHEN_STR_CASE_FORMAT_KEYWORD: format_str_hyphen_case,
-                         }
+FORMAT_STR_DISPATCHER = {
+    None: lambda item: item,
+    LOWER_STR_CASE_FORMAT_KEYWORD: format_str_lower_case,
+    UPPER_STR_CASE_FORMAT_KEYWORD: format_str_upper_case,
+    TITLE_STR_CASE_FORMAT_KEYWORD: format_str_title_case,
+    START_STR_CASE_FORMAT_KEYWORD: format_str_start_case,
+    SNAKE_STR_CASE_FORMAT_KEYWORD: format_str_snake_case,
+    PASCAL_STR_CASE_FORMAT_KEYWORD: format_str_pascal_case,
+    HYPHEN_STR_CASE_FORMAT_KEYWORD: format_str_hyphen_case,
+}
