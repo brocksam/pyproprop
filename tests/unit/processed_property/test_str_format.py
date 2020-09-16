@@ -1,8 +1,8 @@
 """Test formatting of a string value within a processed property."""
 
-from pyproprop import (format_str_case, processed_property)
+from pyproprop import format_str_case, processed_property
 import pytest
-from pytest_cases import (fixture_ref, parametrize_plus)
+from pytest_cases import fixture_ref, parametrize_plus
 
 
 @pytest.fixture
@@ -29,24 +29,39 @@ def test_fixture():
             case.
 
         """
-        lower_prop = processed_property("lower_prop", type=str, default="",
-                                        str_format="lower")
-        upper_prop = processed_property("upper_prop", type=str, default="",
-                                        str_format="upper")
-        title_prop = processed_property("title_prop", type=str, default="",
-                                        str_format="title")
-        start_prop = processed_property("start_prop", type=str, default="",
-                                        str_format="start")
-        snake_prop = processed_property("snake_prop", type=str, default="",
-                                        str_format="snake")
-        pascal_prop = processed_property("pascal_prop", type=str, default="",
-                                         str_format="pascal")
-        hyphen_prop = processed_property("hyphen_prop", type=str, default="",
-                                         str_format="hyphen")
 
-        def __init__(self, lower_prop="", upper_prop="", title_prop="",
-                     start_prop="", snake_prop="", pascal_prop="",
-                     hyphen_prop=""):
+        lower_prop = processed_property(
+            "lower_prop", type=str, default="", str_format="lower"
+        )
+        upper_prop = processed_property(
+            "upper_prop", type=str, default="", str_format="upper"
+        )
+        title_prop = processed_property(
+            "title_prop", type=str, default="", str_format="title"
+        )
+        start_prop = processed_property(
+            "start_prop", type=str, default="", str_format="start"
+        )
+        snake_prop = processed_property(
+            "snake_prop", type=str, default="", str_format="snake"
+        )
+        pascal_prop = processed_property(
+            "pascal_prop", type=str, default="", str_format="pascal"
+        )
+        hyphen_prop = processed_property(
+            "hyphen_prop", type=str, default="", str_format="hyphen"
+        )
+
+        def __init__(
+            self,
+            lower_prop="",
+            upper_prop="",
+            title_prop="",
+            start_prop="",
+            snake_prop="",
+            pascal_prop="",
+            hyphen_prop="",
+        ):
             """Initialise the numerical bounds on the processed properties.
 
             Parameters
@@ -78,15 +93,28 @@ def test_fixture():
     return ClassWithStringFormatProperties()
 
 
-@parametrize_plus("input_str, expected",
-                  [fixture_ref("example_string_1"),
-                   fixture_ref("example_string_2"),
-                   fixture_ref("example_string_3"),
-                   fixture_ref("example_string_4"),
-                   fixture_ref("example_string_5")])
-def test_formatted_string_expected_result(test_fixture, input_str, expected,
-                                          LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
-                                          SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+@parametrize_plus(
+    "input_str, expected",
+    [
+        fixture_ref("example_string_1"),
+        fixture_ref("example_string_2"),
+        fixture_ref("example_string_3"),
+        fixture_ref("example_string_4"),
+        fixture_ref("example_string_5"),
+    ],
+)
+def test_formatted_string_expected_result(
+    test_fixture,
+    input_str,
+    expected,
+    LOWER_KEYWORD,
+    UPPER_KEYWORD,
+    TITLE_KEYWORD,
+    START_KEYWORD,
+    SNAKE_KEYWORD,
+    PASCAL_KEYWORD,
+    HYPHEN_KEYWORD,
+):
     """Assert strings examples formatted exactly as expected.
 
     Additional example strings should be added in future to this test to ensure

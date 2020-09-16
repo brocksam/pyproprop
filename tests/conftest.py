@@ -162,24 +162,26 @@ def TestProcessedProperties():
             options=(1, 2),
         )
 
-        def __init__(self, *,
-                     checked_type_int=None,
-                     checked_type_float=None,
-                     checked_type_str=None,
-                     checked_type_iterable=None,
-                     checked_type_bool=None,
-                     checked_list_len=None,
-                     checked_max_value=None,
-                     checked_min_value=None,
-                     checked_max_value_excl=None,
-                     checked_min_value_excl=None,
-                     checked_bounds=None,
-                     checked_iterable_allowed=None,
-                     optional_prop=None,
-                     optional_prop_with_default=None,
-                     cast_string=None,
-                     optimisable_property=None
-                     ):
+        def __init__(
+            self,
+            *,
+            checked_type_int=None,
+            checked_type_float=None,
+            checked_type_str=None,
+            checked_type_iterable=None,
+            checked_type_bool=None,
+            checked_list_len=None,
+            checked_max_value=None,
+            checked_min_value=None,
+            checked_max_value_excl=None,
+            checked_min_value_excl=None,
+            checked_bounds=None,
+            checked_iterable_allowed=None,
+            optional_prop=None,
+            optional_prop_with_default=None,
+            cast_string=None,
+            optimisable_property=None
+        ):
 
             self.checked_type_int = checked_type_int
             self.checked_type_float = checked_type_float
@@ -209,9 +211,16 @@ def TestProcessedProperties():
     return TestProcessedProperties
 
 
-@pytest.fixture(scope='session')
-def example_string_1(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
-                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+@pytest.fixture(scope="session")
+def example_string_1(
+    LOWER_KEYWORD,
+    UPPER_KEYWORD,
+    TITLE_KEYWORD,
+    START_KEYWORD,
+    SNAKE_KEYWORD,
+    PASCAL_KEYWORD,
+    HYPHEN_KEYWORD,
+):
     """Strings for testing string formatting cases.
 
     Parameters
@@ -230,21 +239,29 @@ def example_string_1(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
     """
 
     EXAMPLE_STR_1 = "this is a string"
-    EXAMPLE_STR_1_FORMATTED = {LOWER_KEYWORD: "this is a string",
-                               UPPER_KEYWORD: "THIS IS A STRING",
-                               TITLE_KEYWORD: "This Is a String",
-                               START_KEYWORD: "This is a string",
-                               SNAKE_KEYWORD: "this_is_a_string",
-                               PASCAL_KEYWORD: "ThisIsAString",
-                               HYPHEN_KEYWORD: "this-is-a-string",
-                               }
+    EXAMPLE_STR_1_FORMATTED = {
+        LOWER_KEYWORD: "this is a string",
+        UPPER_KEYWORD: "THIS IS A STRING",
+        TITLE_KEYWORD: "This Is a String",
+        START_KEYWORD: "This is a string",
+        SNAKE_KEYWORD: "this_is_a_string",
+        PASCAL_KEYWORD: "ThisIsAString",
+        HYPHEN_KEYWORD: "this-is-a-string",
+    }
 
     return (EXAMPLE_STR_1, EXAMPLE_STR_1_FORMATTED)
 
 
-@pytest.fixture(scope='session')
-def example_string_2(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
-                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+@pytest.fixture(scope="session")
+def example_string_2(
+    LOWER_KEYWORD,
+    UPPER_KEYWORD,
+    TITLE_KEYWORD,
+    START_KEYWORD,
+    SNAKE_KEYWORD,
+    PASCAL_KEYWORD,
+    HYPHEN_KEYWORD,
+):
     """Strings for testing string formatting cases.
 
     Parameters
@@ -263,21 +280,29 @@ def example_string_2(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
     """
 
     EXAMPLE_STR_2 = "string with an   ABRV"
-    EXAMPLE_STR_2_FORMATTED = {LOWER_KEYWORD: "string with an abrv",
-                               UPPER_KEYWORD: "STRING WITH AN ABRV",
-                               TITLE_KEYWORD: "String With an ABRV",
-                               START_KEYWORD: "String with an ABRV",
-                               SNAKE_KEYWORD: "string_with_an_abrv",
-                               PASCAL_KEYWORD: "StringWithAnABRV",
-                               HYPHEN_KEYWORD: "string-with-an-abrv",
-                               }
+    EXAMPLE_STR_2_FORMATTED = {
+        LOWER_KEYWORD: "string with an abrv",
+        UPPER_KEYWORD: "STRING WITH AN ABRV",
+        TITLE_KEYWORD: "String With an ABRV",
+        START_KEYWORD: "String with an ABRV",
+        SNAKE_KEYWORD: "string_with_an_abrv",
+        PASCAL_KEYWORD: "StringWithAnABRV",
+        HYPHEN_KEYWORD: "string-with-an-abrv",
+    }
 
     return (EXAMPLE_STR_2, EXAMPLE_STR_2_FORMATTED)
 
 
-@pytest.fixture(scope='session')
-def example_string_3(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
-                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+@pytest.fixture(scope="session")
+def example_string_3(
+    LOWER_KEYWORD,
+    UPPER_KEYWORD,
+    TITLE_KEYWORD,
+    START_KEYWORD,
+    SNAKE_KEYWORD,
+    PASCAL_KEYWORD,
+    HYPHEN_KEYWORD,
+):
     """Strings for testing string formatting cases.
 
     Parameters
@@ -297,21 +322,29 @@ def example_string_3(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
     """
 
     EXAMPLE_STR_3 = "string_with %_£+"
-    EXAMPLE_STR_3_FORMATTED = {LOWER_KEYWORD: "string_with %_£+",
-                               UPPER_KEYWORD: "STRING_WITH %_£+",
-                               TITLE_KEYWORD: "String_with %_£+",
-                               START_KEYWORD: "String_with %_£+",
-                               SNAKE_KEYWORD: "string_with",
-                               PASCAL_KEYWORD: "StringWith",
-                               HYPHEN_KEYWORD: "string-with",
-                               }
+    EXAMPLE_STR_3_FORMATTED = {
+        LOWER_KEYWORD: "string_with %_£+",
+        UPPER_KEYWORD: "STRING_WITH %_£+",
+        TITLE_KEYWORD: "String_with %_£+",
+        START_KEYWORD: "String_with %_£+",
+        SNAKE_KEYWORD: "string_with",
+        PASCAL_KEYWORD: "StringWith",
+        HYPHEN_KEYWORD: "string-with",
+    }
 
     return (EXAMPLE_STR_3, EXAMPLE_STR_3_FORMATTED)
 
 
-@pytest.fixture(scope='session')
-def example_string_4(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
-                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+@pytest.fixture(scope="session")
+def example_string_4(
+    LOWER_KEYWORD,
+    UPPER_KEYWORD,
+    TITLE_KEYWORD,
+    START_KEYWORD,
+    SNAKE_KEYWORD,
+    PASCAL_KEYWORD,
+    HYPHEN_KEYWORD,
+):
     """Strings for testing string formatting cases.
 
     Parameters
@@ -331,21 +364,29 @@ def example_string_4(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
     """
 
     EXAMPLE_STR_4 = "it's an example-with punctuation!"
-    EXAMPLE_STR_4_FORMATTED = {LOWER_KEYWORD: "it's an example-with punctuation!",
-                               UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
-                               TITLE_KEYWORD: "It's an Example-With Punctuation!",
-                               START_KEYWORD: "It's an example-with punctuation!",
-                               SNAKE_KEYWORD: "its_an_example_with_punctuation",
-                               PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
-                               HYPHEN_KEYWORD: "its-an-example-with-punctuation",
-                               }
+    EXAMPLE_STR_4_FORMATTED = {
+        LOWER_KEYWORD: "it's an example-with punctuation!",
+        UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
+        TITLE_KEYWORD: "It's an Example-With Punctuation!",
+        START_KEYWORD: "It's an example-with punctuation!",
+        SNAKE_KEYWORD: "its_an_example_with_punctuation",
+        PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
+        HYPHEN_KEYWORD: "its-an-example-with-punctuation",
+    }
 
     return (EXAMPLE_STR_4, EXAMPLE_STR_4_FORMATTED)
 
 
-@pytest.fixture(scope='session')
-def example_string_5(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
-                     SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+@pytest.fixture(scope="session")
+def example_string_5(
+    LOWER_KEYWORD,
+    UPPER_KEYWORD,
+    TITLE_KEYWORD,
+    START_KEYWORD,
+    SNAKE_KEYWORD,
+    PASCAL_KEYWORD,
+    HYPHEN_KEYWORD,
+):
     """Strings for testing string formatting cases.
 
     Parameters
@@ -364,13 +405,14 @@ def example_string_5(LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
     """
 
     EXAMPLE_STR_5 = "string _with__lots___of_underscores_"
-    EXAMPLE_STR_5_FORMATTED = {LOWER_KEYWORD: "string _with__lots___of_underscores_",
-                               UPPER_KEYWORD: "STRING _WITH__LOTS___OF_UNDERSCORES_",
-                               TITLE_KEYWORD: "String _With__lots___of_underscores_",
-                               START_KEYWORD: "String _with__lots___of_underscores_",
-                               SNAKE_KEYWORD: "string_with_lots_of_underscores",
-                               PASCAL_KEYWORD: "StringWithLotsOfUnderscores",
-                               HYPHEN_KEYWORD: "string-with-lots-of-underscores",
-                               }
+    EXAMPLE_STR_5_FORMATTED = {
+        LOWER_KEYWORD: "string _with__lots___of_underscores_",
+        UPPER_KEYWORD: "STRING _WITH__LOTS___OF_UNDERSCORES_",
+        TITLE_KEYWORD: "String _With__lots___of_underscores_",
+        START_KEYWORD: "String _with__lots___of_underscores_",
+        SNAKE_KEYWORD: "string_with_lots_of_underscores",
+        PASCAL_KEYWORD: "StringWithLotsOfUnderscores",
+        HYPHEN_KEYWORD: "string-with-lots-of-underscores",
+    }
 
     return (EXAMPLE_STR_5, EXAMPLE_STR_5_FORMATTED)
