@@ -21,7 +21,6 @@ import pytest
 
 from pyproprop import processed_property
 
-
 OPTION_1_KEYWORD = "option_1"
 OPTION_2_KEYWORD = "option_2"
 OPTION_3_KEYWORD = "option_3"
