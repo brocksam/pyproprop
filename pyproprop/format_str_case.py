@@ -31,7 +31,6 @@ import re
 
 import titlecase
 
-
 __all__ = ["format_str_case"]
 
 

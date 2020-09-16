@@ -1,8 +1,9 @@
 """Test formatting of a string value."""
 
-from pyproprop import format_str_case
 import pytest
 from pytest_cases import fixture_ref, parametrize_plus
+
+from pyproprop import format_str_case
 
 
 @parametrize_plus(

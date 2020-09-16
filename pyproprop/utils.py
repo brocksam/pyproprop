@@ -6,7 +6,7 @@ well-formatted console output, usually to be used in error messages.
 
 """
 
-from .format_str_case import format_str_case, START_STR_CASE_FORMAT_KEYWORD
+from .format_str_case import START_STR_CASE_FORMAT_KEYWORD, format_str_case
 
 
 def generate_name_description_error_message(
