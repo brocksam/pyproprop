@@ -2,8 +2,9 @@ import os
 import sys
 
 import pytest
-from pyproprop import processed_property
 from typing import Iterable
+
+from pyproprop import processed_property
 
 
 @pytest.fixture(scope="session")
