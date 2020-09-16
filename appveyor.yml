@@ -70,7 +70,7 @@ test_script:
   - python setup.py install
 
   # Run the test suite
-  - while read requirement; do conda install --yes $requirement || pip install $requirement; done < tests/requirements.txt
+  - FOR /F "delims=~" %%F in (tests\requirements.txt) DO (conda install -q -y %%F || pip install %%F)
   - pytest
 
   # Check the docs build
