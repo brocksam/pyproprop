@@ -41,17 +41,13 @@ def processed_property(name, **kwargs):
     def parse_kwarg(kwarg_name, description, valids, default):
         kwarg = kwargs.get(kwarg_name, default)
         if isinstance(valids, type) and not isinstance(kwarg, valids):
-            msg = (
-                f"{repr(kwarg)} is not a valid {description}. Please "
-                f"use a value of type {repr(valids)}."
-            )
+            msg = (f"{repr(kwarg)} is not a valid {description}. Please "
+                   f"use a value of type {repr(valids)}.")
             raise TypeError(msg)
         elif not isinstance(valids, type) and kwarg not in valids:
             formatted_valids = format_for_output(valids, with_or=True)
-            msg = (
-                f"{repr(kwarg)} is not a valid {description}. Please "
-                f"choose one of: {formatted_valids}."
-            )
+            msg = (f"{repr(kwarg)} is not a valid {description}. Please "
+                   f"choose one of: {formatted_valids}.")
             raise ValueError(msg)
         return kwarg
 
@@ -74,19 +70,14 @@ def processed_property(name, **kwargs):
 
         """
         if (options is None and unsupported_options) or (
-            set(unsupported_options).difference(set(options))
-        ):
-            msg = (
-                f"{name_str} does not have any supported options. Check "
-                f"unsupported options are valid options: "
-                f"{format_for_output(unsupported_options)}."
-            )
+                set(unsupported_options).difference(set(options))):
+            msg = (f"{name_str} does not have any supported options. Check "
+                   f"unsupported options are valid options: "
+                   f"{format_for_output(unsupported_options)}.")
             raise ValueError(msg)
         if not set(options).symmetric_difference(set(unsupported_options)):
-            msg = (
-                f"{name_str} does not have any supported options from: "
-                f"{format_for_output(options)}."
-            )
+            msg = (f"{name_str} does not have any supported options from: "
+                   f"{format_for_output(options)}.")
             raise ValueError(msg)
         return tuple(options), tuple(unsupported_options)
 
@@ -110,9 +101,8 @@ def processed_property(name, **kwargs):
     at_least = kwargs.get("at_least")
     at_most = kwargs.get("at_most")
     equal_to = kwargs.get("equal_to")
-    str_format = parse_kwarg(
-        "str_format", "string case format", SUPPORTED_STR_FORMAT_OPTIONS, None
-    )
+    str_format = parse_kwarg("str_format", "string case format",
+                             SUPPORTED_STR_FORMAT_OPTIONS, None)
 
     # Additional error checking of kwargs
     name_str = generate_name_description_error_message(name, description)
@@ -149,7 +139,7 @@ def processed_property(name, **kwargs):
                 if isinstance(value, Iterable):
                     value = tuple([check_type(val) for val in value])
                 else:
-                    value = (check_type(value),)
+                    value = (check_type(value), )
             else:
                 value = check_type(value)
         if options is not None:
@@ -177,7 +167,10 @@ def processed_property(name, **kwargs):
         if post_method is not None:
             value = apply_method(value)
         setattr(self, storage_name, value)
-        setattr(self, f"{storage_name}_dir", {"name": name, "description": description})
+        setattr(self, f"{storage_name}_dir", {
+            "name": name,
+            "description": description
+        })
 
     def check_type(value):
         """Ensure the type of the property value to be set is as specified.
@@ -212,10 +205,8 @@ def processed_property(name, **kwargs):
         elif cast_to_type:
             return cast_type(value)
         else:
-            msg = (
-                f"{name_str} must be a {repr(expected_type)}, instead got "
-                f"a {repr(type(value))}."
-            )
+            msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
+                   f"a {repr(type(value))}.")
             raise TypeError(msg)
 
     def cast_type(value):
@@ -243,10 +234,8 @@ def processed_property(name, **kwargs):
         try:
             exec(cast_str)
         except (ValueError, TypeError) as e:
-            msg = (
-                f"{name_str} must be a {repr(expected_type)}, instead got "
-                f"a {repr(type(value))} which cannot be cast."
-            )
+            msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
+                   f"a {repr(type(value))} which cannot be cast.")
             raise e(msg)
         return locals()["processed_value"]
 
@@ -273,24 +262,22 @@ def processed_property(name, **kwargs):
         valid_options = [
             option for option in options if option not in unsupported_options
         ]
-        formatted_valid_options = format_for_output(valid_options, with_or=True)
+        formatted_valid_options = format_for_output(valid_options,
+                                                    with_or=True)
         if value in unsupported_options:
-            formatted_unsupported_option = format_for_output(value, with_verb=True)
+            formatted_unsupported_option = format_for_output(value,
+                                                             with_verb=True)
             formatted_description = generate_name_description_error_message(
-                name, description, with_preposition=True
-            )
+                name, description, with_preposition=True)
             msg = (
                 f"{formatted_unsupported_option} not currently supported as "
                 f"{formatted_description}. Choose one of: "
-                f"{formatted_valid_options}."
-            )
+                f"{formatted_valid_options}.")
             raise ValueError(msg)
         elif value not in options:
             formatted_value = format_for_output(value, with_verb=True)
-            msg = (
-                f"{formatted_value} not a valid option of {name_str}. "
-                f"Choose one of: {formatted_valid_options}."
-            )
+            msg = (f"{formatted_value} not a valid option of {name_str}. "
+                   f"Choose one of: {formatted_valid_options}.")
             raise ValueError(msg)
 
     def check_min(value):
@@ -314,21 +301,16 @@ def processed_property(name, **kwargs):
 
         """
         name_str = generate_name_description_error_message(
-            name, description, is_sentence_start=True
-        )
+            name, description, is_sentence_start=True)
         if exclusive:
             if value <= min_value:
-                msg = (
-                    f"{name_str} must be greater than `{repr(min_value)}`. "
-                    f"`{repr(value)}` is invalid."
-                )
+                msg = (f"{name_str} must be greater than `{repr(min_value)}`. "
+                       f"`{repr(value)}` is invalid.")
                 raise ValueError(msg)
         else:
             if value < min_value:
-                msg = (
-                    f"{name_str} must be greater than or equal to "
-                    f"`{repr(min_value)}`. `{repr(value)}` is invalid."
-                )
+                msg = (f"{name_str} must be greater than or equal to "
+                       f"`{repr(min_value)}`. `{repr(value)}` is invalid.")
                 raise ValueError(msg)
 
     def check_max(value):
@@ -352,21 +334,16 @@ def processed_property(name, **kwargs):
 
         """
         name_str = generate_name_description_error_message(
-            name, description, is_sentence_start=True
-        )
+            name, description, is_sentence_start=True)
         if exclusive:
             if value >= max_value:
-                msg = (
-                    f"{name_str} must be less than `{repr(max_value)}`. "
-                    f"`{repr(value)}` is invalid."
-                )
+                msg = (f"{name_str} must be less than `{repr(max_value)}`. "
+                       f"`{repr(value)}` is invalid.")
                 raise ValueError(msg)
         else:
             if value > max_value:
-                msg = (
-                    f"{name_str} must be less than or equal to "
-                    f"`{repr(max_value)}`. `{repr(value)}` is invalid."
-                )
+                msg = (f"{name_str} must be less than or equal to "
+                       f"`{repr(max_value)}`. `{repr(value)}` is invalid.")
                 raise ValueError(msg)
 
     def check_less_than(self, value):
@@ -379,7 +356,8 @@ def processed_property(name, **kwargs):
         def greater_than_lambda(val_1, val_2):
             return val_1 > val_2
 
-        check_comparison(self, value, greater_than, "greater than", greater_than_lambda)
+        check_comparison(self, value, greater_than, "greater than",
+                         greater_than_lambda)
 
     def check_at_least(self, value):
         def at_least_lambda(val_1, val_2):
@@ -399,7 +377,8 @@ def processed_property(name, **kwargs):
 
         check_comparison(self, value, equal_to, "equal to", equal_to_lambda)
 
-    def check_comparison(self, value, other, comparison_description, comparison_func):
+    def check_comparison(self, value, other, comparison_description,
+                         comparison_func):
         try:
             other_value = getattr(self, other)
         except AttributeError:
@@ -410,18 +389,14 @@ def processed_property(name, **kwargs):
                 other_name = other_dir["name"]
                 other_description = other_dir["description"]
                 name_str = generate_name_description_error_message(
-                    name, description, is_sentence_start=True
-                )
+                    name, description, is_sentence_start=True)
                 other_name_str = generate_name_description_error_message(
-                    other_name, other_description
-                )
+                    other_name, other_description)
                 value_formatted = format_for_output(value)
                 other_value_formatted = format_for_output(other_value)
-                msg = (
-                    f"{name_str} with value {value_formatted} must be "
-                    f"{comparison_description} {other_name_str} with "
-                    f"value {other_value_formatted}."
-                )
+                msg = (f"{name_str} with value {value_formatted} must be "
+                       f"{comparison_description} {other_name_str} with "
+                       f"value {other_value_formatted}.")
                 raise ValueError(msg)
 
     def check_len(value, len_sequence):
@@ -490,21 +465,17 @@ def processed_property(name, **kwargs):
         if isinstance(value, Iterable):
             check_len(value, 2)
             bounds = []
-            msg = (
-                f"Both {name_str} bounds must be of type {Real}, instead "
-                f"got {value[0]} at index 0 (type {type(value[0])}) and "
-                f"{value[1]} at index 1 (type {type(value[1])})."
-            )
+            msg = (f"Both {name_str} bounds must be of type {Real}, instead "
+                   f"got {value[0]} at index 0 (type {type(value[0])}) and "
+                   f"{value[1]} at index 1 (type {type(value[1])}).")
             for bound in value:
                 if not isinstance(bound, Real):
                     raise TypeError(msg)
                 bounds.append(bound)
             bounds = check_bounds(bounds)
             return bounds
-        msg = (
-            f"{name_str} must be a {Real} or {Iterable} of length 2, "
-            f"instead got {repr(type(value))}."
-        )
+        msg = (f"{name_str} must be a {Real} or {Iterable} of length 2, "
+               f"instead got {repr(type(value))}.")
         raise TypeError(msg)
 
     def check_bounds(bounds):
@@ -537,19 +508,15 @@ def processed_property(name, **kwargs):
             # Test if both bounds can be represented as signed 64-bit number.
             np.asarray(bounds, dtype=np.int64)
         except OverflowError:
-            msg = (
-                "Individual bounds must be able to be represented as a "
-                "signed 64-bit number, and hence must lie in the range "
-                "(-9223372036854775808, 9223372036854775807)."
-            )
+            msg = ("Individual bounds must be able to be represented as a "
+                   "signed 64-bit number, and hence must lie in the range "
+                   "(-9223372036854775808, 9223372036854775807).")
             raise ValueError(msg)
         if np.isclose(lower_bound, upper_bound):
             return lower_bound
         if lower_bound > upper_bound:
-            msg = (
-                f"Lower bound ({lower_bound}) at index 0 must be less "
-                f"than upper bound ({upper_bound}) at index 1."
-            )
+            msg = (f"Lower bound ({lower_bound}) at index 0 must be less "
+                   f"than upper bound ({upper_bound}) at index 1.")
             raise ValueError(msg)
         return tuple(bounds)
 

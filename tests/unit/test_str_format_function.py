@@ -123,37 +123,24 @@ EXAMPLE_STR_5_FORMATTED = {
         (EXAMPLE_STR_5, EXAMPLE_STR_5_FORMATTED),
     ],
 )
-def test_formatted_string_method_expected_result_with_processing(input_str, expected):
+def test_formatted_string_method_expected_result_with_processing(
+        input_str, expected):
     """Assert strings examples formatted exactly as expected, with `process`
     flag set to `True`.
     Additional example strings should be added in future to this test to ensure
     that a number of wider use-cases are supported.
     """
-    assert (
-        format_str_case(input_str, case=LOWER_KEYWORD, process=True)
-        == expected[LOWER_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=UPPER_KEYWORD, process=True)
-        == expected[UPPER_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=TITLE_KEYWORD, process=True)
-        == expected[TITLE_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=START_KEYWORD, process=True)
-        == expected[START_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=SNAKE_KEYWORD, process=True)
-        == expected[SNAKE_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=PASCAL_KEYWORD, process=True)
-        == expected[PASCAL_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=HYPHEN_KEYWORD, process=True)
-        == expected[HYPHEN_KEYWORD]
-    )
+    assert (format_str_case(input_str, case=LOWER_KEYWORD,
+                            process=True) == expected[LOWER_KEYWORD])
+    assert (format_str_case(input_str, case=UPPER_KEYWORD,
+                            process=True) == expected[UPPER_KEYWORD])
+    assert (format_str_case(input_str, case=TITLE_KEYWORD,
+                            process=True) == expected[TITLE_KEYWORD])
+    assert (format_str_case(input_str, case=START_KEYWORD,
+                            process=True) == expected[START_KEYWORD])
+    assert (format_str_case(input_str, case=SNAKE_KEYWORD,
+                            process=True) == expected[SNAKE_KEYWORD])
+    assert (format_str_case(input_str, case=PASCAL_KEYWORD,
+                            process=True) == expected[PASCAL_KEYWORD])
+    assert (format_str_case(input_str, case=HYPHEN_KEYWORD,
+                            process=True) == expected[HYPHEN_KEYWORD])

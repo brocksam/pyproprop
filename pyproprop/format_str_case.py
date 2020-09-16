@@ -32,7 +32,6 @@ import titlecase
 
 __all__ = ["format_str_case"]
 
-
 LOWER_STR_CASE_FORMAT_KEYWORD = "lower"
 UPPER_STR_CASE_FORMAT_KEYWORD = "upper"
 TITLE_STR_CASE_FORMAT_KEYWORD = "title"
@@ -318,7 +317,8 @@ def format_str_pascal_case(item):
     # Format title case
     item = titlecase.titlecase(item)
     # Iterate over words and ensure all start uppercase
-    item = "".join(f"{word[0].capitalize()}{word[1:]}" for word in item.split())
+    item = "".join(f"{word[0].capitalize()}{word[1:]}"
+                   for word in item.split())
     # Return with underscores removed
     return re.sub(r" ", r"", item)
 
