@@ -23,7 +23,7 @@ install:
   - conda create -q -n install-env python=$TRAVIS_PYTHON_VERSION
   - source activate install-env
   # Taken from https://stackoverflow.com/questions/35802939/install-only-available-packages-using-conda-install-yes-file-requirements-t
-  - while read requirement; do conda install -q -y --file=tests/requirements.txt || pip install $requirement; done < requirements.txt
+  - while read requirement; do conda install --yes $requirement || pip install $requirement; done < tests/requirements.txt
   - conda install -q -y --file=requirements.txt
   # - conda install -q -y --file=tests/requirements.txt
   - conda install -q -y --file=docs/requirements.txt
