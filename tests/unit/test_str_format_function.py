@@ -17,15 +17,15 @@ from pyproprop import format_str_case
     ],
 )
 def test_formatted_string_method_expected_result(
-    input_str,
-    expected,
-    LOWER_KEYWORD,
-    UPPER_KEYWORD,
-    TITLE_KEYWORD,
-    START_KEYWORD,
-    SNAKE_KEYWORD,
-    PASCAL_KEYWORD,
-    HYPHEN_KEYWORD,
+        input_str,
+        expected,
+        LOWER_KEYWORD,
+        UPPER_KEYWORD,
+        TITLE_KEYWORD,
+        START_KEYWORD,
+        SNAKE_KEYWORD,
+        PASCAL_KEYWORD,
+        HYPHEN_KEYWORD,
 ):
     """Assert strings examples formatted exactly as expected, with `process`
     flag set to `True`.
@@ -34,31 +34,17 @@ def test_formatted_string_method_expected_result(
     that a number of wider use-cases are supported.
 
     """
-    assert (
-        format_str_case(input_str, case=LOWER_KEYWORD, process=True)
-        == expected[LOWER_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=UPPER_KEYWORD, process=True)
-        == expected[UPPER_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=TITLE_KEYWORD, process=True)
-        == expected[TITLE_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=START_KEYWORD, process=True)
-        == expected[START_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=SNAKE_KEYWORD, process=True)
-        == expected[SNAKE_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=PASCAL_KEYWORD, process=True)
-        == expected[PASCAL_KEYWORD]
-    )
-    assert (
-        format_str_case(input_str, case=HYPHEN_KEYWORD, process=True)
-        == expected[HYPHEN_KEYWORD]
-    )
+    assert (format_str_case(input_str, case=LOWER_KEYWORD,
+                            process=True) == expected[LOWER_KEYWORD])
+    assert (format_str_case(input_str, case=UPPER_KEYWORD,
+                            process=True) == expected[UPPER_KEYWORD])
+    assert (format_str_case(input_str, case=TITLE_KEYWORD,
+                            process=True) == expected[TITLE_KEYWORD])
+    assert (format_str_case(input_str, case=START_KEYWORD,
+                            process=True) == expected[START_KEYWORD])
+    assert (format_str_case(input_str, case=SNAKE_KEYWORD,
+                            process=True) == expected[SNAKE_KEYWORD])
+    assert (format_str_case(input_str, case=PASCAL_KEYWORD,
+                            process=True) == expected[PASCAL_KEYWORD])
+    assert (format_str_case(input_str, case=HYPHEN_KEYWORD,
+                            process=True) == expected[HYPHEN_KEYWORD])

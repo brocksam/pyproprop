@@ -163,26 +163,24 @@ def TestProcessedProperties():
             options=(1, 2),
         )
 
-        def __init__(
-            self,
-            *,
-            checked_type_int=None,
-            checked_type_float=None,
-            checked_type_str=None,
-            checked_type_iterable=None,
-            checked_type_bool=None,
-            checked_list_len=None,
-            checked_max_value=None,
-            checked_min_value=None,
-            checked_max_value_excl=None,
-            checked_min_value_excl=None,
-            checked_bounds=None,
-            checked_iterable_allowed=None,
-            optional_prop=None,
-            optional_prop_with_default=None,
-            cast_string=None,
-            optimisable_property=None
-        ):
+        def __init__(self,
+                     *,
+                     checked_type_int=None,
+                     checked_type_float=None,
+                     checked_type_str=None,
+                     checked_type_iterable=None,
+                     checked_type_bool=None,
+                     checked_list_len=None,
+                     checked_max_value=None,
+                     checked_min_value=None,
+                     checked_max_value_excl=None,
+                     checked_min_value_excl=None,
+                     checked_bounds=None,
+                     checked_iterable_allowed=None,
+                     optional_prop=None,
+                     optional_prop_with_default=None,
+                     cast_string=None,
+                     optimisable_property=None):
 
             self.checked_type_int = checked_type_int
             self.checked_type_float = checked_type_float
@@ -214,13 +212,13 @@ def TestProcessedProperties():
 
 @pytest.fixture(scope="session")
 def example_string_1(
-    LOWER_KEYWORD,
-    UPPER_KEYWORD,
-    TITLE_KEYWORD,
-    START_KEYWORD,
-    SNAKE_KEYWORD,
-    PASCAL_KEYWORD,
-    HYPHEN_KEYWORD,
+        LOWER_KEYWORD,
+        UPPER_KEYWORD,
+        TITLE_KEYWORD,
+        START_KEYWORD,
+        SNAKE_KEYWORD,
+        PASCAL_KEYWORD,
+        HYPHEN_KEYWORD,
 ):
     """Strings for testing string formatting cases.
 
@@ -255,13 +253,13 @@ def example_string_1(
 
 @pytest.fixture(scope="session")
 def example_string_2(
-    LOWER_KEYWORD,
-    UPPER_KEYWORD,
-    TITLE_KEYWORD,
-    START_KEYWORD,
-    SNAKE_KEYWORD,
-    PASCAL_KEYWORD,
-    HYPHEN_KEYWORD,
+        LOWER_KEYWORD,
+        UPPER_KEYWORD,
+        TITLE_KEYWORD,
+        START_KEYWORD,
+        SNAKE_KEYWORD,
+        PASCAL_KEYWORD,
+        HYPHEN_KEYWORD,
 ):
     """Strings for testing string formatting cases.
 
@@ -296,13 +294,13 @@ def example_string_2(
 
 @pytest.fixture(scope="session")
 def example_string_3(
-    LOWER_KEYWORD,
-    UPPER_KEYWORD,
-    TITLE_KEYWORD,
-    START_KEYWORD,
-    SNAKE_KEYWORD,
-    PASCAL_KEYWORD,
-    HYPHEN_KEYWORD,
+        LOWER_KEYWORD,
+        UPPER_KEYWORD,
+        TITLE_KEYWORD,
+        START_KEYWORD,
+        SNAKE_KEYWORD,
+        PASCAL_KEYWORD,
+        HYPHEN_KEYWORD,
 ):
     """Strings for testing string formatting cases.
 
@@ -338,13 +336,13 @@ def example_string_3(
 
 @pytest.fixture(scope="session")
 def example_string_4(
-    LOWER_KEYWORD,
-    UPPER_KEYWORD,
-    TITLE_KEYWORD,
-    START_KEYWORD,
-    SNAKE_KEYWORD,
-    PASCAL_KEYWORD,
-    HYPHEN_KEYWORD,
+        LOWER_KEYWORD,
+        UPPER_KEYWORD,
+        TITLE_KEYWORD,
+        START_KEYWORD,
+        SNAKE_KEYWORD,
+        PASCAL_KEYWORD,
+        HYPHEN_KEYWORD,
 ):
     """Strings for testing string formatting cases.
 
@@ -380,13 +378,13 @@ def example_string_4(
 
 @pytest.fixture(scope="session")
 def example_string_5(
-    LOWER_KEYWORD,
-    UPPER_KEYWORD,
-    TITLE_KEYWORD,
-    START_KEYWORD,
-    SNAKE_KEYWORD,
-    PASCAL_KEYWORD,
-    HYPHEN_KEYWORD,
+        LOWER_KEYWORD,
+        UPPER_KEYWORD,
+        TITLE_KEYWORD,
+        START_KEYWORD,
+        SNAKE_KEYWORD,
+        PASCAL_KEYWORD,
+        HYPHEN_KEYWORD,
 ):
     """Strings for testing string formatting cases.
 

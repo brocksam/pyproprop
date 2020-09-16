@@ -9,9 +9,10 @@ from .format_str_case import format_str_case
 from .format_str_case import START_STR_CASE_FORMAT_KEYWORD
 
 
-def generate_name_description_error_message(
-    name, description, is_sentence_start=False, with_preposition=False
-):
+def generate_name_description_error_message(name,
+                                            description,
+                                            is_sentence_start=False,
+                                            with_preposition=False):
     """Combine the name and description for correctly-formatted error.
 
     Parameters
@@ -41,20 +42,20 @@ def generate_name_description_error_message(
     else:
         formatted_description = description
     if is_sentence_start:
-        formatted_description = format_str_case(
-            formatted_description, START_STR_CASE_FORMAT_KEYWORD, process=True
-        )
+        formatted_description = format_str_case(formatted_description,
+                                                START_STR_CASE_FORMAT_KEYWORD,
+                                                process=True)
     return f"{formatted_description} (`{name}`)"
 
 
 def format_multiple_items_for_output(
-    items,
-    wrapping_char="`",
-    *,
-    prefix_char="",
-    case=None,
-    with_verb=False,
-    with_or=False,
+        items,
+        wrapping_char="`",
+        *,
+        prefix_char="",
+        case=None,
+        with_verb=False,
+        with_or=False,
 ):
     """Format multiple items for pretty console output.
 
@@ -90,11 +91,9 @@ def format_multiple_items_for_output(
     else:
         pad = f"{wrapping_char}, {wrapping_char}"
         joiner = "or" if with_or else "and"
-        formatted_items = (
-            f"{wrapping_char}{pad.join(items[:-1])}"
-            f"{wrapping_char} {joiner} {wrapping_char}"
-            f"{items[-1]}{wrapping_char}"
-        )
+        formatted_items = (f"{wrapping_char}{pad.join(items[:-1])}"
+                           f"{wrapping_char} {joiner} {wrapping_char}"
+                           f"{items[-1]}{wrapping_char}")
     verb = "is" if len(items) == 1 else "are"
     if with_verb:
         formatted_items = f"{formatted_items} {verb}"
@@ -142,9 +141,9 @@ def format_as_iterable(items):
 
     """
     if isinstance(items, str):
-        return (items,)
+        return (items, )
     try:
         iter(items)
     except TypeError:
-        return (items,)
+        return (items, )
     return items

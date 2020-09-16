@@ -32,37 +32,44 @@ def test_fixture():
 
         """
 
-        lower_prop = processed_property(
-            "lower_prop", type=str, default="", str_format="lower"
-        )
-        upper_prop = processed_property(
-            "upper_prop", type=str, default="", str_format="upper"
-        )
-        title_prop = processed_property(
-            "title_prop", type=str, default="", str_format="title"
-        )
-        start_prop = processed_property(
-            "start_prop", type=str, default="", str_format="start"
-        )
-        snake_prop = processed_property(
-            "snake_prop", type=str, default="", str_format="snake"
-        )
-        pascal_prop = processed_property(
-            "pascal_prop", type=str, default="", str_format="pascal"
-        )
-        hyphen_prop = processed_property(
-            "hyphen_prop", type=str, default="", str_format="hyphen"
-        )
+        lower_prop = processed_property("lower_prop",
+                                        type=str,
+                                        default="",
+                                        str_format="lower")
+        upper_prop = processed_property("upper_prop",
+                                        type=str,
+                                        default="",
+                                        str_format="upper")
+        title_prop = processed_property("title_prop",
+                                        type=str,
+                                        default="",
+                                        str_format="title")
+        start_prop = processed_property("start_prop",
+                                        type=str,
+                                        default="",
+                                        str_format="start")
+        snake_prop = processed_property("snake_prop",
+                                        type=str,
+                                        default="",
+                                        str_format="snake")
+        pascal_prop = processed_property("pascal_prop",
+                                         type=str,
+                                         default="",
+                                         str_format="pascal")
+        hyphen_prop = processed_property("hyphen_prop",
+                                         type=str,
+                                         default="",
+                                         str_format="hyphen")
 
         def __init__(
-            self,
-            lower_prop="",
-            upper_prop="",
-            title_prop="",
-            start_prop="",
-            snake_prop="",
-            pascal_prop="",
-            hyphen_prop="",
+                self,
+                lower_prop="",
+                upper_prop="",
+                title_prop="",
+                start_prop="",
+                snake_prop="",
+                pascal_prop="",
+                hyphen_prop="",
         ):
             """Initialise the numerical bounds on the processed properties.
 
@@ -106,16 +113,16 @@ def test_fixture():
     ],
 )
 def test_formatted_string_expected_result(
-    test_fixture,
-    input_str,
-    expected,
-    LOWER_KEYWORD,
-    UPPER_KEYWORD,
-    TITLE_KEYWORD,
-    START_KEYWORD,
-    SNAKE_KEYWORD,
-    PASCAL_KEYWORD,
-    HYPHEN_KEYWORD,
+        test_fixture,
+        input_str,
+        expected,
+        LOWER_KEYWORD,
+        UPPER_KEYWORD,
+        TITLE_KEYWORD,
+        START_KEYWORD,
+        SNAKE_KEYWORD,
+        PASCAL_KEYWORD,
+        HYPHEN_KEYWORD,
 ):
     """Assert strings examples formatted exactly as expected.
 
