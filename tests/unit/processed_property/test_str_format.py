@@ -85,8 +85,8 @@ def test_fixture():
                    fixture_ref("example_string_4"),
                    fixture_ref("example_string_5")])
 def test_formatted_string_expected_result(test_fixture, input_str, expected,
-        LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
-        SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
+                                          LOWER_KEYWORD, UPPER_KEYWORD, TITLE_KEYWORD, START_KEYWORD,
+                                          SNAKE_KEYWORD, PASCAL_KEYWORD, HYPHEN_KEYWORD):
     """Assert strings examples formatted exactly as expected.
 
     Additional example strings should be added in future to this test to ensure
