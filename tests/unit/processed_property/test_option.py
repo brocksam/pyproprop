@@ -201,3 +201,25 @@ def test_raises_value_error_with_invalid_option(test_fixture):
         test_fixture.one_option_prop = OPTION_2_KEYWORD
     with pytest.raises(ValueError):
         test_fixture.one_unsupported_option_prop = OPTION_5_KEYWORD
+
+
+def test_option_creation_from_dict_keys():
+
+    class ClassWithMultipleOptionAllUnsupportedOptionProperties:
+
+        option_from_dict_keys_prop = processed_property(
+            "option_from_dict_keys_prop",
+            type=str,
+            options={OPTION_1_KEYWORD: None,
+                     OPTION_2_KEYWORD: None,
+                     OPTION_3_KEYWORD: None,
+                     OPTION_4_KEYWORD: None,
+                     OPTION_5_KEYWORD: None,
+                     }.keys(),
+            unsupported_options=(OPTION_5_KEYWORD, ),
+        )
+
+    def __init__(self):
+        self.option_from_dict_keys_prop = OPTION_1_KEYWORD
+
+    _ = ClassWithMultipleOptionAllUnsupportedOptionProperties()
