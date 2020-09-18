@@ -47,7 +47,6 @@ multiple_options_multiple_unsupported = Options(options_1_to_5,
                                                 unsupported=options_3_to_5)
 
 
-
 class ClassWithOptionProperties:
     """A class with processed properties to be used as fixture instances.
 
