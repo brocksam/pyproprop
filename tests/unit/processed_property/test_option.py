@@ -40,12 +40,14 @@ class ClassWithOptionProperties:
         "one_option_prop",
         description="option property with a single option",
         type=str,
+        str_format="snake",
         options=(OPTION_1_KEYWORD, )
     )
     mul_option_prop = processed_property(
         "mul_option_prop",
         description="option property with multiple options",
         type=str,
+        str_format="snake",
         options=(OPTION_1_KEYWORD,
                  OPTION_2_KEYWORD,
                  OPTION_3_KEYWORD,
@@ -58,6 +60,7 @@ class ClassWithOptionProperties:
         description=("option property with multiple options and a single "
                      "unsupported option"),
         type=str,
+        str_format="snake",
         options=(OPTION_1_KEYWORD,
                  OPTION_2_KEYWORD,
                  OPTION_3_KEYWORD,
@@ -71,6 +74,7 @@ class ClassWithOptionProperties:
         description=("option property with multiple options and multiple "
                      "unsupported options"),
         type=str,
+        str_format="snake",
         options=(OPTION_1_KEYWORD,
                  OPTION_2_KEYWORD,
                  OPTION_3_KEYWORD,
@@ -109,6 +113,17 @@ def test_fixture():
 
 def test_instantiation_class_with_option_properties():
     _ = ClassWithOptionProperties()
+
+
+@pytest.mark.parametrize("input_str",
+                         ["option-1",
+                          "Option 1  ",
+                          "Option__1",
+                          "OpTiOn _-1 -__",
+                          "    OPTION_1---"])
+def test_setting_with_valid_options(test_fixture, input_str):
+    test_fixture.one_option_prop = input_str
+    assert test_fixture.one_option_prop == OPTION_1_KEYWORD
 
 
 def test_single_option_all_unsupported_option():
