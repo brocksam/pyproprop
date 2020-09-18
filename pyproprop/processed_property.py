@@ -6,15 +6,18 @@ generation etc. from user-supplied values in a manner that minimises code
 reuse.
 
 """
-
 from numbers import Real
-from typing import Any, Iterable, Tuple
+from typing import Any
+from typing import Iterable
+from typing import Tuple
 
 import numpy as np
 
-from .format_str_case import SUPPORTED_STR_FORMAT_OPTIONS, format_str_case
+from .format_str_case import format_str_case
+from .format_str_case import SUPPORTED_STR_FORMAT_OPTIONS
 from .options import Options
-from .utils import format_for_output, generate_name_description_error_message
+from .utils import format_for_output
+from .utils import generate_name_description_error_message
 
 __all__ = ["processed_property"]
 
