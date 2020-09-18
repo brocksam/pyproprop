@@ -13,6 +13,7 @@ from typing import Any, Iterable, Tuple
 import numpy as np
 
 from .format_str_case import (format_str_case, SUPPORTED_STR_FORMAT_OPTIONS)
+from .options import Options
 from .utils import (generate_name_description_error_message, format_for_output)
 
 
@@ -67,6 +68,8 @@ def processed_property(name, **kwargs):
             options are.
 
         """
+        if isinstance(options, Options):
+            return options.options, options.unsupported
         if (options is None and unsupported_options) or (set(unsupported_options).difference(set(options))):
             msg = (f"{name_str} does not have any supported options. Check "
                    f"unsupported options are valid options: "
@@ -104,7 +107,8 @@ def processed_property(name, **kwargs):
     # Additional error checking of kwargs
     name_str = generate_name_description_error_message(name, description)
     if options or unsupported_options:
-        error_check_option_kwarg(options, unsupported_options)
+        options, unsupported_options = error_check_option_kwarg(options, 
+                                                                unsupported_options)
 
     @property
     def prop(self):
