@@ -89,3 +89,19 @@ def test_value_error_for_multiple_unsupported_option_not_option():
     with pytest.raises(ValueError, match=expected_error_msg):
         _ = Options(options_tuple,
                     unsupported=(OPTION_4_KEYWORD, OPTION_5_KEYWORD))
+
+
+def test_value_error_single_option_unsupported():
+    expected_error_msg = re.escape(
+        "All options (`'option_1'`) are unsupported.")
+    with pytest.raises(ValueError, match=expected_error_msg):
+        _ = Options(OPTION_1_KEYWORD, unsupported=OPTION_1_KEYWORD)
+
+
+def test_value_error_multiple_options_all_unsupported():
+    options_tuple = (OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD)
+    expected_error_msg = expected_error_msg = re.escape(
+        "All options (`'option_1'`, `'option_2'` and `'option_3'`) are "
+        "unsupported.")
+    with pytest.raises(ValueError, match=expected_error_msg):
+        _ = Options(options_tuple, unsupported=options_tuple)
