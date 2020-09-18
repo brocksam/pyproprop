@@ -56,7 +56,7 @@ class Options:
         if default is not None and default not in self.options:
             msg = (f"{format_for_output(default)} is not a valid choice of "
                    f"default as it is not an option. Please choose one of: "
-                   f"{format_for_output(self.options, with_or=True)}")
+                   f"{format_for_output(self.options, with_or=True)}.")
             raise ValueError(msg)
         elif default is None and not self._unordered_options:
             default = self.options[0]
@@ -77,15 +77,22 @@ class Options:
             if len(invalids) == 1:
                 msg = (f"{format_for_output(invalids)} is not a valid choice "
                        f"of unsupported option as it is not an option. Please "
-                       f"choose from: {format_for_output(self.options)}")
+                       f"choose from: {format_for_output(self.options)}.")
             else:
                 msg = (f"{format_for_output(invalids)} are not a valid "
                        f"choices of unsupported options as they are not "
                        f"options. Please choose from: "
-                       f"{format_for_output(self.options)}")
+                       f"{format_for_output(self.options)}.")
+            raise ValueError(msg)
+        if set(unsupported) == set(self.options):
+            msg = (f"All options ({format_for_output(self.options)}) are "
+                   f"unsupported.")
             raise ValueError(msg)
         self._unsupported = unsupported
 
     @property
     def dispatcher(self):
         return dict(zip(self.options, self.handles))
+
+    def __iter__(self):
+        return iter(self.options)
