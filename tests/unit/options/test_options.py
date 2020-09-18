@@ -29,6 +29,18 @@ OPTION_4_KEYWORD = "option_4"
 OPTION_5_KEYWORD = "option_5"
 
 
+class ClassA:
+    pass
+
+
+class ClassB:
+    pass
+
+
+class ClassC:
+    pass
+
+
 def test_simple_instantiation():
     """:obj:`Options` can be instantiated and initialised correctly."""
     options_tuple = (OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD)
@@ -110,3 +122,23 @@ def test_value_error_multiple_options_all_unsupported():
         "unsupported.")
     with pytest.raises(ValueError, match=expected_error_msg):
         _ = Options(options_tuple, unsupported=options_tuple)
+
+
+def test_valid_handles():
+    options_tuple = (OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD)
+    options = Options(options_tuple, handles=[ClassA, ClassB, ClassC])
+    assert options.options == options_tuple
+    assert options.default == OPTION_1_KEYWORD
+    assert options.unsupported == ()
+    assert options.handles == (ClassA, ClassB, ClassC)
+    assert options.dispatcher == {OPTION_1_KEYWORD: ClassA,
+                                  OPTION_2_KEYWORD: ClassB,
+                                  OPTION_3_KEYWORD: ClassC,
+                                  }
+
+def test_type_error_handles_with_unordered_options():
+    options_tuple = (OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD)
+    expected_error_msg = ("Handles cannot be supplied when options have not "
+                          "been supplied in a specified order.")
+    with pytest.raises(TypeError, match=expected_error_msg):
+        _ = Options(set(options_tuple), handles=[ClassA, ClassB, ClassC])
