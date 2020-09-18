@@ -107,7 +107,7 @@ def processed_property(name, **kwargs):
     # Additional error checking of kwargs
     name_str = generate_name_description_error_message(name, description)
     if options or unsupported_options:
-        options, unsupported_options = error_check_option_kwarg(options, 
+        options, unsupported_options = error_check_option_kwarg(options,
                                                                 unsupported_options)
 
     @property
