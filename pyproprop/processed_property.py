@@ -12,10 +12,9 @@ from typing import Any, Iterable, Tuple
 
 import numpy as np
 
-from .format_str_case import format_str_case, SUPPORTED_STR_FORMAT_OPTIONS
+from .format_str_case import SUPPORTED_STR_FORMAT_OPTIONS, format_str_case
 from .options import Options
-from .utils import generate_name_description_error_message, format_for_output
-
+from .utils import format_for_output, generate_name_description_error_message
 
 __all__ = ["processed_property"]
 
