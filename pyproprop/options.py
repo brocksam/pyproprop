@@ -122,11 +122,14 @@ class Options:
 
     @handles.setter
     def handles(self, handles):
+        if handles is None:
+            handles = ()
+        handles = format_as_iterable(handles)
         if handles and self._unordered_options:
             msg = ("Handles cannot be supplied when options have not been "
-                "supplied in a specified order.")
+                   "supplied in a specified order.")
             raise TypeError(msg)
-        self._handles = handles
+        self._handles = tuple(handles)
 
     @property
     def dispatcher(self):
