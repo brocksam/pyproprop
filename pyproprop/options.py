@@ -80,9 +80,11 @@ class Options:
     @default.setter
     def default(self, default):
         if default is not None and default not in self.options:
-            msg = (f"{format_for_output(default)} is not a valid choice of "
-                   f"default as it is not an option. Please choose one of: "
-                   f"{format_for_output(self.options, with_or=True)}.")
+            msg = (
+                f"{format_for_output(default)} is not a valid choice of "
+                f"default as it is not an option. Please choose one of: "
+                f"{format_for_output(self.options, with_or=True)}."
+            )
             raise ValueError(msg)
         elif default is None and not self._unordered_options:
             default = self.options[0]
@@ -97,22 +99,26 @@ class Options:
         if unsupported is None:
             unsupported = ()
         unsupported = format_as_iterable(unsupported)
-        invalids = [option for option in unsupported
-                    if option not in self.options]
+        invalids = [option for option in unsupported if option not in self.options]
         if invalids:
             if len(invalids) == 1:
-                msg = (f"{format_for_output(invalids)} is not a valid choice "
-                       f"of unsupported option as it is not an option. Please "
-                       f"choose from: {format_for_output(self.options)}.")
+                msg = (
+                    f"{format_for_output(invalids)} is not a valid choice "
+                    f"of unsupported option as it is not an option. Please "
+                    f"choose from: {format_for_output(self.options)}."
+                )
             else:
-                msg = (f"{format_for_output(invalids)} are not a valid "
-                       f"choices of unsupported options as they are not "
-                       f"options. Please choose from: "
-                       f"{format_for_output(self.options)}.")
+                msg = (
+                    f"{format_for_output(invalids)} are not a valid "
+                    f"choices of unsupported options as they are not "
+                    f"options. Please choose from: "
+                    f"{format_for_output(self.options)}."
+                )
             raise ValueError(msg)
         if set(unsupported) == set(self.options):
-            msg = (f"All options ({format_for_output(self.options)}) are "
-                   f"unsupported.")
+            msg = (
+                f"All options ({format_for_output(self.options)}) are " f"unsupported."
+            )
             raise ValueError(msg)
         self._unsupported = unsupported
 
@@ -123,8 +129,10 @@ class Options:
     @handles.setter
     def handles(self, handles):
         if handles and self._unordered_options:
-            msg = ("Handles cannot be supplied when options have not been "
-                   "supplied in a specified order.")
+            msg = (
+                "Handles cannot be supplied when options have not been "
+                "supplied in a specified order."
+            )
             raise TypeError(msg)
         self._handles = handles
 
