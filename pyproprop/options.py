@@ -17,7 +17,7 @@ __all__ = ["Options"]
 
 from collections.abc import Sequence
 
-from .utils import (format_as_iterable, format_for_output)
+from .utils import format_as_iterable, format_for_output
 
 
 class Options:
@@ -91,8 +91,17 @@ class Options:
         self._unsupported = unsupported
 
     @property
+    def handles(self):
+        return self._handles
+
+    @handles.setter
+    def handles(self, handles):
+        if handles and self._unordered_options:
+            msg = ("Handles cannot be supplied when options have not been "
+                "supplied in a specified order.")
+            raise TypeError(msg)
+        self._handles = handles
+
+    @property
     def dispatcher(self):
         return dict(zip(self.options, self.handles))
-
-    def __iter__(self):
-        return iter(self.options)
