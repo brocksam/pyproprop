@@ -21,8 +21,40 @@ from .utils import format_as_iterable, format_for_output
 
 
 class Options:
+    """Implements options with a default, unsupported options and dispatchers.
+
+    Attributes
+    ----------
+    default : obj
+        A single valid option that should be set as the default.
+    dispatcher : dict
+        Mapping of options to handles.
+    handles : {function, class, Sequence}
+        Function or class handles that can be used to create a dispatcher.
+    options : obj, Sequence
+        Collection of options that are allowed for a specific property.
+    unsupported : obj, Sequence
+        Collection of options that are valid options but not currently
+            supported. This is useful for future-proofing package design.
+
+    """
 
     def __init__(self, options, default=None, unsupported=None, handles=None):
+        """Summary
+
+        Parameters
+        ----------
+        options : obj, Sequence
+            Collection of options that are allowed for a specific property.
+        default : None, optional
+            A single valid option that should be set as the default.
+        unsupported : None, optional
+            Collection of options that are valid options but not currently
+            supported. This is useful for future-proofing package design.
+        handles : None, optional
+            Function or class handles that can be used to create a dispatcher.
+
+        """
         self.options = options
         self.default = default
         self.unsupported = unsupported
@@ -34,12 +66,6 @@ class Options:
 
     @options.setter
     def options(self, options):
-        """Needs to detect:
-
-        1. If a single item then make it the only options
-        2. If an unordered container then make sure a default is supplied
-        3. If ordered then the first item can be set as default
-        """
         options = format_as_iterable(options)
         if not isinstance(options, Sequence):
             self._unordered_options = True
