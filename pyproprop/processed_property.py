@@ -143,6 +143,8 @@ def processed_property(name, **kwargs):
                     value = (check_type(value), )
             else:
                 value = check_type(value)
+        if str_format:
+            value = format_str_case(value, str_format, process=True)
         if options is not None:
             check_options(value)
         if min_value is not None:
@@ -163,8 +165,6 @@ def processed_property(name, **kwargs):
             check_len(value, len_sequence)
         if optimisable:
             value = process_optimisable(value)
-        if str_format:
-            value = format_str_case(value, str_format, process=True)
         if post_method is not None:
             value = apply_method(value)
         setattr(self, storage_name, value)
