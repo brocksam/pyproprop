@@ -30,6 +30,7 @@ OPTION_5_KEYWORD = "option_5"
 
 
 def test_simple_instantiation():
+    """:obj:`Options` can be instantiated and initialised correctly."""
     options_tuple = (OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD)
     options = Options(list(options_tuple))
     assert options.options == options_tuple
@@ -38,21 +39,25 @@ def test_simple_instantiation():
 
 
 def test_single_option_instantiation():
+    """:obj:`Options` with single option can be instantiated and initialised
+    correctly."""
     options = Options(OPTION_1_KEYWORD)
     assert options.options == (OPTION_1_KEYWORD, )
     assert options.default == OPTION_1_KEYWORD
     assert options.unsupported == ()
 
 
-def test_instantiation_for_unordered_options_with_default():
+def test_instantiation_for_unordered_options_without_default():
+    """:obj:`Options` with multiple option can be instantiated and initialised
+    correctly."""
     options_set = {OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD}
     options = Options(options_set)
     assert set(options.options) == options_set
-    assert options.default == None
+    assert options.default is None
     assert options.unsupported == ()
 
 
-def test_default_error_for_unordered_options_without_default():
+def test_default_error_for_unordered_options_with_default():
     options_set = {OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD}
     options = Options(options_set, default=OPTION_1_KEYWORD)
     assert set(options.options) == options_set
