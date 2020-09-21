@@ -229,6 +229,8 @@ def processed_property(name, **kwargs):
             If the casting fails.
 
         """
+        if expected_type == np.ndarray:
+            return np.array(value)
         cast_str = f"processed_value = {expected_type.__name__}({value})"
         try:
             exec(cast_str)
