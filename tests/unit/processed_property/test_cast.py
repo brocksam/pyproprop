@@ -19,6 +19,14 @@ from pyproprop import processed_property
 def test_fixture():
 
     class ClassWithCastableProperties:
+        """Dummy class for fixtures with property that casts to np.ndarray
+
+        Attributes
+        ----------
+        cast_prop : processed_prop
+            Processed property that enforces casting to a np.ndarray.
+    
+        """
 
         cast_prop = processed_property("cast_prop",
                                        type=np.ndarray,
@@ -35,6 +43,7 @@ def test_fixture():
                           ]
                          )
 def test_casting_to_numpy_array(test_fixture, test_input, expected):
+    """Valid iterables can be successfully cast to np.ndarray"""
     test_fixture.cast_prop = test_input
     assert type(test_fixture.cast_prop) == type(expected)
     assert np.array_equal(test_fixture.cast_prop, expected)
