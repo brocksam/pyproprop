@@ -7,17 +7,13 @@ reuse.
 
 """
 from numbers import Real
-from typing import Any
-from typing import Iterable
-from typing import Tuple
+from typing import Any, Iterable, Tuple
 
 import numpy as np
 
-from .format_str_case import format_str_case
-from .format_str_case import SUPPORTED_STR_FORMAT_OPTIONS
+from .format_str_case import SUPPORTED_STR_FORMAT_OPTIONS, format_str_case
 from .options import Options
-from .utils import format_for_output
-from .utils import generate_name_description_error_message
+from .utils import format_for_output, generate_name_description_error_message
 
 __all__ = ["processed_property"]
 
@@ -141,7 +137,8 @@ def processed_property(name, **kwargs):
             args = (name_str, )
             setter_dispatcher.update({process_optimisable: (args, {})})
         if post_method is not None:
-            setter_dispatcher.update({apply_method: no_args_kwargs})
+            args = (optional, post_method)
+            setter_dispatcher.update({apply_method: (args, {})})
         return setter_dispatcher
 
     storage_name = "_" + name
@@ -521,7 +518,7 @@ def check_len(value, len_sequence, name_str):
     return value
 
 
-def apply_method(value):
+def apply_method(value, optional, post_method):
     """Applies a specified method at the end of the property setter.
 
     Parameters
