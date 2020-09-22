@@ -28,23 +28,27 @@ OPTION_3_KEYWORD = "option_3"
 OPTION_4_KEYWORD = "option_4"
 OPTION_5_KEYWORD = "option_5"
 
-options_1_to_5 = (OPTION_1_KEYWORD,
-                  OPTION_2_KEYWORD,
-                  OPTION_3_KEYWORD,
-                  OPTION_4_KEYWORD,
-                  OPTION_5_KEYWORD,
-                  )
-options_3_to_5 = (OPTION_3_KEYWORD,
-                  OPTION_4_KEYWORD,
-                  OPTION_5_KEYWORD,
-                  )
+options_1_to_5 = (
+    OPTION_1_KEYWORD,
+    OPTION_2_KEYWORD,
+    OPTION_3_KEYWORD,
+    OPTION_4_KEYWORD,
+    OPTION_5_KEYWORD,
+)
+options_3_to_5 = (
+    OPTION_3_KEYWORD,
+    OPTION_4_KEYWORD,
+    OPTION_5_KEYWORD,
+)
 
 single_option = Options(OPTION_1_KEYWORD)
 multiple_options = Options(options_1_to_5)
-multiple_options_single_unsupported = Options(options_1_to_5,
-                                              unsupported=OPTION_5_KEYWORD)
-multiple_options_multiple_unsupported = Options(options_1_to_5,
-                                                unsupported=options_3_to_5)
+multiple_options_single_unsupported = Options(
+    options_1_to_5, unsupported=OPTION_5_KEYWORD
+)
+multiple_options_multiple_unsupported = Options(
+    options_1_to_5, unsupported=options_3_to_5
+)
 
 
 class ClassWithOptionProperties:
@@ -54,6 +58,7 @@ class ClassWithOptionProperties:
     ----------
 
     """
+
     one_option_prop = processed_property(
         "one_option_prop",
         description="option property with a single option",
@@ -68,25 +73,28 @@ class ClassWithOptionProperties:
     )
     one_unsupported_option_prop = processed_property(
         "one_unsupported_option_prop",
-        description=("option property with multiple options and a single "
-                     "unsupported option"),
+        description=(
+            "option property with multiple options and a single " "unsupported option"
+        ),
         type=str,
         options=multiple_options_single_unsupported,
     )
     mul_unsupported_option_prop = processed_property(
         "mul_unsupported_option_prop",
-        description=("option property with multiple options and multiple "
-                     "unsupported options"),
+        description=(
+            "option property with multiple options and multiple " "unsupported options"
+        ),
         type=str,
         options=multiple_options_multiple_unsupported,
     )
 
-    def __init__(self,
-                 one_option=OPTION_1_KEYWORD,
-                 mul_option=OPTION_1_KEYWORD,
-                 one_unsupported_option=OPTION_1_KEYWORD,
-                 mul_unsupported_option=OPTION_1_KEYWORD,
-                 ):
+    def __init__(
+        self,
+        one_option=OPTION_1_KEYWORD,
+        mul_option=OPTION_1_KEYWORD,
+        one_unsupported_option=OPTION_1_KEYWORD,
+        mul_unsupported_option=OPTION_1_KEYWORD,
+    ):
         """Initialise the numerical bounds on the processed properties.
 
         Parameters
@@ -113,7 +121,8 @@ def test_single_option_all_unsupported_option():
     """"""
     expected_error_msg = re.escape(
         f"`one_all_unsupported_option_prop` does not have any supported "
-        f"options from: `'option_1'`.")
+        f"options from: `'option_1'`."
+    )
     with pytest.raises(ValueError, match=expected_error_msg):
 
         class ClassWithSingleOptionAllUnsupportedOptionProperties:
@@ -121,8 +130,8 @@ def test_single_option_all_unsupported_option():
             one_all_unsupported_option_prop = processed_property(
                 "one_all_unsupported_option_prop",
                 type=str,
-                options=(OPTION_1_KEYWORD, ),
-                unsupported_options=(OPTION_1_KEYWORD, ),
+                options=(OPTION_1_KEYWORD,),
+                unsupported_options=(OPTION_1_KEYWORD,),
             )
 
 
@@ -130,7 +139,8 @@ def test_missing_option_kwarg_with_unsupported_option():
     """"""
     expected_error_msg = re.escape(
         f"`one_all_unsupported_option_prop` does not have any supported "
-        f"options. Check unsupported options are valid options: `'option_1'`.")
+        f"options. Check unsupported options are valid options: `'option_1'`."
+    )
     with pytest.raises(ValueError, match=expected_error_msg):
 
         class ClassWithSingleOptionAllUnsupportedOptionProperties:
@@ -138,7 +148,7 @@ def test_missing_option_kwarg_with_unsupported_option():
             one_all_unsupported_option_prop = processed_property(
                 "one_all_unsupported_option_prop",
                 type=str,
-                unsupported_options=(OPTION_1_KEYWORD, ),
+                unsupported_options=(OPTION_1_KEYWORD,),
             )
 
 

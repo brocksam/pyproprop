@@ -121,8 +121,10 @@ PACKAGE_NAME = "pyproprop"
 VERSION = "0.4.0"
 AUTHOR = "Sam Brockie"
 AUTHOR_EMAIL = "sambrockie@icloud.com"
-DESCRIPTION = ("Package for aiding writing classes with lots of similar "
-               "simple properties without the boilerplate")
+DESCRIPTION = (
+    "Package for aiding writing classes with lots of similar "
+    "simple properties without the boilerplate"
+)
 LICENSE = "MIT"
 URL = "https://pypi.org/project/pyproprop/"
 KEYWORDS = ["property", "type-checking", "bound-checking", "type-casting"]
@@ -155,8 +157,6 @@ if __name__ == "__main__":
         classifiers=CLASSIFIERS,
         python_requires=PYTHON_REQUIRES,
         install_requires=get_contents_from_file("requirements.txt", True),
-        extras_require=get_contents_from_file(
-            {"docs": "docs/requirements.txt"},
-            True),
+        extras_require=get_contents_from_file({"docs": "docs/requirements.txt"}, True),
         tests_require=get_contents_from_file("tests/requirements.txt", True),
     )
