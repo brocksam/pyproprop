@@ -141,7 +141,8 @@ def processed_property(name, **kwargs):
             args = (name_str, )
             setter_dispatcher.update({process_optimisable: (args, {})})
         if post_method is not None:
-            setter_dispatcher.update({apply_method: no_args_kwargs})
+            args = (optional, post_method)
+            setter_dispatcher.update({apply_method: (args, {})})
         return setter_dispatcher
 
     storage_name = "_" + name
@@ -521,7 +522,7 @@ def check_len(value, len_sequence, name_str):
     return value
 
 
-def apply_method(value):
+def apply_method(value, optional, post_method):
     """Applies a specified method at the end of the property setter.
 
     Parameters
