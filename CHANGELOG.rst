@@ -38,6 +38,14 @@ Unreleased
 
 - None
 
+[0.4.1] - 2020-09-22
+--------------------
+
+Fixed
+~~~~~
+
+- Fix bug which raises error when using the `method` kwarg with `processed_property`, as reported in issue #48. Was caused by variables being out of scope in the function `apply_method` with `pyproprop/processed_property.py`.
+
 [0.4.0] - 2020-09-22
 --------------------
 
