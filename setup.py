@@ -24,7 +24,6 @@ VERSION : str
     Version number for current build.
 
 """
-
 import setuptools
 
 
@@ -118,7 +117,7 @@ def get_contents_from_file(filepath, by_line=False, strip=""):
 
 
 PACKAGE_NAME = "pyproprop"
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 AUTHOR = "Sam Brockie"
 AUTHOR_EMAIL = "sambrockie@icloud.com"
 DESCRIPTION = ("Package for aiding writing classes with lots of similar "
@@ -156,7 +155,6 @@ if __name__ == "__main__":
         python_requires=PYTHON_REQUIRES,
         install_requires=get_contents_from_file("requirements.txt", True),
         extras_require=get_contents_from_file(
-            {"docs": "docs/requirements.txt"},
-            True),
+            {"docs": "docs/requirements.txt"}, True),
         tests_require=get_contents_from_file("tests/requirements.txt", True),
     )
