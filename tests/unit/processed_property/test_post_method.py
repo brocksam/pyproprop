@@ -1,5 +1,6 @@
 """Test processed properties with post-methods applied."""
 
+
 import hypothesis.strategies as st
 import numpy as np
 from hypothesis import given
