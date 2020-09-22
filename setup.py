@@ -118,7 +118,7 @@ def get_contents_from_file(filepath, by_line=False, strip=""):
 
 
 PACKAGE_NAME = "pyproprop"
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 AUTHOR = "Sam Brockie"
 AUTHOR_EMAIL = "sambrockie@icloud.com"
 DESCRIPTION = ("Package for aiding writing classes with lots of similar "
