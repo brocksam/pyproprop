@@ -45,7 +45,6 @@ def test_raises_attribute_error_on_setting_twice(test_fixture):
     test_fixture.read_only_prop = 1
     expected_error_msg = re.escape(
         "`read_only_prop` is a read-only property and cannot be reset after "
-        "it has been initialised."
-    )
+        "it has been initialised.")
     with pytest.raises(AttributeError, match=expected_error_msg):
         test_fixture.read_only_prop = 2
