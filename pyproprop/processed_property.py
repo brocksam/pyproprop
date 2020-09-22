@@ -89,7 +89,8 @@ def processed_property(name, **kwargs):
             kwargs = {"instance": True}
             setter_dispatcher.update({check_read_only: (args, kwargs)})
         if expected_type is not None:
-            args = (iterable_allowed, expected_type, name_str, optional, cast_to_type, default)
+            args = (iterable_allowed, expected_type,
+                    name_str, optional, cast_to_type, default)
             setter_dispatcher.update({check_expected_type: (args, {})})
         if str_format:
             args = (str_format, )
@@ -161,7 +162,7 @@ def processed_property(name, **kwargs):
     # Additional error checking of kwargs
     name_str = generate_name_description_error_message(name, description)
     if options or unsupported_options:
-        options, unsupported_options = error_check_option_kwarg(options, 
+        options, unsupported_options = error_check_option_kwarg(options,
                                                                 unsupported_options)
 
     setter_dispatcher = generate_setter_dispatcher()

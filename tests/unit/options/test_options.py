@@ -136,6 +136,7 @@ def test_valid_handles():
                                   OPTION_3_KEYWORD: ClassC,
                                   }
 
+
 def test_type_error_handles_with_unordered_options():
     options_tuple = (OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD)
     expected_error_msg = ("Handles cannot be supplied when options have not "

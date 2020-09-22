@@ -25,7 +25,7 @@ def test_fixture():
         ----------
         cast_prop : processed_prop
             Processed property that enforces casting to a np.ndarray.
-    
+
         """
 
         cast_prop = processed_property("cast_prop",
