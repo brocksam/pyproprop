@@ -14,7 +14,6 @@ OPTION_5_KEYWORD : :obj:`str`
     Generic string identifier for testing.
 
 """
-
 import re
 
 import pytest

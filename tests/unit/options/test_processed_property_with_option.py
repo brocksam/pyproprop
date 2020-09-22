@@ -14,12 +14,12 @@ OPTION_5_KEYWORD : :obj:`str`
     Generic string identifier for testing.
 
 """
-
 import re
 
 import pytest
 
-from pyproprop import Options, processed_property
+from pyproprop import Options
+from pyproprop import processed_property
 
 OPTION_1_KEYWORD = "option_1"
 OPTION_2_KEYWORD = "option_2"

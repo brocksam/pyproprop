@@ -7,8 +7,6 @@ circumstances including when the :py:meth:`__bool__` method does not return
 a boolean, or when the class is a weak reference.
 
 """
-
-
 import numpy as np
 import pytest
 

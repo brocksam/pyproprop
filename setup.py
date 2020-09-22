@@ -24,7 +24,6 @@ VERSION : str
     Version number for current build.
 
 """
-
 import setuptools
 
 
