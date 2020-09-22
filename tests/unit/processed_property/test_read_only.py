@@ -1,5 +1,4 @@
 """Test read-only processed properties."""
-
 import re
 
 import pytest

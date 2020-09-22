@@ -6,16 +6,18 @@ generation etc. from user-supplied values in a manner that minimises code
 reuse.
 
 """
-
 from numbers import Real
-from typing import Any, Iterable, Tuple
+from typing import Any
+from typing import Iterable
+from typing import Tuple
 
 import numpy as np
 
-from .format_str_case import (format_str_case, SUPPORTED_STR_FORMAT_OPTIONS)
+from .format_str_case import format_str_case
+from .format_str_case import SUPPORTED_STR_FORMAT_OPTIONS
 from .options import Options
-from .utils import (generate_name_description_error_message, format_for_output)
-
+from .utils import format_for_output
+from .utils import generate_name_description_error_message
 
 __all__ = ["processed_property"]
 
@@ -56,7 +58,7 @@ def processed_property(name, **kwargs):
         Returns
         -------
         tuple of tuples
-            Tuple of length two where the first element is a tuple of the 
+            Tuple of length two where the first element is a tuple of the
             options and the second is a tuple of the unsupported options.
 
         Raises
@@ -70,7 +72,8 @@ def processed_property(name, **kwargs):
         """
         if isinstance(options, Options):
             return options.options, options.unsupported
-        if (options is None and unsupported_options) or (set(unsupported_options).difference(set(options))):
+        if (options is None and unsupported_options) or (
+                set(unsupported_options).difference(set(options))):
             msg = (f"{name_str} does not have any supported options. Check "
                    f"unsupported options are valid options: "
                    f"{format_for_output(unsupported_options)}.")
@@ -89,7 +92,14 @@ def processed_property(name, **kwargs):
             kwargs = {"instance": True}
             setter_dispatcher.update({check_read_only: (args, kwargs)})
         if expected_type is not None:
-            args = (iterable_allowed, expected_type, name_str, optional, cast_to_type, default)
+            args = (
+                iterable_allowed,
+                expected_type,
+                name_str,
+                optional,
+                cast_to_type,
+                default,
+            )
             setter_dispatcher.update({check_expected_type: (args, {})})
         if str_format:
             args = (str_format, )
@@ -161,8 +171,8 @@ def processed_property(name, **kwargs):
     # Additional error checking of kwargs
     name_str = generate_name_description_error_message(name, description)
     if options or unsupported_options:
-        options, unsupported_options = error_check_option_kwarg(options, 
-                                                                unsupported_options)
+        options, unsupported_options = error_check_option_kwarg(
+            options, unsupported_options)
 
     setter_dispatcher = generate_setter_dispatcher()
 
@@ -196,8 +206,10 @@ def processed_property(name, **kwargs):
                 kwargs["instance"] = self
             value = method(value, *args, **kwargs)
         setattr(self, storage_name, value)
-        setattr(self, f"{storage_name}_dir", {"name": name,
-                                              "description": description})
+        setattr(self, f"{storage_name}_dir", {
+            "name": name,
+            "description": description
+        })
 
     return prop
 
@@ -210,42 +222,24 @@ def check_read_only(value, storage_name, name_str, *, instance):
     return value
 
 
-def check_expected_type(value,
-                        iterable_allowed,
-                        expected_type, name_str,
-                        optional,
-                        cast_to_type,
-                        default):
+def check_expected_type(value, iterable_allowed, expected_type, name_str,
+                        optional, cast_to_type, default):
     if iterable_allowed:
         if isinstance(value, Iterable):
-            value = tuple([check_type(val,
-                                      expected_type,
-                                      name_str,
-                                      optional,
-                                      cast_to_type,
-                                      default)
-                           for val in value])
+            value = tuple([
+                check_type(val, expected_type, name_str, optional,
+                           cast_to_type, default) for val in value
+            ])
         else:
-            value = (check_type(value,
-                                expected_type,
-                                name_str,
-                                optional,
-                                cast_to_type,
-                                default), )
+            value = (check_type(value, expected_type, name_str, optional,
+                                cast_to_type, default), )
     else:
-        value = check_type(value,
-                           expected_type,
-                           name_str, optional,
-                           cast_to_type,
-                           default)
+        value = check_type(value, expected_type, name_str, optional,
+                           cast_to_type, default)
     return value
 
 
-def check_type(value,
-               expected_type,
-               name_str,
-               optional,
-               cast_to_type,
+def check_type(value, expected_type, name_str, optional, cast_to_type,
                default):
     """Ensure the type of the property value to be set is as specified.
 
@@ -314,14 +308,10 @@ def cast_type(value, expected_type):
         msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
                f"a {repr(type(value))} which cannot be cast.")
         raise e(msg)
-    return locals()['processed_value']
+    return locals()["processed_value"]
 
 
-def check_options(value,
-                  options,
-                  unsupported_options,
-                  name_str,
-                  name,
+def check_options(value, options, unsupported_options, name_str, name,
                   description):
     """Ensure user-supplied value is a valid option.
 
@@ -342,28 +332,22 @@ def check_options(value,
         If value trying to be set is not a valid option or is an
         unsupported option.
     """
-    valid_options = [option for option in options
-                     if option not in unsupported_options]
-    formatted_valid_options = format_for_output(valid_options,
-                                                with_or=True)
+    valid_options = [
+        option for option in options if option not in unsupported_options
+    ]
+    formatted_valid_options = format_for_output(valid_options, with_or=True)
     if value in unsupported_options:
-        formatted_unsupported_option = format_for_output(value,
-                                                         with_verb=True)
+        formatted_unsupported_option = format_for_output(value, with_verb=True)
         formatted_description = generate_name_description_error_message(
-            name,
-            description,
-            with_preposition=True)
-        msg = (
-            f"{formatted_unsupported_option} not currently supported as "
-            f"{formatted_description}. Choose one of: "
-            f"{formatted_valid_options}."
-        )
+            name, description, with_preposition=True)
+        msg = (f"{formatted_unsupported_option} not currently supported as "
+               f"{formatted_description}. Choose one of: "
+               f"{formatted_valid_options}.")
         raise ValueError(msg)
     elif value not in options:
         formatted_value = format_for_output(value, with_verb=True)
-        msg = (
-            f"{formatted_value} not a valid option of {name_str}. "
-            f"Choose one of: {formatted_valid_options}.")
+        msg = (f"{formatted_value} not a valid option of {name_str}. "
+               f"Choose one of: {formatted_valid_options}.")
         raise ValueError(msg)
     return value
 
@@ -388,10 +372,9 @@ def check_min(value, name, description, exclusive, min_value):
     Use function from py:mod:`utils` to format repr values with backticks.
 
     """
-    name_str = generate_name_description_error_message(
-        name,
-        description,
-        is_sentence_start=True)
+    name_str = generate_name_description_error_message(name,
+                                                       description,
+                                                       is_sentence_start=True)
     if exclusive:
         if value <= min_value:
             msg = (f"{name_str} must be greater than `{repr(min_value)}`. "
@@ -425,10 +408,9 @@ def check_max(value, name, description, exclusive, max_value):
     Use function from py:mod:`utils` to format repr values with backticks.
 
     """
-    name_str = generate_name_description_error_message(
-        name,
-        description,
-        is_sentence_start=True)
+    name_str = generate_name_description_error_message(name,
+                                                       description,
+                                                       is_sentence_start=True)
     if exclusive:
         if value >= max_value:
             msg = (f"{name_str} must be less than `{repr(max_value)}`. "
@@ -445,40 +427,52 @@ def check_max(value, name, description, exclusive, max_value):
 def check_less_than(value, less_than, name, description, *, instance):
     def less_than_lambda(val_1, val_2):
         return val_1 < val_2
-    check_comparison(value, instance, less_than, "less than",
-                     less_than_lambda, name, description)
+
+    check_comparison(value, instance, less_than, "less than", less_than_lambda,
+                     name, description)
     return value
 
 
 def check_greater_than(value, greater_than, name, description, *, instance):
     def greater_than_lambda(val_1, val_2):
         return val_1 > val_2
-    check_comparison(value, instance, greater_than, "greater than",
-                     greater_than_lambda, name, description)
+
+    check_comparison(
+        value,
+        instance,
+        greater_than,
+        "greater than",
+        greater_than_lambda,
+        name,
+        description,
+    )
     return value
 
 
 def check_at_least(value, at_least, name, description, *, instance):
     def at_least_lambda(val_1, val_2):
         return val_1 >= val_2
-    check_comparison(value, instance, at_least, "at least",
-                     at_least_lambda, name, description)
+
+    check_comparison(value, instance, at_least, "at least", at_least_lambda,
+                     name, description)
     return value
 
 
 def check_at_most(value, at_most, name, description, *, instance):
     def at_most_lambda(val_1, val_2):
         return val_1 <= val_2
-    check_comparison(value, instance, at_most, "at most",
-                     at_most_lambda, name, description)
+
+    check_comparison(value, instance, at_most, "at most", at_most_lambda, name,
+                     description)
     return value
 
 
 def check_equal_to(value, equal_to, name, description, *, instance):
     def equal_to_lambda(val_1, val_2):
         return val_1 == val_2
-    check_comparison(value, instance, equal_to, "equal to",
-                     equal_to_lambda, name, description)
+
+    check_comparison(value, instance, equal_to, "equal to", equal_to_lambda,
+                     name, description)
     return value
 
 
@@ -522,7 +516,7 @@ def check_len(value, len_sequence, name_str):
 
     """
     if len(value) != len_sequence:
-        msg = (f"{name_str} must be a sequence of length {len_sequence}.")
+        msg = f"{name_str} must be a sequence of length {len_sequence}."
         raise ValueError(msg)
     return value
 

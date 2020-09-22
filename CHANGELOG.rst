@@ -16,7 +16,7 @@ More information can be found on GitHub in the `releases section
 About this Changelog
 ====================
 
-All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Dates should be (year-month-day) to conform with [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html). 
+All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Dates should be (year-month-day) to conform with [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 Formatting a New Version
 ========================
@@ -68,7 +68,7 @@ Added
 Changed
 ~~~~~~~
 
-- Reformat README with additional badges. 
+- Reformat README with additional badges.
 
 [0.2.2] - 2020-09-05
 --------------------

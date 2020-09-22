@@ -14,13 +14,11 @@ OPTION_5_KEYWORD : :obj:`str`
     Generic string identifier for testing.
 
 """
-
 import re
 
 import pytest
 
 from pyproprop import processed_property
-
 
 OPTION_1_KEYWORD = "option_1"
 OPTION_2_KEYWORD = "option_2"
@@ -36,24 +34,26 @@ class ClassWithOptionProperties:
     ----------
 
     """
+
     one_option_prop = processed_property(
         "one_option_prop",
         description="option property with a single option",
         type=str,
         str_format="snake",
-        options=(OPTION_1_KEYWORD, )
+        options=(OPTION_1_KEYWORD, ),
     )
     mul_option_prop = processed_property(
         "mul_option_prop",
         description="option property with multiple options",
         type=str,
         str_format="snake",
-        options=(OPTION_1_KEYWORD,
-                 OPTION_2_KEYWORD,
-                 OPTION_3_KEYWORD,
-                 OPTION_4_KEYWORD,
-                 OPTION_5_KEYWORD,
-                 )
+        options=(
+            OPTION_1_KEYWORD,
+            OPTION_2_KEYWORD,
+            OPTION_3_KEYWORD,
+            OPTION_4_KEYWORD,
+            OPTION_5_KEYWORD,
+        ),
     )
     one_unsupported_option_prop = processed_property(
         "one_unsupported_option_prop",
@@ -61,12 +61,13 @@ class ClassWithOptionProperties:
                      "unsupported option"),
         type=str,
         str_format="snake",
-        options=(OPTION_1_KEYWORD,
-                 OPTION_2_KEYWORD,
-                 OPTION_3_KEYWORD,
-                 OPTION_4_KEYWORD,
-                 OPTION_5_KEYWORD,
-                 ),
+        options=(
+            OPTION_1_KEYWORD,
+            OPTION_2_KEYWORD,
+            OPTION_3_KEYWORD,
+            OPTION_4_KEYWORD,
+            OPTION_5_KEYWORD,
+        ),
         unsupported_options=(OPTION_5_KEYWORD, ),
     )
     mul_unsupported_option_prop = processed_property(
@@ -75,24 +76,27 @@ class ClassWithOptionProperties:
                      "unsupported options"),
         type=str,
         str_format="snake",
-        options=(OPTION_1_KEYWORD,
-                 OPTION_2_KEYWORD,
-                 OPTION_3_KEYWORD,
-                 OPTION_4_KEYWORD,
-                 OPTION_5_KEYWORD,
-                 ),
-        unsupported_options=(OPTION_3_KEYWORD,
-                             OPTION_4_KEYWORD,
-                             OPTION_5_KEYWORD,
-                             ),
+        options=(
+            OPTION_1_KEYWORD,
+            OPTION_2_KEYWORD,
+            OPTION_3_KEYWORD,
+            OPTION_4_KEYWORD,
+            OPTION_5_KEYWORD,
+        ),
+        unsupported_options=(
+            OPTION_3_KEYWORD,
+            OPTION_4_KEYWORD,
+            OPTION_5_KEYWORD,
+        ),
     )
 
-    def __init__(self,
-                 one_option=OPTION_1_KEYWORD,
-                 mul_option=OPTION_1_KEYWORD,
-                 one_unsupported_option=OPTION_1_KEYWORD,
-                 mul_unsupported_option=OPTION_1_KEYWORD,
-                 ):
+    def __init__(
+            self,
+            one_option=OPTION_1_KEYWORD,
+            mul_option=OPTION_1_KEYWORD,
+            one_unsupported_option=OPTION_1_KEYWORD,
+            mul_unsupported_option=OPTION_1_KEYWORD,
+    ):
         """Initialise the numerical bounds on the processed properties.
 
         Parameters
@@ -115,12 +119,13 @@ def test_instantiation_class_with_option_properties():
     _ = ClassWithOptionProperties()
 
 
-@pytest.mark.parametrize("input_str",
-                         ["option-1",
-                          "Option 1  ",
-                          "Option__1",
-                          "OpTiOn _-1 -__",
-                          "    OPTION_1---"])
+@pytest.mark.parametrize(
+    "input_str",
+    [
+        "option-1", "Option 1  ", "Option__1", "OpTiOn _-1 -__",
+        "    OPTION_1---"
+    ],
+)
 def test_setting_with_valid_options(test_fixture, input_str):
     test_fixture.one_option_prop = input_str
     assert test_fixture.one_option_prop == OPTION_1_KEYWORD
@@ -189,18 +194,20 @@ def test_multiple_option_all_are_unsupported_option():
             mul_all_unsupported_option_prop = processed_property(
                 "mul_all_unsupported_option_prop",
                 type=str,
-                options=(OPTION_1_KEYWORD,
-                         OPTION_2_KEYWORD,
-                         OPTION_3_KEYWORD,
-                         OPTION_4_KEYWORD,
-                         OPTION_5_KEYWORD,
-                         ),
-                unsupported_options=(OPTION_1_KEYWORD,
-                                     OPTION_2_KEYWORD,
-                                     OPTION_3_KEYWORD,
-                                     OPTION_4_KEYWORD,
-                                     OPTION_5_KEYWORD,
-                                     ),
+                options=(
+                    OPTION_1_KEYWORD,
+                    OPTION_2_KEYWORD,
+                    OPTION_3_KEYWORD,
+                    OPTION_4_KEYWORD,
+                    OPTION_5_KEYWORD,
+                ),
+                unsupported_options=(
+                    OPTION_1_KEYWORD,
+                    OPTION_2_KEYWORD,
+                    OPTION_3_KEYWORD,
+                    OPTION_4_KEYWORD,
+                    OPTION_5_KEYWORD,
+                ),
             )
 
 
@@ -219,18 +226,18 @@ def test_raises_value_error_with_invalid_option(test_fixture):
 
 
 def test_option_creation_from_dict_keys():
-
     class ClassWithMultipleOptionAllUnsupportedOptionProperties:
 
         option_from_dict_keys_prop = processed_property(
             "option_from_dict_keys_prop",
             type=str,
-            options={OPTION_1_KEYWORD: None,
-                     OPTION_2_KEYWORD: None,
-                     OPTION_3_KEYWORD: None,
-                     OPTION_4_KEYWORD: None,
-                     OPTION_5_KEYWORD: None,
-                     }.keys(),
+            options={
+                OPTION_1_KEYWORD: None,
+                OPTION_2_KEYWORD: None,
+                OPTION_3_KEYWORD: None,
+                OPTION_4_KEYWORD: None,
+                OPTION_5_KEYWORD: None,
+            }.keys(),
             unsupported_options=(OPTION_5_KEYWORD, ),
         )
 

@@ -14,13 +14,11 @@ OPTION_5_KEYWORD : :obj:`str`
     Generic string identifier for testing.
 
 """
-
 import re
 
 import pytest
 
 from pyproprop import Options
-
 
 OPTION_1_KEYWORD = "option_1"
 OPTION_2_KEYWORD = "option_2"
@@ -131,10 +129,12 @@ def test_valid_handles():
     assert options.default == OPTION_1_KEYWORD
     assert options.unsupported == ()
     assert options.handles == (ClassA, ClassB, ClassC)
-    assert options.dispatcher == {OPTION_1_KEYWORD: ClassA,
-                                  OPTION_2_KEYWORD: ClassB,
-                                  OPTION_3_KEYWORD: ClassC,
-                                  }
+    assert options.dispatcher == {
+        OPTION_1_KEYWORD: ClassA,
+        OPTION_2_KEYWORD: ClassB,
+        OPTION_3_KEYWORD: ClassC,
+    }
+
 
 def test_type_error_handles_with_unordered_options():
     options_tuple = (OPTION_1_KEYWORD, OPTION_2_KEYWORD, OPTION_3_KEYWORD)

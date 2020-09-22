@@ -11,9 +11,7 @@ designed with use alongside processed properties in mind.
 
 """
 
-
 __all__ = ["Options"]
-
 
 from collections.abc import Sequence
 
@@ -97,8 +95,9 @@ class Options:
         if unsupported is None:
             unsupported = ()
         unsupported = format_as_iterable(unsupported)
-        invalids = [option for option in unsupported
-                    if option not in self.options]
+        invalids = [
+            option for option in unsupported if option not in self.options
+        ]
         if invalids:
             if len(invalids) == 1:
                 msg = (f"{format_for_output(invalids)} is not a valid choice "

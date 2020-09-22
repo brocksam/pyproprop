@@ -24,7 +24,6 @@ VERSION : str
     Version number for current build.
 
 """
-
 import setuptools
 
 
@@ -156,7 +155,6 @@ if __name__ == "__main__":
         python_requires=PYTHON_REQUIRES,
         install_requires=get_contents_from_file("requirements.txt", True),
         extras_require=get_contents_from_file(
-            {"docs": "docs/requirements.txt"},
-            True),
+            {"docs": "docs/requirements.txt"}, True),
         tests_require=get_contents_from_file("tests/requirements.txt", True),
     )

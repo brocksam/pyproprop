@@ -14,13 +14,12 @@ OPTION_5_KEYWORD : :obj:`str`
     Generic string identifier for testing.
 
 """
-
 import re
 
 import pytest
 
-from pyproprop import Options, processed_property
-
+from pyproprop import Options
+from pyproprop import processed_property
 
 OPTION_1_KEYWORD = "option_1"
 OPTION_2_KEYWORD = "option_2"
@@ -28,16 +27,18 @@ OPTION_3_KEYWORD = "option_3"
 OPTION_4_KEYWORD = "option_4"
 OPTION_5_KEYWORD = "option_5"
 
-options_1_to_5 = (OPTION_1_KEYWORD,
-                  OPTION_2_KEYWORD,
-                  OPTION_3_KEYWORD,
-                  OPTION_4_KEYWORD,
-                  OPTION_5_KEYWORD,
-                  )
-options_3_to_5 = (OPTION_3_KEYWORD,
-                  OPTION_4_KEYWORD,
-                  OPTION_5_KEYWORD,
-                  )
+options_1_to_5 = (
+    OPTION_1_KEYWORD,
+    OPTION_2_KEYWORD,
+    OPTION_3_KEYWORD,
+    OPTION_4_KEYWORD,
+    OPTION_5_KEYWORD,
+)
+options_3_to_5 = (
+    OPTION_3_KEYWORD,
+    OPTION_4_KEYWORD,
+    OPTION_5_KEYWORD,
+)
 
 single_option = Options(OPTION_1_KEYWORD)
 multiple_options = Options(options_1_to_5)
@@ -47,7 +48,6 @@ multiple_options_multiple_unsupported = Options(options_1_to_5,
                                                 unsupported=options_3_to_5)
 
 
-
 class ClassWithOptionProperties:
     """A class with processed properties to be used as fixture instances.
 
@@ -55,6 +55,7 @@ class ClassWithOptionProperties:
     ----------
 
     """
+
     one_option_prop = processed_property(
         "one_option_prop",
         description="option property with a single option",
@@ -82,12 +83,13 @@ class ClassWithOptionProperties:
         options=multiple_options_multiple_unsupported,
     )
 
-    def __init__(self,
-                 one_option=OPTION_1_KEYWORD,
-                 mul_option=OPTION_1_KEYWORD,
-                 one_unsupported_option=OPTION_1_KEYWORD,
-                 mul_unsupported_option=OPTION_1_KEYWORD,
-                 ):
+    def __init__(
+            self,
+            one_option=OPTION_1_KEYWORD,
+            mul_option=OPTION_1_KEYWORD,
+            one_unsupported_option=OPTION_1_KEYWORD,
+            mul_unsupported_option=OPTION_1_KEYWORD,
+    ):
         """Initialise the numerical bounds on the processed properties.
 
         Parameters
