@@ -38,6 +38,23 @@ Unreleased
 
 - None
 
+[0.4.0] - 2020-09-22
+--------------------
+
+Added
+~~~~~
+
+- A new `Options` utility class is now provided, as requested by issue #40. which allows groupings of options that are supported or unsupported. Default options for can be specified. Handles can also be provided and linked to options so that a dispatcher can be automatically generated for a set of options with associated functions/classes that are callable.
+- String formatted is supported by Options, as requested in issue #41.
+- Casting to Numpy ndarrays is now supported, as requested by issue #46.
+- Processed properties can now be marked as "read-only", raising an `AttributeError` if they are tried to be set more than once.
+
+Changed
+~~~~~~~
+
+- `processed_property`'s setter now uses a dispatcher (which is greated during the initial function call) to build the setter method improving performance, as requested by issue #18.
+
+
 [0.3.0] - 2020-09-16
 --------------------
 
