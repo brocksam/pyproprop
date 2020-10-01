@@ -263,7 +263,7 @@ def check_type(value, expected_type, name_str, optional, cast_to_type,
     if isinstance(value, expected_type):
         return value
     elif optional and value is None:
-        if default:
+        if default is not None:
             return default
         else:
             return None
