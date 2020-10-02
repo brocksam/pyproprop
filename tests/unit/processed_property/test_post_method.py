@@ -19,8 +19,7 @@ class ClassWithPostMethodProperty:
 
     method_prop = processed_property("method_prop", type=int, method=square)
     np_method_prop = processed_property("np_method_prop", type=float,
-                                        cast=True, iterable_allowed=True,
-                                        method=np.cos)
+                                        cast=True, method=np.cos)
 
 
 @given(st.integers())
@@ -31,13 +30,7 @@ def test_post_method(test_value):
     assert test_fixture.method_prop == square(test_value)
 
 
-@given(st.one_of(st.integers(min_value=-9223372036854775808,
-                             max_value=9223372036854775807),
-                 st.floats(allow_infinity=False, allow_nan=False),
-                 st.lists(st.integers(min_value=-9223372036854775808,
-                                      max_value=9223372036854775807)),
-                 )
-       )
+@given(st.floats(allow_infinity=False, allow_nan=False))
 def test_post_method_numpy(test_value):
     """Applies numpy function correctly."""
     test_fixture = ClassWithPostMethodProperty()

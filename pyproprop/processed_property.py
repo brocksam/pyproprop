@@ -284,13 +284,13 @@ def check_type(value, expected_type, name_str, optional, cast_to_type,
             return default
         return None
     elif cast_to_type:
-        return cast_type(value, expected_type)
+        return cast_type(value, expected_type, name_str)
     msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
            f"a {repr(type(value))}.")
     raise TypeError(msg)
 
 
-def cast_type(value, expected_type):
+def cast_type(value, expected_type, name_str):
     """Enforce type casting of property value to be set to specific type.
 
     Parameters
@@ -316,10 +316,10 @@ def cast_type(value, expected_type):
     cast_str = f"processed_value = {expected_type.__name__}({value})"
     try:
         exec(cast_str)
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError):
         msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
                f"a {repr(type(value))} which cannot be cast.")
-        raise e(msg)
+        raise ValueError(msg)
     return locals()["processed_value"]
 
 
