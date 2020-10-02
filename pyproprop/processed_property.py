@@ -25,21 +25,30 @@ def processed_property(name, **kwargs):
     ----------
     name : str
         Attribute name that will be used for the property.
-    **kwargs
-        Arbitrary keyword arguments.
+    read_only : bool, False
+        If a processed property is specified as read-only then after its value
+        has been set once (i.e. after it has been instantiated), it is not able
+        to be set again.
+    type : type, None
+        Tells the processed property the type of the value that the setter is
+        expecting. If the value passed to the setter is not of this type then a
+        TypeError will be raised.
+    cast : bool, False
+        Defines whether the value passed to the processed property's setter
+        should be attempted to be cast to the expected type.
+    optional : bool, False
+        In additional to other specifications for the processed property, a
+        value of `None` is also accepted.
+    default : obj, None
+        If a processed property is specified as `optional`, then if a value of
+        `None` is supplied to the setter this is instead replaced with this
+        specified default value.
 
     Returns
     -------
     property
         The metaprogrammed property object with setter including specified
         settings.
-
-    Notes
-    -----
-    Valid keyword arguments are:
-        optional : bool, False
-            In additional to other specifications for the processed property,
-            a value of `None` is also accepted. 
 
     """
 
