@@ -155,7 +155,7 @@ def processed_property(name, **kwargs):
     options = kwargs.get("options", None)
     unsupported_options = kwargs.get("unsupported_options", [])
     optional = kwargs.get("optional", False)
-    default = kwargs.get("default", False)
+    default = kwargs.get("default", None)
     iterable_allowed = kwargs.get("iterable_allowed", False)
     cast_to_type = kwargs.get("cast", False)
     len_sequence = kwargs.get("len")
@@ -209,7 +209,9 @@ def processed_property(name, **kwargs):
         for (method, (args, kwargs)) in setter_dispatcher.items():
             if kwargs.get("instance") is not None:
                 kwargs["instance"] = self
+            print(value, method)
             value = method(value, *args, **kwargs)
+            print(value)
         setattr(self, storage_name, value)
         setattr(self, f"{storage_name}_dir", {
             "name": name,
@@ -268,7 +270,7 @@ def check_type(value, expected_type, name_str, optional, cast_to_type,
     """
     if isinstance(value, expected_type):
         return value
-    elif optional and value is None:
+    elif optional and (value is None):
         if default is not None:
             return default
         return None
