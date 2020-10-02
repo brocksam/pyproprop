@@ -33,6 +33,14 @@ def processed_property(name, **kwargs):
     property
         The metaprogrammed property object with setter including specified
         settings.
+
+    Notes
+    -----
+    Valid keyword arguments are:
+        optional : bool, False
+            In additional to other specifications for the processed property,
+            a value of `None` is also accepted. 
+
     """
 
     def parse_kwarg(kwarg_name, description, valids, default):
@@ -227,12 +235,10 @@ def check_expected_type(value, iterable_allowed, expected_type, name_str,
                 check_type(val, expected_type, name_str, optional,
                            cast_to_type, default) for val in value
             ])
-        else:
-            value = (check_type(value, expected_type, name_str, optional,
-                                cast_to_type, default), )
-    else:
-        value = check_type(value, expected_type, name_str, optional,
-                           cast_to_type, default)
+        value = (check_type(value, expected_type, name_str, optional,
+                            cast_to_type, default), )
+    value = check_type(value, expected_type, name_str, optional,
+                       cast_to_type, default)
     return value
 
 
@@ -265,14 +271,12 @@ def check_type(value, expected_type, name_str, optional, cast_to_type,
     elif optional and value is None:
         if default is not None:
             return default
-        else:
-            return None
+        return None
     elif cast_to_type:
         return cast_type(value, expected_type)
-    else:
-        msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
-               f"a {repr(type(value))}.")
-        raise TypeError(msg)
+    msg = (f"{name_str} must be a {repr(expected_type)}, instead got "
+           f"a {repr(type(value))}.")
+    raise TypeError(msg)
 
 
 def cast_type(value, expected_type):
