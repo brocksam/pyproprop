@@ -218,9 +218,7 @@ def processed_property(name, **kwargs):
         for (method, (args, kwargs)) in setter_dispatcher.items():
             if kwargs.get("instance") is not None:
                 kwargs["instance"] = self
-            print(value, method)
             value = method(value, *args, **kwargs)
-            print(value)
         setattr(self, storage_name, value)
         setattr(self, f"{storage_name}_dir", {
             "name": name,
@@ -246,6 +244,10 @@ def check_expected_type(value, iterable_allowed, expected_type, name_str,
                 check_type(val, expected_type, name_str, optional,
                            cast_to_type, default) for val in value
             ])
+        elif (value is None) and optional:
+            if default is not None:
+                return default
+            return None
         value = (check_type(value, expected_type, name_str, optional,
                             cast_to_type, default), )
     value = check_type(value, expected_type, name_str, optional,
