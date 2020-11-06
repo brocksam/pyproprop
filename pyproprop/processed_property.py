@@ -18,6 +18,11 @@ from .utils import format_for_output, generate_name_description_error_message
 __all__ = ["processed_property"]
 
 
+class property(property):
+    """Subclass in-built property type so attributes can be set."""
+    pass
+
+
 def processed_property(name, **kwargs):
     """Main function for creating a processed property within a class.
 
@@ -104,6 +109,7 @@ def processed_property(name, **kwargs):
             args = (storage_name, name_str)
             kwargs = {"instance": True}
             setter_dispatcher.update({check_read_only: (args, kwargs)})
+            setattr(property, "is_read_only", read_only)
         if expected_type is not None:
             args = (
                 iterable_allowed,
@@ -153,6 +159,7 @@ def processed_property(name, **kwargs):
         if optimisable:
             args = (name_str, )
             setter_dispatcher.update({process_optimisable: (args, {})})
+            setattr(property, "is_optimisable", optimisable)
         if post_method is not None:
             args = (optional, post_method)
             setter_dispatcher.update({apply_method: (args, {})})
