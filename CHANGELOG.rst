@@ -38,6 +38,15 @@ Unreleased
 
 - None
 
+[0.4.3] - 2020-11-06
+--------------------
+
+Added
+~~~~~
+
+- Add `is_optimisable` and `is_read_only` boolean attributes to `processed_property` class attributes.
+- Add tests to `tests/unit/processed_property/test_optimisable.py` testing optimisable processed properties.
+
 [0.4.2] - 2020-11-06
 --------------------
 
