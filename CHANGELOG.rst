@@ -5,7 +5,7 @@ pyproprop Changelog
 :Info: Changelog for pyproprop releases.
 :Authors: Sam Brockie (sambrockie@icloud.com), Jack Irvine (jack.irvine97@outlook.com)
 :Date: 2020-08-19
-:Version: 0.0.4
+:Version: 0.4.2
 
 GitHub holds releases, too
 ==========================
@@ -37,6 +37,24 @@ Unreleased
 ----------
 
 - None
+
+[0.4.2] - 2020-11-06
+--------------------
+
+Added
+~~~~~
+
+- New test module `tests/unit/processed_property/test_default.py` for processed properties with default values.
+- Add docstring to `pypropprop/processed_property.py` with further detail about allowable kwargs for the function.
+
+Fixed
+~~~~~
+
+- Fix `DepricationWarning` from ambiguous boolean of empty iterable for default in processed properties.
+- Fix bug in default value for default argument in processed properties.
+- Fix failing test due to conflict between casting and iterable supported in processed properties.
+- Fix bug causing incorrect operation of optional, iterable-allowed, no default processed properties.
+
 
 [0.4.1] - 2020-09-22
 --------------------
