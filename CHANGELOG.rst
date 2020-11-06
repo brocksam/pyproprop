@@ -5,7 +5,7 @@ pyproprop Changelog
 :Info: Changelog for pyproprop releases.
 :Authors: Sam Brockie (sambrockie@icloud.com), Jack Irvine (jack.irvine97@outlook.com)
 :Date: 2020-08-19
-:Version: 0.4.2
+:Version: 0.4.3
 
 GitHub holds releases, too
 ==========================
