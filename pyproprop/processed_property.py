@@ -255,10 +255,12 @@ def check_expected_type(value, iterable_allowed, expected_type, name_str,
             if default is not None:
                 return default
             return None
-        value = (check_type(value, expected_type, name_str, optional,
-                            cast_to_type, default), )
-    value = check_type(value, expected_type, name_str, optional,
-                       cast_to_type, default)
+        else:
+            value = (check_type(value, expected_type, name_str, optional,
+                                cast_to_type, default), )
+    else:
+        value = check_type(value, expected_type, name_str, optional,
+                           cast_to_type, default)
     return value
 
 
