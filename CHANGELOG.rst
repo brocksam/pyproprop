@@ -38,6 +38,15 @@ Unreleased
 
 - None
 
+[0.4.4] - 2020-11-27
+--------------------
+
+Fixed
+~~~~~
+
+- Fix bug which caused `iterable_allowed` `processed_property` objects to be cast incorrectly.
+- Add tests for `iterable_allowed` `processed_property` objects to new test module `tests/unit/processed_property/test_iterable.py`.
+
 [0.4.3] - 2020-11-06
 --------------------
 
