@@ -1,9 +1,10 @@
 name: docs
 
-on:
-  release:
-    types:
-      - created
+# on:
+#   release:
+#     types:
+#       - created
+on: [push]
 
 jobs:
   build:
