@@ -30,9 +30,9 @@ jobs:
           channels: conda-forge
           conda-build-version: 3.21.4
       - name: Install basic dependencies
-        run: conda install -q -y --file=requirements.txt --file=tests/requirements.txt --file=docs/requirements.txt
+        run: conda install -q -y --file=requirements.txt --file=tests/requirements.txt --file=docs/requirements.txt build
       - name: Install Pyproprop
-        run: python setup.py install
+        run: python -m build
       - name: Test with pytest
         run: pytest --cov-report=xml --cov=pyproprop tests/
       - name: Upload Coverage to Codecov
