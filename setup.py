@@ -146,7 +146,7 @@ if __name__ == "__main__":
         version=VERSION,
         author=AUTHOR,
         author_email=AUTHOR_EMAIL,
-        packages=setuptools.find_packages(),
+        packages=[PACKAGE_NAME],
         url=URL,
         license=LICENSE,
         description=DESCRIPTION,
