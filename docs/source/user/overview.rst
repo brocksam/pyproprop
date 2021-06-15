@@ -80,7 +80,7 @@ Do you often find yourself writing classes with properties such as:
                 val = DefaultObject()
             self._instantiate_default_if_none_attr = val
 
-With pyproprop all of this boilerplate can be removed and instead the exact same class can be rewritten as:
+With *Pyproprop* all of this boilerplate can be removed and instead the exact same class can be rewritten as:
 
 .. code-block:: python
 

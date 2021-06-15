@@ -1,5 +1,5 @@
 *********
-pyproprop
+Pyproprop
 *********
 
 Package for aiding writing classes with lots of similar simple properties without the boilerplate.
@@ -14,34 +14,28 @@ Status
      - .. image:: https://img.shields.io/pypi/v/pyproprop?color=brightgreen&label=version
             :alt: PyPI
             :target: https://pypi.org/project/pyproprop/
-     - **Travis CI**
-     - .. image:: https://travis-ci.com/brocksam/pyproprop.svg?branch=master
-            :target: https://travis-ci.com/brocksam/pyproprop
-   * - **Docs**
+     - **Docs**
      - .. image:: https://readthedocs.org/projects/pyproprop/badge/?version=latest
             :target: https://pyproprop.readthedocs.io/en/latest/?badge=latest
             :alt: Documentation Status
-     - **Appveyor**
-     - .. image:: https://ci.appveyor.com/api/projects/status/github/brocksam/pyproprop?svg=true
-            :target: https://ci.appveyor.com/project/brocksam/pyproprop
    * - **PyPI**
      - .. image:: https://img.shields.io/pypi/dm/pyproprop?color=brightgreen&label=downloads&logo=pypi
             :alt: PyPI - Downloads
             :target: https://pypi.org/project/pyproprop/
-     - **Coverage**
-     - .. image:: https://img.shields.io/codecov/c/github/brocksam/pyproprop?color=brightgreen&logo=codecov
-            :alt: Codecov
-   * - **Anaconda**
+     - **Anaconda**
      - .. image:: https://img.shields.io/conda/dn/conda-forge/pyproprop?color=brightgreen&label=downloads&logo=conda-forge
             :alt: Conda
             :target: https://anaconda.org/conda-forge/pyproprop
+   * - **Coverage**
+     - .. image:: https://img.shields.io/codecov/c/github/brocksam/pyproprop?color=brightgreen&logo=codecov
+            :alt: Codecov
      - **License**
      - .. image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
            :target: https://github.com/brocksam/pyproprop/blob/master/LICENSE
 
 
 
-What is pyproprop?
+What is Pyproprop?
 ==================
 
 Do you often find yourself writing classes with properties such as:
@@ -123,7 +117,7 @@ Do you often find yourself writing classes with properties such as:
                 val = DefaultObject()
             self._instantiate_default_if_none_attr = val
 
-With pyproprop all of this boilerplate can be removed and instead the exact same class can be rewritten as:
+With *Pyproprop* all of this boilerplate can be removed and instead the exact same class can be rewritten as:
 
 .. code-block:: python
 
@@ -177,7 +171,7 @@ With pyproprop all of this boilerplate can be removed and instead the exact same
 Installation
 ============
 
-The easiest way to install pyproprop is using the `Anaconda Python distribution <https://www.anaconda.com/what-is-anaconda/>`_ and its included *Conda* package management system. To install pyproprop and its required dependencies, enter the following command at a command prompt:
+The easiest way to install *Pyproprop* is using the `Anaconda Python distribution <https://www.anaconda.com/what-is-anaconda/>`_ and its included *Conda* package management system. To install *Pyproprop* and its required dependencies, enter the following command at a command prompt:
 
 .. code-block:: bash
 
@@ -200,4 +194,4 @@ Contribute
 License
 =======
 
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the `MIT license <LICENSE>`_.
