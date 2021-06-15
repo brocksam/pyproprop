@@ -19,7 +19,7 @@ jobs:
         with:
           auto-update-conda: true
           activate-environment: test-environment
-          python-version: "3.x"
+          python-version: "3.9"
           channels: conda-forge
           conda-build-version: 3.21.4
       - name: Install basic dependencies
