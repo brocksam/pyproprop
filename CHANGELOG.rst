@@ -38,6 +38,19 @@ Unreleased
 
 - None
 
+[0.4.5] - 2021-06-15
+--------------------
+
+Changed
+~~~~~~~
+
+- Move CI to GitHub Actions. Remove use of Appveyor and TravisCI.
+
+Fixed
+~~~~~
+
+- Fix bug which accidentally added the test directory as an additional package in the distribution causing conflicts with builds on conda-forge.
+
 [0.4.4] - 2020-11-27
 --------------------
 
