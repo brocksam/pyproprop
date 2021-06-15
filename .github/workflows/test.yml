@@ -25,6 +25,8 @@ jobs:
       - name: Install basic dependencies
         run: conda install -q -y --file=requirements.txt --file=tests/requirements.txt
       - name: Install Pyproprop
-        run: python setup.py install
+        run: |
+          conda install build
+          python -m build
       - name: Test with pytest
         run: pytest tests/
