@@ -23,10 +23,8 @@ jobs:
           channels: conda-forge
           conda-build-version: 3.21.4
       - name: Install basic dependencies
-        run: conda install -q -y --file=requirements.txt --file=tests/requirements.txt
+        run: conda install -q -y --file=requirements.txt --file=tests/requirements.txt build
       - name: Install Pyproprop
-        run: |
-          conda install build
-          python -m build
+        run: python -m build
       - name: Test with pytest
         run: pytest tests/
