@@ -1,5 +1,5 @@
 *********
-pyproprop
+Pyproprop
 *********
 
 Package for aiding writing classes with lots of similar simple properties without the boilerplate.
@@ -35,7 +35,7 @@ Status
 
 
 
-What is pyproprop?
+What is Pyproprop?
 ==================
 
 Do you often find yourself writing classes with properties such as:
@@ -117,7 +117,7 @@ Do you often find yourself writing classes with properties such as:
                 val = DefaultObject()
             self._instantiate_default_if_none_attr = val
 
-With pyproprop all of this boilerplate can be removed and instead the exact same class can be rewritten as:
+With *Pyproprop* all of this boilerplate can be removed and instead the exact same class can be rewritten as:
 
 .. code-block:: python
 
@@ -171,7 +171,7 @@ With pyproprop all of this boilerplate can be removed and instead the exact same
 Installation
 ============
 
-The easiest way to install pyproprop is using the `Anaconda Python distribution <https://www.anaconda.com/what-is-anaconda/>`_ and its included *Conda* package management system. To install pyproprop and its required dependencies, enter the following command at a command prompt:
+The easiest way to install *Pyproprop* is using the `Anaconda Python distribution <https://www.anaconda.com/what-is-anaconda/>`_ and its included *Conda* package management system. To install *Pyproprop* and its required dependencies, enter the following command at a command prompt:
 
 .. code-block:: bash
 
@@ -194,4 +194,4 @@ Contribute
 License
 =======
 
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the `MIT license <LICENSE>`_.
