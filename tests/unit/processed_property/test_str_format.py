@@ -62,51 +62,56 @@ PASCAL_KEYWORD = "pascal"
 HYPHEN_KEYWORD = "hyphen"
 
 EXAMPLE_STR_1 = "this is a string"
-EXAMPLE_STR_1_FORMATTED = {LOWER_KEYWORD: "this is a string",
-                           UPPER_KEYWORD: "THIS IS A STRING",
-                           TITLE_KEYWORD: "This Is a String",
-                           START_KEYWORD: "This is a string",
-                           SNAKE_KEYWORD: "this_is_a_string",
-                           PASCAL_KEYWORD: "ThisIsAString",
-                           HYPHEN_KEYWORD: "this-is-a-string",
-                           }
+EXAMPLE_STR_1_FORMATTED = {
+    LOWER_KEYWORD: "this is a string",
+    UPPER_KEYWORD: "THIS IS A STRING",
+    TITLE_KEYWORD: "This Is a String",
+    START_KEYWORD: "This is a string",
+    SNAKE_KEYWORD: "this_is_a_string",
+    PASCAL_KEYWORD: "ThisIsAString",
+    HYPHEN_KEYWORD: "this-is-a-string",
+}
 EXAMPLE_STR_2 = "string with an   ABRV"
-EXAMPLE_STR_2_FORMATTED = {LOWER_KEYWORD: "string with an abrv",
-                           UPPER_KEYWORD: "STRING WITH AN ABRV",
-                           TITLE_KEYWORD: "String With an ABRV",
-                           START_KEYWORD: "String with an ABRV",
-                           SNAKE_KEYWORD: "string_with_an_abrv",
-                           PASCAL_KEYWORD: "StringWithAnABRV",
-                           HYPHEN_KEYWORD: "string-with-an-abrv",
-                           }
+EXAMPLE_STR_2_FORMATTED = {
+    LOWER_KEYWORD: "string with an abrv",
+    UPPER_KEYWORD: "STRING WITH AN ABRV",
+    TITLE_KEYWORD: "String With an ABRV",
+    START_KEYWORD: "String with an ABRV",
+    SNAKE_KEYWORD: "string_with_an_abrv",
+    PASCAL_KEYWORD: "StringWithAnABRV",
+    HYPHEN_KEYWORD: "string-with-an-abrv",
+}
 EXAMPLE_STR_3 = "string_with %_£+"
-EXAMPLE_STR_3_FORMATTED = {LOWER_KEYWORD: "string_with %_£+",
-                           UPPER_KEYWORD: "STRING_WITH %_£+",
-                           TITLE_KEYWORD: "String_with %_£+",
-                           START_KEYWORD: "String_with %_£+",
-                           SNAKE_KEYWORD: "string_with",
-                           PASCAL_KEYWORD: "StringWith",
-                           HYPHEN_KEYWORD: "string-with",
-                           }
+EXAMPLE_STR_3_FORMATTED = {
+    LOWER_KEYWORD: "string_with %_£+",
+    UPPER_KEYWORD: "STRING_WITH %_£+",
+    TITLE_KEYWORD: "String_with %_£+",
+    START_KEYWORD: "String_with %_£+",
+    SNAKE_KEYWORD: "string_with",
+    PASCAL_KEYWORD: "StringWith",
+    HYPHEN_KEYWORD: "string-with",
+}
 EXAMPLE_STR_4 = "it's an example-with punctuation!"
-EXAMPLE_STR_4_FORMATTED = {LOWER_KEYWORD: "it's an example-with punctuation!",
-                           UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
-                           TITLE_KEYWORD: "It's an Example-With Punctuation!",
-                           START_KEYWORD: "It's an example-with punctuation!",
-                           SNAKE_KEYWORD: "its_an_example_with_punctuation",
-                           PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
-                           HYPHEN_KEYWORD: "its-an-example-with-punctuation",
-                           }
+EXAMPLE_STR_4_FORMATTED = {
+    LOWER_KEYWORD: "it's an example-with punctuation!",
+    UPPER_KEYWORD: "IT'S AN EXAMPLE-WITH PUNCTUATION!",
+    TITLE_KEYWORD: "It's an Example-With Punctuation!",
+    START_KEYWORD: "It's an example-with punctuation!",
+    SNAKE_KEYWORD: "its_an_example_with_punctuation",
+    PASCAL_KEYWORD: "ItsAnExampleWithPunctuation",
+    HYPHEN_KEYWORD: "its-an-example-with-punctuation",
+}
 
 EXAMPLE_STR_5 = "string _with__lots___of_underscores_"
-EXAMPLE_STR_5_FORMATTED = {LOWER_KEYWORD: "string _with__lots___of_underscores_",
-                           UPPER_KEYWORD: "STRING _WITH__LOTS___OF_UNDERSCORES_",
-                           TITLE_KEYWORD: "String _With__lots___of_underscores_",
-                           START_KEYWORD: "String _with__lots___of_underscores_",
-                           SNAKE_KEYWORD: "string_with_lots_of_underscores",
-                           PASCAL_KEYWORD: "StringWithLotsOfUnderscores",
-                           HYPHEN_KEYWORD: "string-with-lots-of-underscores",
-                           }
+EXAMPLE_STR_5_FORMATTED = {
+    LOWER_KEYWORD: "string _with__lots___of_underscores_",
+    UPPER_KEYWORD: "STRING _WITH__LOTS___OF_UNDERSCORES_",
+    TITLE_KEYWORD: "String _With__lots___of_underscores_",
+    START_KEYWORD: "String _with__lots___of_underscores_",
+    SNAKE_KEYWORD: "string_with_lots_of_underscores",
+    PASCAL_KEYWORD: "StringWithLotsOfUnderscores",
+    HYPHEN_KEYWORD: "string-with-lots-of-underscores",
+}
 
 
 @pytest.fixture
@@ -131,24 +136,39 @@ def test_fixture():
             String processed property that automatically formats to pascal
             case.
         """
-        lower_prop = processed_property("lower_prop", type=str, default="",
-                                        str_format="lower")
-        upper_prop = processed_property("upper_prop", type=str, default="",
-                                        str_format="upper")
-        title_prop = processed_property("title_prop", type=str, default="",
-                                        str_format="title")
-        start_prop = processed_property("start_prop", type=str, default="",
-                                        str_format="start")
-        snake_prop = processed_property("snake_prop", type=str, default="",
-                                        str_format="snake")
-        pascal_prop = processed_property("pascal_prop", type=str, default="",
-                                         str_format="pascal")
-        hyphen_prop = processed_property("hyphen_prop", type=str, default="",
-                                         str_format="hyphen")
 
-        def __init__(self, lower_prop="", upper_prop="", title_prop="",
-                     start_prop="", snake_prop="", pascal_prop="",
-                     hyphen_prop=""):
+        lower_prop = processed_property(
+            "lower_prop", type=str, default="", str_format="lower"
+        )
+        upper_prop = processed_property(
+            "upper_prop", type=str, default="", str_format="upper"
+        )
+        title_prop = processed_property(
+            "title_prop", type=str, default="", str_format="title"
+        )
+        start_prop = processed_property(
+            "start_prop", type=str, default="", str_format="start"
+        )
+        snake_prop = processed_property(
+            "snake_prop", type=str, default="", str_format="snake"
+        )
+        pascal_prop = processed_property(
+            "pascal_prop", type=str, default="", str_format="pascal"
+        )
+        hyphen_prop = processed_property(
+            "hyphen_prop", type=str, default="", str_format="hyphen"
+        )
+
+        def __init__(
+            self,
+            lower_prop="",
+            upper_prop="",
+            title_prop="",
+            start_prop="",
+            snake_prop="",
+            pascal_prop="",
+            hyphen_prop="",
+        ):
             """Initialise the numerical bounds on the processed properties.
             Parameters
             ----------
@@ -178,12 +198,16 @@ def test_fixture():
     return ClassWithStringFormatProperties()
 
 
-@pytest.mark.parametrize("input_str, expected",
-                         [(EXAMPLE_STR_1, EXAMPLE_STR_1_FORMATTED),
-                          (EXAMPLE_STR_2, EXAMPLE_STR_2_FORMATTED),
-                          (EXAMPLE_STR_3, EXAMPLE_STR_3_FORMATTED),
-                          (EXAMPLE_STR_4, EXAMPLE_STR_4_FORMATTED),
-                          (EXAMPLE_STR_5, EXAMPLE_STR_5_FORMATTED)])
+@pytest.mark.parametrize(
+    "input_str, expected",
+    [
+        (EXAMPLE_STR_1, EXAMPLE_STR_1_FORMATTED),
+        (EXAMPLE_STR_2, EXAMPLE_STR_2_FORMATTED),
+        (EXAMPLE_STR_3, EXAMPLE_STR_3_FORMATTED),
+        (EXAMPLE_STR_4, EXAMPLE_STR_4_FORMATTED),
+        (EXAMPLE_STR_5, EXAMPLE_STR_5_FORMATTED),
+    ],
+)
 def test_formatted_string_expected_result(test_fixture, input_str, expected):
     """Assert strings examples formatted exactly as expected.
     Additional example strings should be added in future to this test to ensure

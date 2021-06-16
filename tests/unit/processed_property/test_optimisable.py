@@ -33,6 +33,5 @@ def test_instantiation():
 
 def test_optimisable_property_has_is_optimisable_attr():
     """Optimisable processed property has `is_optimisable` attr."""
-    assert hasattr(ClassWithOptimisableProperty.optimisable_prop,
-                   "is_optimisable")
+    assert hasattr(ClassWithOptimisableProperty.optimisable_prop, "is_optimisable")
     assert ClassWithOptimisableProperty.optimisable_prop.is_optimisable is True

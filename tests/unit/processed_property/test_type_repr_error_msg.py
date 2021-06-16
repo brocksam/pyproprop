@@ -13,33 +13,34 @@ supported_options : :py:obj:`set`
 
 import re
 
-from hypothesis import (assume, given)
 import hypothesis.strategies as st
 import pytest
+from hypothesis import assume, given
 
 from pyproprop import processed_property
 
-
-OPTIONS = (None,
-           "none",
-           3,
-           3.0,
-           "3",
-           "3.0",
-           4,
-           4.0,
-           "4",
-           "4.0",
-           True,
-           "True",
-           )
-UNSUPPORTED_OPTIONS = (True,
-                       "True",
-                       4,
-                       4.0,
-                       "4",
-                       "4.0",
-                       )
+OPTIONS = (
+    None,
+    "none",
+    3,
+    3.0,
+    "3",
+    "3.0",
+    4,
+    4.0,
+    "4",
+    "4.0",
+    True,
+    "True",
+)
+UNSUPPORTED_OPTIONS = (
+    True,
+    "True",
+    4,
+    4.0,
+    "4",
+    "4.0",
+)
 supported_options = set(OPTIONS).difference(set(UNSUPPORTED_OPTIONS))
 
 
@@ -54,9 +55,10 @@ class ClassWithOptionsProperty:
         for testing purposes only.
 
     """
+
     options_prop = processed_property(
-        "options_prop", options=OPTIONS,
-        unsupported_options=UNSUPPORTED_OPTIONS)
+        "options_prop", options=OPTIONS, unsupported_options=UNSUPPORTED_OPTIONS
+    )
 
     def __init__(self, option=None):
         """Initialise the numerical bounds on the processed properties.
@@ -86,7 +88,8 @@ def test_valid_options_set_correctly(test_fixture, option):
 def test_unsupported_options_raise_error(test_fixture, option):
     expected_error_msg = re.escape(
         f"`{repr(option)}` is not currently supported as an `options_prop`. "
-        f"Choose one of: `None`, `'none'`, `3`, `3.0`, `'3'` or `'3.0'`.")
+        f"Choose one of: `None`, `'none'`, `3`, `3.0`, `'3'` or `'3.0'`."
+    )
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.options_prop = option
 
@@ -97,6 +100,7 @@ def test_invalid_options_raise_error(option):
     test_fixture = ClassWithOptionsProperty()
     expected_error_msg = re.escape(
         f"`{repr(option)}` is not a valid option of `options_prop`. Choose "
-        f"one of: `None`, `'none'`, `3`, `3.0`, `'3'` or `'3.0'`.")
+        f"one of: `None`, `'none'`, `3`, `3.0`, `'3'` or `'3.0'`."
+    )
     with pytest.raises(ValueError, match=expected_error_msg):
         test_fixture.options_prop = option

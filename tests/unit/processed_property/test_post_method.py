@@ -18,8 +18,9 @@ class ClassWithPostMethodProperty:
     """Dummy class for testing processed properties with post methods."""
 
     method_prop = processed_property("method_prop", type=int, method=square)
-    np_method_prop = processed_property("np_method_prop", type=float,
-                                        cast=True, method=np.cos)
+    np_method_prop = processed_property(
+        "np_method_prop", type=float, cast=True, method=np.cos
+    )
 
 
 @given(st.integers())
