@@ -36,8 +36,9 @@ def test_casting_without_iterable(test_fixture, test_input, expected):
     assert type(test_fixture.cast_prop) == type(expected)
 
 
-@pytest.mark.parametrize("test_input, expected", [([1, 2], (1.0, 2.0)),
-                                                  ((1, 2), (1.0, 2.0))])
+@pytest.mark.parametrize(
+    "test_input, expected", [([1, 2], (1.0, 2.0)), ((1, 2), (1.0, 2.0))]
+)
 def test_casting_with_iterable(test_fixture, test_input, expected):
     """Values are cast when an iterable"""
     test_fixture.cast_prop = test_input

@@ -6,10 +6,10 @@ Do you often find yourself writing classes with properties such as:
 .. code-block:: python
 
     from some_other_module import DefaultObject, some_type
-    
+
     class ExampleClass:
-    
-        def __init__(self, 
+
+        def __init__(self,
                      type_checked_value,
                      bounded_numeric_value,
                      specific_length_sequence_value,
@@ -20,22 +20,22 @@ Do you often find yourself writing classes with properties such as:
             self.specific_length_sequence_attr = specific_length_sequence_value
             self.obj_with_method_applied_attr = obj_with_method_applied_value
             self.instantiate_default_if_none_attr = None
-    
+
         @property
         def type_checked_attr(self):
             return self._type_checked_attr
-    
+
         @type_checked_attr.setter
         def type_checked_attr(self, val):
             if not isinstance(val, some_type):
                 msg = "`type_checked_attr` must be of `some_type`"
                 raise TypeError(msg)
             self._type_checked_attr = val
-    
+
         @property
         def bounded_numeric_attr(self):
             return self._bounded_numeric_attr
-    
+
         @bounded_numeric_attr.setter
         def bounded_numeric_attr(self, val):
             val = float(val)
@@ -49,31 +49,31 @@ Do you often find yourself writing classes with properties such as:
                        f"{upper_bound}.")
                 raise ValueError(msg)
             self._type_checked_attr = val
-    
+
         @property
         def specific_length_sequence_attr(self):
             return self._specific_length_sequence_attr
-    
+
         @specific_length_sequence_attr.setter
         def specific_length_sequence_attr(self, val):
             if len(val) != 2:
                 msg = "`specific_length_sequence` must be an iterable of length 2."
                 raise ValueError(msg)
             self._specific_length_sequence_attr = val
-    
+
         @property
         def obj_with_method_applied_value(self):
             return self._obj_with_method_applied_value
-    
+
         @obj_with_method_applied_value.setter
         def obj_with_method_applied_value(self, val):
             val = str(val)
             self._obj_with_method_applied_value = val.title()
-    
+
         @property
         def instantiate_default_if_none_attr(self):
             return self._instantiate_default_if_none_attr
-    
+
         @instantiate_default_if_none_attr.setter
         def instantiate_default_if_none_attr(self, val):
             if val is None:
@@ -86,9 +86,9 @@ With *Pyproprop* all of this boilerplate can be removed and instead the exact sa
 
     from pyproprop import processed_property
     from some_other_module import DefaultObject, some_type
-    
+
     class ExampleClass:
-    
+
         type_checked_attr = processed_property(
             "type_checked_attr",
             description="property with enforced type of `some_type`",
@@ -118,8 +118,8 @@ With *Pyproprop* all of this boilerplate can be removed and instead the exact sa
             "instantiate_default_if_none_attr",
             default=DefaultObject,
         )
-    
-        def __init__(self, 
+
+        def __init__(self,
                      type_checked_value,
                      bounded_numeric_value,
                      specific_length_sequence_value,
