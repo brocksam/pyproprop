@@ -12,8 +12,6 @@ Docstrings need improving.
 from collections import namedtuple
 
 import sympy as sym
-from typing import (Any, Iterable, Union)
-
 
 __all__ = ["named_iterable"]
 
@@ -23,19 +21,19 @@ def named_iterable(iterable, use_named=True, named_keys=None, sympify=False):
 
     Parameters
     ----------
-    iterable : TYPE
+    iterable : Iterable
         Description
-    use_named : bool, optional
+    use_named : Optional[bool]
         Description
-    named_keys : Optional[NamedTuple], optional
+    named_keys : Optional[NamedTuple]
         Description
-    sympify : bool, optional
+    sympify : Optional[bool]
         Whether the values should be automatically converted to Sympy objects
         before adding to the new iterable.
 
     Returns
     -------
-    named_tuple
+    named_tuple : `nametuple`
         Formatted named iterable that is dot-indexible.
     """
     iterable, named_keys = make_iterable(iterable, named_keys)
@@ -46,7 +44,7 @@ def named_iterable(iterable, use_named=True, named_keys=None, sympify=False):
     if use_named:
         if named_keys is None:
             named_keys = [str(entry) for entry in entries]
-        NamedTuple = namedtuple('NamedTuple', named_keys)
+        NamedTuple = namedtuple("NamedTuple", named_keys)
         formatted_entries = NamedTuple(*entries)
     else:
         formatted_entries = tuple(entries)
@@ -74,7 +72,7 @@ def make_iterable(iterable, named_keys):
     try:
         iter(iterable)
     except TypeError:
-        return (iterable, ), named_keys
+        return (iterable,), named_keys
     try:
         return iterable.values(), iterable.keys()
     except AttributeError:
