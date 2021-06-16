@@ -18,7 +18,7 @@ __location__ = os.path.join(
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.join(__location__, ".."))
+sys.path.insert(0, os.path.join(__location__, "../.."))
 
 # -- Run sphinx-apidoc -------------------------------------------------------
 # This hack is necessary since RTD does not issue `sphinx-apidoc` before running
@@ -34,7 +34,7 @@ except ImportError:
     from sphinx import apidoc
 
 output_dir = os.path.join(__location__, "api")
-module_dir = os.path.join(__location__, "../pyproprop")
+module_dir = os.path.join(__location__, "../../pyproprop")
 try:
     shutil.rmtree(output_dir)
 except FileNotFoundError:
@@ -118,7 +118,7 @@ release = ""  # Is set by calling `setup.py docs`
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ["build", "Thumbs.db", ".DS_Store", ".venv"]
+exclude_patterns = ["../build", "Thumbs.db", ".DS_Store", ".venv"]
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 # default_role = None
@@ -161,7 +161,7 @@ html_theme_options = {"sidebar_width": "300px", "page_width": "1200px"}
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 try:
-    from demo_project import __version__ as version
+    from pyproprop import __version__ as version
 except ImportError:
     pass
 else:
@@ -226,7 +226,7 @@ html_static_path = []
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "demo-project-doc"
+htmlhelp_basename = "pyproprop-doc"
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -243,7 +243,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ("index", "user_guide.tex", "demo-project Documentation", "John Doe", "manual")
+    ("index", "user_guide.tex", "pyproprop Documentation", "Sam Brockie", "manual")
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
