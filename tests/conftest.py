@@ -1,8 +1,6 @@
-import os
-import sys
+from typing import Iterable
 
 import pytest
-from typing import Iterable
 
 from pyproprop import processed_property
 
@@ -114,24 +112,26 @@ def TestProcessedProperties():
             options=(1, 2),
         )
 
-        def __init__(self, *,
-                     checked_type_int=None,
-                     checked_type_float=None,
-                     checked_type_str=None,
-                     checked_type_iterable=None,
-                     checked_type_bool=None,
-                     checked_list_len=None,
-                     checked_max_value=None,
-                     checked_min_value=None,
-                     checked_max_value_excl=None,
-                     checked_min_value_excl=None,
-                     checked_bounds=None,
-                     checked_iterable_allowed=None,
-                     optional_prop=None,
-                     optional_prop_with_default=None,
-                     cast_string=None,
-                     optimisable_property=None
-                     ):
+        def __init__(
+            self,
+            *,
+            checked_type_int=None,
+            checked_type_float=None,
+            checked_type_str=None,
+            checked_type_iterable=None,
+            checked_type_bool=None,
+            checked_list_len=None,
+            checked_max_value=None,
+            checked_min_value=None,
+            checked_max_value_excl=None,
+            checked_min_value_excl=None,
+            checked_bounds=None,
+            checked_iterable_allowed=None,
+            optional_prop=None,
+            optional_prop_with_default=None,
+            cast_string=None,
+            optimisable_property=None
+        ):
 
             self.checked_type_int = checked_type_int
             self.checked_type_float = checked_type_float
