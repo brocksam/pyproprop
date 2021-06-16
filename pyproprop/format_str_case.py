@@ -5,23 +5,23 @@ The module exports the `format_str_case` function to both the module
 
 Attributes
 ----------
-LOWER_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+LOWER_STR_CASE_FORMAT_KEYWORD : str
     String identifier for lower case formatting.
-UPPER_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+UPPER_STR_CASE_FORMAT_KEYWORD : str
     String identifier for upper case formatting.
-TITLE_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+TITLE_STR_CASE_FORMAT_KEYWORD : str
     String identifier for title case formatting.
-START_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+START_STR_CASE_FORMAT_KEYWORD : str
     String identifier for start case formatting.
-SNAKE_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+SNAKE_STR_CASE_FORMAT_KEYWORD : str
     String identifier for snake case formatting.
-PASCAL_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+PASCAL_STR_CASE_FORMAT_KEYWORD : str
     String identifier for pascal case formatting.
-HYPHEN_STR_CASE_FORMAT_KEYWORD : :py:obj:`str`
+HYPHEN_STR_CASE_FORMAT_KEYWORD : str
     String identifier for hyphen case formatting.
-SUPPORTED_STR_FORMAT_OPTIONS : :py:obj:`set`
+SUPPORTED_STR_FORMAT_OPTIONS : set
     Supported options for formatting methods, via identifiers.
-FORMAT_STR_DISPATCHER : :py:obj:`dict`
+FORMAT_STR_DISPATCHER : dict
     Dispatcher mapping string format identifier keywords to formatting
     functions.
 
@@ -30,7 +30,6 @@ FORMAT_STR_DISPATCHER : :py:obj:`dict`
 import re
 
 import titlecase
-
 
 __all__ = ["format_str_case"]
 
@@ -42,15 +41,16 @@ START_STR_CASE_FORMAT_KEYWORD = "start"
 SNAKE_STR_CASE_FORMAT_KEYWORD = "snake"
 PASCAL_STR_CASE_FORMAT_KEYWORD = "pascal"
 HYPHEN_STR_CASE_FORMAT_KEYWORD = "hyphen"
-SUPPORTED_STR_FORMAT_OPTIONS = {None,
-                                LOWER_STR_CASE_FORMAT_KEYWORD,
-                                UPPER_STR_CASE_FORMAT_KEYWORD,
-                                TITLE_STR_CASE_FORMAT_KEYWORD,
-                                START_STR_CASE_FORMAT_KEYWORD,
-                                SNAKE_STR_CASE_FORMAT_KEYWORD,
-                                PASCAL_STR_CASE_FORMAT_KEYWORD,
-                                HYPHEN_STR_CASE_FORMAT_KEYWORD,
-                                }
+SUPPORTED_STR_FORMAT_OPTIONS = {
+    None,
+    LOWER_STR_CASE_FORMAT_KEYWORD,
+    UPPER_STR_CASE_FORMAT_KEYWORD,
+    TITLE_STR_CASE_FORMAT_KEYWORD,
+    START_STR_CASE_FORMAT_KEYWORD,
+    SNAKE_STR_CASE_FORMAT_KEYWORD,
+    PASCAL_STR_CASE_FORMAT_KEYWORD,
+    HYPHEN_STR_CASE_FORMAT_KEYWORD,
+}
 
 
 def format_str_case(item, case, process=False):
@@ -60,9 +60,9 @@ def format_str_case(item, case, process=False):
 
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
-    case : :py:obj:`str` or :py:obj:`None`
+    case : str or :py:obj:`None`
         The keyword identifier for which formatting method is to be used. This
         is used to trigger the correct function call from the
         :py:const:`FORMAT_STR_DISPATCHER` dispatcher.
@@ -72,7 +72,7 @@ def format_str_case(item, case, process=False):
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     """
@@ -109,12 +109,12 @@ def format_str_lower_case(item):
 
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     """
@@ -143,12 +143,12 @@ def format_str_upper_case(item):
 
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     """
@@ -177,12 +177,12 @@ def format_str_title_case(item):
 
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     """
@@ -211,12 +211,12 @@ def format_str_start_case(item):
 
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     Note
@@ -256,12 +256,12 @@ def format_str_snake_case(item):
 
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     """
@@ -299,12 +299,12 @@ def format_str_pascal_case(item):
 
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     """
@@ -319,8 +319,7 @@ def format_str_pascal_case(item):
     # Format title case
     item = titlecase.titlecase(item)
     # Iterate over words and ensure all start uppercase
-    item = "".join(f"{word[0].capitalize()}{word[1:]}"
-                   for word in item.split())
+    item = "".join(f"{word[0].capitalize()}{word[1:]}" for word in item.split())
     # Return with underscores removed
     return re.sub(r" ", r"", item)
 
@@ -344,15 +343,15 @@ def format_str_hyphen_case(item):
 
     >>> format_str_hyphen_case("string _with__lots___of_underscores_")
     "string-with-lots-of-underscores"
-x
+
     Parameters
     ----------
-    item : :py:obj:`str`
+    item : str
         The string object to be formatted.
 
     Returns
     -------
-    :py:obj:`str`
+    str
         The string item passed as a parameter in formatted form.
 
     """
@@ -368,12 +367,13 @@ x
     return item.lower()
 
 
-FORMAT_STR_DISPATCHER = {None: lambda item: item,
-                         LOWER_STR_CASE_FORMAT_KEYWORD: format_str_lower_case,
-                         UPPER_STR_CASE_FORMAT_KEYWORD: format_str_upper_case,
-                         TITLE_STR_CASE_FORMAT_KEYWORD: format_str_title_case,
-                         START_STR_CASE_FORMAT_KEYWORD: format_str_start_case,
-                         SNAKE_STR_CASE_FORMAT_KEYWORD: format_str_snake_case,
-                         PASCAL_STR_CASE_FORMAT_KEYWORD: format_str_pascal_case,
-                         HYPHEN_STR_CASE_FORMAT_KEYWORD: format_str_hyphen_case,
-                         }
+FORMAT_STR_DISPATCHER = {
+    None: lambda item: item,
+    LOWER_STR_CASE_FORMAT_KEYWORD: format_str_lower_case,
+    UPPER_STR_CASE_FORMAT_KEYWORD: format_str_upper_case,
+    TITLE_STR_CASE_FORMAT_KEYWORD: format_str_title_case,
+    START_STR_CASE_FORMAT_KEYWORD: format_str_start_case,
+    SNAKE_STR_CASE_FORMAT_KEYWORD: format_str_snake_case,
+    PASCAL_STR_CASE_FORMAT_KEYWORD: format_str_pascal_case,
+    HYPHEN_STR_CASE_FORMAT_KEYWORD: format_str_hyphen_case,
+}
