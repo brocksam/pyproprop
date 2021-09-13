@@ -1,4 +1,4 @@
 numpy>=1.17
 sympy>=1.6
-titlecase>=2.2
+titlecase>=2.3
 typing>=3.7
