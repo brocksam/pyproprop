@@ -106,7 +106,7 @@ EXAMPLE_STR_5 = "string _with__lots___of_underscores_"
 EXAMPLE_STR_5_FORMATTED = {
     LOWER_KEYWORD: "string _with__lots___of_underscores_",
     UPPER_KEYWORD: "STRING _WITH__LOTS___OF_UNDERSCORES_",
-    TITLE_KEYWORD: "String _With__lots___of_underscores_",
+    TITLE_KEYWORD: "String _with__lots___of_underscores_",
     START_KEYWORD: "String _with__lots___of_underscores_",
     SNAKE_KEYWORD: "string_with_lots_of_underscores",
     PASCAL_KEYWORD: "StringWithLotsOfUnderscores",
